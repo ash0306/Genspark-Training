@@ -1,0 +1,14 @@
+L1: 
+Binary Gap - https://app.codility.com/demo/results/trainingPAU3Z2-H35/ 
+
+L2: 
+Cyclic Rotation - https://app.codility.com/demo/results/trainingS9JJSJ-8ZH/
+Odd Occurencec in Array - https://app.codility.com/demo/results/training3GTPKM-ZXZ/
+
+L3:
+Frog Jump - https://app.codility.com/demo/results/trainingVZFKQ8-6MX/
+Perm Missing Element - https://app.codility.com/demo/results/trainingC9M2JV-DGB/
+Tape Equilibrium - https://app.codility.com/demo/results/trainingDFG7BC-GN5/
+
+FURY ROAD:
+https://app.codility.com/demo/results/training7UM265-628/

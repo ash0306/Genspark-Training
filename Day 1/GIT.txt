@@ -1,0 +1,36 @@
+Setting up a repo:
+	git init
+	git add -A
+	git commit -m "<commit-message>"
+	git push origin <branch-name>
+
+Conflicts and resolving:
+	git pull origin <branch-name>
+	
+
+Branching:
+	git branch
+	git branch <branch-name>
+	git checkout <branch-name>
+	git merge <branch-name>
+	git rebase
+	git restore
+
+Deleting branch:
+(check before deleting!!!!!)
+
+	git branch -d <branch-name>(it identifies any remaining merges to be completed)
+	git branch -D <branch-name>(it force deletes even if you havent merged)
+
+above cmd removes the branch only in the local
+to delete in remote use:
+
+	git push -d origin <branch-name>
+
+
+Stash:
+	git stash
+	git stash save "<message>"
+	git stash list/show
+	git stash apply/pop
+	git stash clear
