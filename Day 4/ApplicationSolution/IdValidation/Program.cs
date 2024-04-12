@@ -5,11 +5,13 @@
         static public string GetID()
         {
             string id = "";
+            Console.WriteLine("Enter ID to be validated:");
+            id = Console.ReadLine() ?? "";
             while (id.Length<16)
             {
+                Console.WriteLine("Invalid entry. Please try again.");
                 Console.WriteLine("Enter ID to be validated:");
                 id = Console.ReadLine() ?? "";
-                Console.WriteLine("Invalid entry. Please try again.");
             }
 
             return id;
