@@ -2,7 +2,9 @@
 
 ## Overview
 
-Today we learnt more about GIT commands and worked with Codility problems
+Today we learnt more about GIT commands and worked with Codility problems.
+
+We also worked on collaborating and resolving conflicts
 
 ## Repository Links
 
