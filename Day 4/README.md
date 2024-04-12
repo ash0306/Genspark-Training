@@ -1,0 +1,33 @@
+# DAY 4
+
+## Overview
+
+We worked on further concepts in C# and on a set of problems.
+
+
+##  Topics Covered
+
+* Classes
+* Access specifiers
+* Constructors
+* Internal documentation
+* Arrays
+
+
+## Problems
+
+1. Create a Doctor class with details
+Id, Name, Age, Exp, Qualification, Speciality
+
+2. Create an array of doctors
+
+3. Print the array
+
+4. Given a speciality print the doctor details in it
+
+5. 4477468343113002
+2003113438647744 - Reverse number
+2+ 0*2 +0+ 3*2 +1+ 1*2 +3+ 4*2 +3+ 8*2 +6+ 4*2 +7+ 7*2 +4+ 4*2 - Even position number *2
+2+ 0 +0+ 6 +1+ 2 +3+ 8 +3+ 16 +6+ 8 +7+ 14 +4+ 8 - 2 digits sum
+2+ 0 +0+ 6 +1+ 2 +3+ 8 +3+ 7 +6+ 8 +7+ 5 +4+ 8 - total
+70%10 ==0 then valid
