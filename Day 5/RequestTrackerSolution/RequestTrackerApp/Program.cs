@@ -9,8 +9,9 @@ namespace RequestTrackerApp
         /// <summary>
         /// Prints the menu for performing the various operations
         /// </summary>
-        void PrintMenu()
+        static void PrintMenu()
         {
+            Console.Clear();
             Console.WriteLine("1. Add Employee");
             Console.WriteLine("2. Print Employees");
             Console.WriteLine("3. Search Employee by ID");
@@ -24,7 +25,7 @@ namespace RequestTrackerApp
         /// </summary>
         void EmployeeInteraction()
         {
-            int choice = 0;
+            int choice;
             do
             {
                 PrintMenu();
@@ -99,7 +100,7 @@ namespace RequestTrackerApp
         /// </summary>
         /// <param name="id">Employee ID</param>
         /// <returns></returns>
-        Employee CreateEmployee(int id)
+        static Employee CreateEmployee(int id)
         {
             Employee employee = new Employee();
             employee.Id = 101 + id;

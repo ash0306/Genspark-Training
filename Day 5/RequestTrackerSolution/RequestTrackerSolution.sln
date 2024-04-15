@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTrackerModelLibrary"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowsAndBulls", "CowsAndBulls\CowsAndBulls.csproj", "{3773E09C-C9E4-42C3-8149-BD7635DF730B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepeatingNumbers", "RepeatingNumbers\RepeatingNumbers.csproj", "{615FDB8E-7F68-4B29-9936-485A801A1A31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3773E09C-C9E4-42C3-8149-BD7635DF730B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3773E09C-C9E4-42C3-8149-BD7635DF730B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3773E09C-C9E4-42C3-8149-BD7635DF730B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615FDB8E-7F68-4B29-9936-485A801A1A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615FDB8E-7F68-4B29-9936-485A801A1A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615FDB8E-7F68-4B29-9936-485A801A1A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615FDB8E-7F68-4B29-9936-485A801A1A31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
