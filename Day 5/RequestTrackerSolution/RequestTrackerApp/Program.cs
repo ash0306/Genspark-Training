@@ -6,6 +6,9 @@ namespace RequestTrackerApp
     {
         Employee[] employees = new Employee[3];
         
+        /// <summary>
+        /// Prints the menu for performing the various operations
+        /// </summary>
         void PrintMenu()
         {
             Console.WriteLine("1. Add Employee");
@@ -15,6 +18,10 @@ namespace RequestTrackerApp
             Console.WriteLine("5. Delete Employee by ID");
             Console.WriteLine("0. Exit");
         }
+
+        /// <summary>
+        /// Takes the user's choice to do the appropriate action
+        /// </summary>
         void EmployeeInteraction()
         {
             int choice = 0;
@@ -49,6 +56,10 @@ namespace RequestTrackerApp
                 }
             } while (choice != 0);
         }
+
+        /// <summary>
+        /// Add a set of new Employees and their data
+        /// </summary>
         void AddEmployee()
         {
             if (employees[employees.Length - 1] != null)
@@ -65,6 +76,10 @@ namespace RequestTrackerApp
             }
 
         }
+
+        /// <summary>
+        /// Prints the details of all the employees
+        /// </summary>
         void PrintAllEmployees()
         {
             if (employees[0] == null)
@@ -78,6 +93,12 @@ namespace RequestTrackerApp
                     PrintEmployee(employees[i]);
             }
         }
+
+        /// <summary>
+        /// Creates a new employee object
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <returns></returns>
         Employee CreateEmployee(int id)
         {
             Employee employee = new Employee();
@@ -86,12 +107,21 @@ namespace RequestTrackerApp
             return employee;
         }
 
+        /// <summary>
+        /// Prints the details of one employee
+        /// </summary>
+        /// <param name="employee">Employee object</param>
         void PrintEmployee(Employee employee)
         {
             Console.WriteLine("---------------------------");
             employee.PrintEmployeeDetails();
             Console.WriteLine("---------------------------");
         }
+
+        /// <summary>
+        /// Gets the employee ID from user using console
+        /// </summary>
+        /// <returns></returns>
         int GetIdFromConsole()
         {
             int id = 0;
@@ -102,6 +132,10 @@ namespace RequestTrackerApp
             }
             return id;
         }
+
+        /// <summary>
+        /// Searches for a particular employee and prints their details
+        /// </summary>
         void SearchAndPrintEmployee()
         {
             Console.WriteLine("Enter employee ID:");
@@ -114,6 +148,12 @@ namespace RequestTrackerApp
             }
             PrintEmployee(employee);
         }
+
+        /// <summary>
+        /// Finds the employee object given its ID
+        /// </summary>
+        /// <param name="id">ID of the employee to be searched</param>
+        /// <returns></returns>
         Employee SearchEmployeeById(int id)
         {
             Employee employee = null;
@@ -127,6 +167,10 @@ namespace RequestTrackerApp
             }
             return employee;
         }
+
+        /// <summary>
+        /// Updates the employee details and prints it
+        /// </summary>
         void UpdateAndPrintEmployee()
         {
             Console.WriteLine("Enter employee ID:");
@@ -163,6 +207,9 @@ namespace RequestTrackerApp
             PrintEmployee(employee);
         }
 
+        /// <summary>
+        /// Deletes an employee using their ID
+        /// </summary>
         void DeleteAndPrintEmployee()
         {
             Console.WriteLine("Enter employee ID:");
@@ -186,6 +233,9 @@ namespace RequestTrackerApp
             PrintAllEmployees();
         }
 
+        /// <summary>
+        /// Prints the choice menu for updating details
+        /// </summary>
         void UpdateMenu()
         {
             Console.WriteLine("1. Name");
