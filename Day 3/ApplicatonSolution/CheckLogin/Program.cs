@@ -1,4 +1,4 @@
-﻿namespace Question5
+﻿namespace CheckLogin
 {
     internal class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace Question3
+﻿namespace AverageValue
 {
     internal class Program
     {

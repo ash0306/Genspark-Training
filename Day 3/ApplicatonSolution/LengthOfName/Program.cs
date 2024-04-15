@@ -1,4 +1,4 @@
-﻿namespace Question4
+﻿namespace LengthOfName
 {
     internal class Program
     {

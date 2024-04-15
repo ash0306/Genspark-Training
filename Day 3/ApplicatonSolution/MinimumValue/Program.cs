@@ -1,4 +1,4 @@
-﻿namespace Question2
+﻿namespace MinimumValue
 {
     internal class Program
     {

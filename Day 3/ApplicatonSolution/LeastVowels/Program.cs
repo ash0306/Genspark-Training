@@ -1,4 +1,4 @@
-﻿namespace Question7
+﻿namespace LeastVowels
 {
     internal class Program
     {
