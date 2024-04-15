@@ -11,7 +11,6 @@ namespace RequestTrackerApp
         /// </summary>
         static void PrintMenu()
         {
-            Console.Clear();
             Console.WriteLine("1. Add Employee");
             Console.WriteLine("2. Print Employees");
             Console.WriteLine("3. Search Employee by ID");

@@ -14,7 +14,7 @@
 ## Logical Problems
 
 
-[Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/description/)
+#### [Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/description/)
 
 ```
 class Solution {
