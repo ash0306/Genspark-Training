@@ -244,8 +244,11 @@ namespace RequestTrackerApp
         }
         static void Main(string[] args)
         {
-            Program program = new Program();
-            program.EmployeeInteraction();
+            //Program program = new Program();
+            //program.EmployeeInteraction();
+
+            Employee employee = new Employee();
+            Console.WriteLine(employee);
         }
     }
 }
