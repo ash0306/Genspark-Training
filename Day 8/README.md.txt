@@ -14,6 +14,8 @@
 
 * Exception Handling
 
+* Business Logic in 3 Tier Architecture
+
 
 ## Work
 
