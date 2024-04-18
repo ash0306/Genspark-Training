@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppointmentTrackerBLLibrary\AppointmentTrackerBLLibrary.csproj" />
+    <ProjectReference Include="..\AppointmentTrackerModelLibrary\AppointmentTrackerModelLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

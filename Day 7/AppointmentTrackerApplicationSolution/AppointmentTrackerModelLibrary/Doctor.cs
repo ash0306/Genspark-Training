@@ -33,8 +33,21 @@
         {
             Doctor d1, d2;
             d1 = this;
-            d2 = obj as Doctor;//Casting in a more symanctic way
+            d2 = obj as Doctor;
             return d1.DoctorId.Equals(d2.DoctorId);
+        }
+
+        public Doctor BuildDoctorFromConsole()
+        {
+            Doctor doctor = new Doctor();
+            Console.WriteLine("Enter the Doctor's name: ");
+            doctor.DoctorName = Console.ReadLine()??"";
+            Console.WriteLine("Enter the Doctor's age: ");
+            doctor.DoctorAge = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter specialty: ");
+            doctor.Speciality = Console.ReadLine()??"";
+
+            return doctor;
         }
     }
 }

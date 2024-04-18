@@ -19,7 +19,9 @@ namespace RequestTrackerDALLibrary
         int GenerateId()
         {
             if (_departments.Count == 0)
+            {
                 return 1;
+            }
             int id = _departments.Keys.Max();
             return ++id;
         }
@@ -27,8 +29,12 @@ namespace RequestTrackerDALLibrary
         public Department Add(Department item)
         {
             if (_departments.ContainsValue(item))
+            {
                 return null;
-            _departments.Add(GenerateId(), item);
+            }
+            int id = GenerateId();
+            item.Id = id;
+            _departments.Add(id, item);
             return item;
         }
 

@@ -1,10 +1,15 @@
-﻿namespace AppointmentTracker
+﻿
+using AppointmentTrackerBLLibrary;
+using AppointmentTrackerModelLibrary;
+
+namespace AppointmentTracker
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
         }
+        
     }
 }

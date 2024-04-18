@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTracker", "RequestTracker\RequestTracker.csproj", "{E8AC1D5D-BA6F-4EB8-8A00-1650A7069EB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTracker", "RequestTracker\RequestTracker.csproj", "{E8AC1D5D-BA6F-4EB8-8A00-1650A7069EB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTrackerModelLibrary", "RequestTrackerModelLibrary\RequestTrackerModelLibrary.csproj", "{E035FF8A-F838-4789-AA3B-7C7498642CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTrackerModelLibrary", "RequestTrackerModelLibrary\RequestTrackerModelLibrary.csproj", "{E035FF8A-F838-4789-AA3B-7C7498642CF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTrackerDALLibrary", "RequestTrackerDALLibrary\RequestTrackerDALLibrary.csproj", "{19F96C69-FD17-45A4-82DF-535CAA53322B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTrackerDALLibrary", "RequestTrackerDALLibrary\RequestTrackerDALLibrary.csproj", "{19F96C69-FD17-45A4-82DF-535CAA53322B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqstTrackerBLLibrary", "ReqstTrackerBLLibrary\ReqstTrackerBLLibrary.csproj", "{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTrackerBLLibrary", "ReqstTrackerBLLibrary\RequestTrackerBLLibrary.csproj", "{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
