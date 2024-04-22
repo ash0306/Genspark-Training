@@ -23,7 +23,7 @@ namespace PharmacyManagementBLLibrary
             {
                 return result.PatientId;
             }
-            throw new DuplicatePatientFoundException();
+            throw new DuplicateFoundException("Patient");
         }
 
         public int DeletePatient(int id)
@@ -33,7 +33,7 @@ namespace PharmacyManagementBLLibrary
             {
                 return result.PatientId;
             }
-            throw new PatientNotFoundException();
+            throw new NotFoundException("Patient");
         }
 
         public List<Patient> GetAllPatients()
@@ -41,7 +41,7 @@ namespace PharmacyManagementBLLibrary
             List<Patient> patients = _patientRepository.GetAll();
             if (patients.Count == 0)
             {
-                throw new PatientNotFoundException();
+                throw new NotFoundException("Patient");
             }
             return patients;
         }
@@ -53,7 +53,7 @@ namespace PharmacyManagementBLLibrary
             {
                 return result;
             }
-            throw new PatientNotFoundException();
+            throw new NotFoundException("Patient");
         }
 
         public Patient GetPatientByName(string name)
@@ -61,7 +61,7 @@ namespace PharmacyManagementBLLibrary
             var patient = _patientRepository.GetAll().Find(d => d.PatientName == name);
             if (patient == null)
             {
-                throw new PatientNotFoundException();
+                throw new NotFoundException("Patient");
             }
             return patient;
         }
@@ -73,7 +73,7 @@ namespace PharmacyManagementBLLibrary
             {
                 return result;
             }
-            throw new PatientNotFoundException();
+            throw new NotFoundException("Patient");
         }
     }
 }
