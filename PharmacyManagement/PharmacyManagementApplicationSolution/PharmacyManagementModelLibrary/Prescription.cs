@@ -45,7 +45,7 @@ namespace PharmacyManagementModelLibrary
             return "Prescription ID: " + PrescriptionId
                 + "\nPatient Details: " + Patient.ToString()
                 + "\nDoctor Details: " + Doctor.ToString()
-                + "\nDrugs: " + PrescribedDrugs
+                + "\nDrugs: " + PrescribedDrugs.ToString()
                 + "\nDosage: " + Dosage;
         }
     }

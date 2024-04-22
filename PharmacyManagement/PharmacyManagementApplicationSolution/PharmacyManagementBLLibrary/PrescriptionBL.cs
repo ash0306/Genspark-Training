@@ -12,10 +12,20 @@ namespace PharmacyManagementBLLibrary
     public class PrescriptionBL : IPrescriptionService
     {
         readonly IRepository<int, Prescription> _prescriptionRepository;
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public PrescriptionBL()
         {
             _prescriptionRepository = new PrescriptionRepository();
         }
+        /// <summary>
+        /// Adds a prescription
+        /// </summary>
+        /// <param name="Prescription"></param>
+        /// <returns></returns>
+        /// <exception cref="DuplicateFoundException"></exception>
         public int AddPrescription(Prescription Prescription)
         {
             var result = _prescriptionRepository.Add(Prescription);
@@ -26,6 +36,10 @@ namespace PharmacyManagementBLLibrary
             throw new DuplicateFoundException("Prescription");
         }
 
+        /// <summary>
+        /// Checks the availability
+        /// </summary>
+        /// <returns></returns>
         public List<Drug> CheckAvailability()
         {
             List<Drug> lowStock = new List<Drug>();
@@ -43,6 +57,12 @@ namespace PharmacyManagementBLLibrary
             return lowStock;
         }
 
+        /// <summary>
+        /// Delete a prescription
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public int DeletePrescription(int id)
         {
             var result = _prescriptionRepository.Delete(id);
@@ -53,6 +73,11 @@ namespace PharmacyManagementBLLibrary
             throw new NotFoundException("Prescription");
         }
 
+        /// <summary>
+        /// Get a list of all the prescription
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public List<Prescription> GetAllPrescriptions()
         {
             var result = _prescriptionRepository.GetAll();
@@ -63,6 +88,12 @@ namespace PharmacyManagementBLLibrary
             throw new NotFoundException("Prescription");
         }
 
+        /// <summary>
+        /// Get a prescription by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public Prescription GetPrescriptionByID(int id)
         {
             var result = _prescriptionRepository.GetByID(id);

@@ -495,7 +495,8 @@ namespace PharmacyManagementApplication
             Console.WriteLine("1. Add Prescription");
             Console.WriteLine("2. Get Prescription By ID");
             Console.WriteLine("3. View All Prescriptions");
-            Console.WriteLine("4. Back to Main Menu");
+            Console.WriteLine("4. Check Availability");
+            Console.WriteLine("5. Back to Main Menu");
             Console.WriteLine("------------------------------------");
             Console.Write("Choose an option: ");
         }
@@ -516,6 +517,9 @@ namespace PharmacyManagementApplication
                         ViewAllPrescriptions();
                         break;
                     case 4:
+                        CheckAvailability();
+                        break;
+                    case 5:
                         return;
                     default:
                         Console.WriteLine("Invalid option!! Please try again.");
@@ -560,7 +564,6 @@ namespace PharmacyManagementApplication
                 Console.WriteLine($"An error occurred while adding the prescription: {e.Message}");
             }
         }
-
         private void GetPrescriptionById()
         {
             try
@@ -599,14 +602,29 @@ namespace PharmacyManagementApplication
                 Console.WriteLine("No prescriptions found.");
             }
         }
-
+        private void CheckAvailability()
+        {
+            try
+            {
+                List<Drug> lowStock = _prescriptionService.CheckAvailability();
+                foreach(var item in lowStock)
+                {
+                    Console.WriteLine(item.ToString());
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error encountered while checking");
+            }
+        }
         private void PrintSalesMenu()
         {
             Console.WriteLine("------------------------------------");
             Console.WriteLine("Manage Sales:");
-            Console.WriteLine("1. View Sale Receipt By ID");
-            Console.WriteLine("2. View All Sales");
-            Console.WriteLine("3. Back to Main Menu");
+            Console.WriteLine("1. Add sales");
+            Console.WriteLine("2. View Sale Receipt By ID");
+            Console.WriteLine("3. View All Sales");
+            Console.WriteLine("4. Back to Main Menu");
             Console.WriteLine("------------------------------------");
             Console.Write("Choose an option: ");
         }
@@ -618,17 +636,37 @@ namespace PharmacyManagementApplication
                 switch (GetChoiceFromUser())
                 {
                     case 1:
-                        ViewSaleById();
+                        AddSale();
                         break;
                     case 2:
-                        ViewAllSales();
+                        ViewSaleById();
                         break;
                     case 3:
+                        ViewAllSales();
+                        break;
+                    case 4:
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
                 }
+            }
+        }
+
+        private void AddSale()
+        {
+            try
+            {
+                Console.WriteLine("Enter ID:");
+                int transId = Convert.ToInt32(Console.ReadLine());  
+                Console.WriteLine("Enter Sales Type:");
+                string salesType = Console.ReadLine() ?? "";
+                Console.WriteLine("Enter Sale price:");
+                double price = Convert.ToDouble(Console.ReadLine());
+
+                Sales sale = new Sales(transId, salesType, price);
+                int id = _salesService.AddSale(sale);
+                Console.WriteLine($"Sale added with ID:{id}");
             }
         }
         private void ViewSaleById()

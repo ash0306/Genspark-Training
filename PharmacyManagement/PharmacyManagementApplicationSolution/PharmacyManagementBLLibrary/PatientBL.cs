@@ -12,10 +12,21 @@ namespace PharmacyManagementBLLibrary
     public class PatientBL : IPatientService
     {
         readonly IRepository<int, Patient> _patientRepository;
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public PatientBL()
         {
             _patientRepository = new PatientRepository();
         }
+
+        /// <summary>
+        /// Adds a patient
+        /// </summary>
+        /// <param name="Patient">Patient class object</param>
+        /// <returns></returns>
+        /// <exception cref="DuplicateFoundException"></exception>
         public int AddPatient(Patient Patient)
         {
             var result = _patientRepository.Add(Patient);
@@ -26,6 +37,12 @@ namespace PharmacyManagementBLLibrary
             throw new DuplicateFoundException("Patient");
         }
 
+        /// <summary>
+        /// Delete a patient
+        /// </summary>
+        /// <param name="id">ID od the patient to be deleted</param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public int DeletePatient(int id)
         {
             var result = _patientRepository.Delete(id);
@@ -36,6 +53,11 @@ namespace PharmacyManagementBLLibrary
             throw new NotFoundException("Patient");
         }
 
+        /// <summary>
+        /// Get a list of all the patients
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public List<Patient> GetAllPatients()
         {
             List<Patient> patients = _patientRepository.GetAll();
@@ -46,6 +68,12 @@ namespace PharmacyManagementBLLibrary
             return patients;
         }
 
+        /// <summary>
+        /// Get patient details using ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public Patient GetPatientByID(int id)
         {
             var result = _patientRepository.GetByID(id);
@@ -56,6 +84,12 @@ namespace PharmacyManagementBLLibrary
             throw new NotFoundException("Patient");
         }
 
+        /// <summary>
+        /// Get details of a patient by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="NotFoundException"></exception>
         public Patient GetPatientByName(string name)
         {
             var patient = _patientRepository.GetAll().Find(d => d.PatientName == name);
