@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementBLLibrary
 {
-    public interface IPrescription
+    public interface IPrescriptionService
     {
         int AddPrescription(Prescription Prescription);
         int DeletePrescription(int id);

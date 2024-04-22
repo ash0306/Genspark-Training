@@ -1,4 +1,7 @@
-﻿namespace PharmacyManagementApplication
+﻿using PharmacyManagementBLLibrary;
+using PharmacyManagementModelLibrary;
+
+namespace PharmacyManagementApplication
 {
     internal class Program
     {
