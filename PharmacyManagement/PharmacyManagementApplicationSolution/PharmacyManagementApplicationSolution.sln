@@ -5,6 +5,12 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyManagementApplication", "PharmacyManagementApplication\PharmacyManagementApplication.csproj", "{D4B498EA-BB1B-422A-9925-414210EB7B00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyManagementModelLibrary", "PharmacyManagementModelLibrary\PharmacyManagementModelLibrary.csproj", "{371DE52C-1AE6-46CD-BF1B-7A8EF2D11BCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyManagementDALLibrary", "PharmacyManagementDALLibrary\PharmacyManagementDALLibrary.csproj", "{01C820EA-2B0B-4A22-B91D-20B846454D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyManagementBLLibrary", "PharmacyManagementBLLibrary\PharmacyManagementBLLibrary.csproj", "{E09B15B9-EDCC-4A57-B38F-CA4A987D6D22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D4B498EA-BB1B-422A-9925-414210EB7B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4B498EA-BB1B-422A-9925-414210EB7B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4B498EA-BB1B-422A-9925-414210EB7B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371DE52C-1AE6-46CD-BF1B-7A8EF2D11BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371DE52C-1AE6-46CD-BF1B-7A8EF2D11BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371DE52C-1AE6-46CD-BF1B-7A8EF2D11BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371DE52C-1AE6-46CD-BF1B-7A8EF2D11BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C820EA-2B0B-4A22-B91D-20B846454D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C820EA-2B0B-4A22-B91D-20B846454D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C820EA-2B0B-4A22-B91D-20B846454D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C820EA-2B0B-4A22-B91D-20B846454D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09B15B9-EDCC-4A57-B38F-CA4A987D6D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09B15B9-EDCC-4A57-B38F-CA4A987D6D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09B15B9-EDCC-4A57-B38F-CA4A987D6D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09B15B9-EDCC-4A57-B38F-CA4A987D6D22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
