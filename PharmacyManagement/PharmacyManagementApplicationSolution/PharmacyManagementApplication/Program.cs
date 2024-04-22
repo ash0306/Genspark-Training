@@ -624,7 +624,8 @@ namespace PharmacyManagementApplication
             Console.WriteLine("1. Add sales");
             Console.WriteLine("2. View Sale Receipt By ID");
             Console.WriteLine("3. View All Sales");
-            Console.WriteLine("4. Back to Main Menu");
+            Console.WriteLine("4. View total sales");
+            Console.WriteLine("5. Back to Main Menu");
             Console.WriteLine("------------------------------------");
             Console.Write("Choose an option: ");
         }
@@ -645,6 +646,9 @@ namespace PharmacyManagementApplication
                         ViewAllSales();
                         break;
                     case 4:
+                        ViewTotalSales();
+                        break;
+                    case 5:
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
@@ -667,6 +671,10 @@ namespace PharmacyManagementApplication
                 Sales sale = new Sales(transId, salesType, price);
                 int id = _salesService.AddSale(sale);
                 Console.WriteLine($"Sale added with ID:{id}");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error encountered while adding");
             }
         }
         private void ViewSaleById()
@@ -703,6 +711,11 @@ namespace PharmacyManagementApplication
             }
         }
 
+        private void ViewTotalSales()
+        {
+            double result = _salesService.GetTotalSalePrice();
+            Console.WriteLine($"Total Sale Price: {result}");
+        }
         static void Main(string[] args)
         {
             Program program = new Program();
