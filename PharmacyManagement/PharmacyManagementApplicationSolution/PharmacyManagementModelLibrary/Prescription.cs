@@ -11,7 +11,7 @@ namespace PharmacyManagementModelLibrary
         public int PrescriptionId { get; set; }
         public Patient Patient { get; set; }
         public Doctor Doctor { get; set; }
-        public Drug Drug { get; set; }
+        public List<Drug> PrescribedDrugs { get; set; }
         public int Dosage { get; set; }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace PharmacyManagementModelLibrary
         {
             Patient = new Patient();
             Doctor = new Doctor();
-            Drug = new Drug();
+            PrescribedDrugs = new List<Drug>();
             Dosage = 0;
         }
 
@@ -32,21 +32,21 @@ namespace PharmacyManagementModelLibrary
         /// <param name="doctor">Doctor details asclass object</param>
         /// <param name="drug">Drug details as class object</param>
         /// <param name="dosage"></param>
-        public Prescription(Patient patient, Doctor doctor, Drug drug, int dosage)
+        public Prescription(Patient patient, Doctor doctor, List<Drug> prescribedDrugs, int dosage)
         {
             Patient = patient;
             Doctor = doctor;
-            Drug = drug;
+            PrescribedDrugs = prescribedDrugs;
             Dosage = dosage;
         }
 
         public override string ToString()
         {
             return "Prescription ID: " + PrescriptionId
-                + "Patient Details: " + Patient.ToString()
-                + "Doctor Details: " + Doctor.ToString()
-                + "Drug: " + Drug
-                + "Dosage: " + Dosage;
+                + "\nPatient Details: " + Patient.ToString()
+                + "\nDoctor Details: " + Doctor.ToString()
+                + "\nDrugs: " + PrescribedDrugs
+                + "\nDosage: " + Dosage;
         }
     }
 }
