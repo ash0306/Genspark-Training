@@ -19,13 +19,15 @@ namespace AppointmentTrackerDALLibrary
             if (_patients.Count == 0)
                 return 1;
             int id = _patients.Keys.Max();
-            return id++;
+            return ++id;
         }
         public Patient Add(Patient item)
         {
             if (_patients.ContainsValue(item))
                 return null!;
-            _patients.Add(GenerateID(), item);
+            int id = GenerateID();
+            item.PatientId = id;
+            _patients.Add(id, item);
             return item;
         }
 

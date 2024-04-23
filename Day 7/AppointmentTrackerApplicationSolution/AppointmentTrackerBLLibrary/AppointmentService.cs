@@ -1,4 +1,5 @@
-﻿using AppointmentTrackerDALLibrary;
+﻿using AppointmentTrackerBLLibrary.Exceptions;
+using AppointmentTrackerDALLibrary;
 using AppointmentTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -15,30 +16,61 @@ namespace AppointmentTrackerBLLibrary
         {
             _appointmentRepository = new AppointmentRepository();
         }
+
+        public AppointmentService(IRepository<int, Appointment> appointmentRepository)
+        {
+            _appointmentRepository = appointmentRepository;
+        }
+
         public int AddAppointment(Appointment appointment)
         {
-            Appointment newAppoint = _appointmentRepository.Add(appointment);
-            return newAppoint!=null ? newAppoint.AppointmentId : 0;
+            var result = _appointmentRepository.Add(appointment);
+            Console.WriteLine(result);
+            if (result != null)
+            {
+                return result.AppointmentId;
+            }
+            throw new DuplicateFoundException("Appointment");
         }
 
         public Appointment DeleteAppointment(int id)
         {
-            return _appointmentRepository.Delete(id);
+            var result = _appointmentRepository.Delete(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Appointment");
         }
 
         public List<Appointment> GetAllAppointments()
         {
-            return _appointmentRepository.GetAll();
+            List<Appointment> appointments = _appointmentRepository.GetAll();
+            if (appointments.Count == 0)
+            {
+                throw new NotFoundException("Appointment");
+            }
+            return appointments;
         }
 
         public Appointment GetAppointmentById(int id)
         {
-            return _appointmentRepository.GetByID(id);
+            var result = _appointmentRepository.GetByID(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Appointment");
         }
 
         public Appointment UpdateAppointment(Appointment appointment)
         {
-            return _appointmentRepository.Update(appointment);
+            var result = _appointmentRepository.Update(appointment);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Appointment");
         }
     }
 }

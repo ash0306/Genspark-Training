@@ -1,4 +1,5 @@
-﻿using AppointmentTrackerDALLibrary;
+﻿using AppointmentTrackerBLLibrary.Exceptions;
+using AppointmentTrackerDALLibrary;
 using AppointmentTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -8,37 +9,68 @@ using System.Threading.Tasks;
 
 namespace AppointmentTrackerBLLibrary
 {
-    public class PatientService : IPatientService
+    public class PatientService :IPatientService
     {
         readonly IRepository<int, Patient> _patientRepository;
         public PatientService()
         {
             _patientRepository = new PatientRepository();
         }
-        public int AddPatient(Patient patient)
+        public PatientService(IRepository<int, Patient> patientRepository)
         {
-            Patient newPatient = _patientRepository.Add(patient);
-            return newPatient != null ? newPatient.PatientId : 0;
+            _patientRepository = patientRepository;
+        }
+
+        public int AddPatient(Patient Patient)
+        {
+            var result = _patientRepository.Add(Patient);
+            if (result != null)
+            {
+                return result.PatientId;
+            }
+            throw new DuplicateFoundException("Patient");
         }
 
         public Patient DeletePatient(int id)
         {
-            return _patientRepository.Delete(id);
+            var result = _patientRepository.Delete(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Patient");
         }
+
 
         public List<Patient> GetAllPatients()
         {
-            return _patientRepository.GetAll();
+            List<Patient> patients = _patientRepository.GetAll();
+            if (patients.Count == 0)
+            {
+                throw new NotFoundException("Patient");
+            }
+            return patients;
         }
 
         public Patient GetPatientById(int id)
         {
-            return _patientRepository.GetByID(id);
+            var result = _patientRepository.GetByID(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Patient");
         }
 
-        public Patient UpdatePatient(Patient patient)
+        public Patient UpdatePatient(Patient Patient)
         {
-            return _patientRepository.Update(patient);
+            var result = _patientRepository.Update(Patient);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Patient");
         }
+
     }
 }

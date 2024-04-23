@@ -32,6 +32,13 @@ namespace AppointmentTrackerModelLibrary
             PatientIllness = patientIllness;
         }
 
+        public Patient(int patientAge, string patientName, string patientIllness)
+        {
+            PatientAge = patientAge;
+            PatientName = patientName ?? "";
+            PatientIllness = patientIllness ?? "";
+        }
+
         public override bool Equals(object? obj)
         {
             return this.PatientId.Equals((obj as Patient).PatientId);
