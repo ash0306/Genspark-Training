@@ -6,9 +6,9 @@ namespace RequestTrackerBLLibrary
     public class DepartmentBL : IDepartmentService
     {
         readonly IRepository<int, Department> _departmentRepository;
-        public DepartmentBL()
+        public DepartmentBL(IRepository<int, Department> departmentrepository)
         {
-            _departmentRepository = new DepartmentRepository();
+            _departmentRepository = departmentrepository;
         }
 
         public int AddDepartment(Department department)

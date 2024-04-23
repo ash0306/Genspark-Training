@@ -67,8 +67,7 @@
         {
             Employee e1, e2;
             e1 = this;
-            //e2 = (Employee)obj;//Casting
-            e2 = obj as Employee;//Casting in a more symanctic way
+            e2 = obj as Employee;
             return e1.Id.Equals(e2.Id);
         }
 

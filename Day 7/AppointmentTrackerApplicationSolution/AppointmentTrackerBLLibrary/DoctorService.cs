@@ -1,4 +1,5 @@
-﻿using AppointmentTrackerDALLibrary;
+﻿using AppointmentTrackerBLLibrary.Exceptions;
+using AppointmentTrackerDALLibrary;
 using AppointmentTrackerModelLibrary;
 
 namespace AppointmentTrackerBLLibrary
@@ -7,34 +8,59 @@ namespace AppointmentTrackerBLLibrary
     {
         readonly IRepository<int, Doctor> _doctorRepository;
 
-        public DoctorService()
+        public DoctorService(IRepository<int, Doctor> doctorRepository)
         {
-            _doctorRepository = new DoctorRepository();
+            _doctorRepository = doctorRepository;
         }
         public int AddDoctor(Doctor doctor)
         {
-            Doctor newDoc = _doctorRepository.Add(doctor);
-            return newDoc != null ? newDoc.DoctorId : 0;
+            var result = _doctorRepository.Add(doctor);
+            Console.WriteLine(result);
+            if (result != null)
+            {
+                return result.DoctorId;
+            }
+            throw new DuplicateFoundException("Doctor");
         }
 
         public Doctor DeleteDoctor(int id)
         {
-            return _doctorRepository.Delete(id);
+            var result = _doctorRepository.Delete(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Doctor");
         }
 
         public List<Doctor> GetAllDoctors()
         {
-            return _doctorRepository.GetAll();
+            List<Doctor> doctors = _doctorRepository.GetAll();
+            if (doctors.Count == 0)
+            {
+                throw new NotFoundException("Doctor");
+            }
+            return doctors;
         }
 
         public Doctor GetDoctorById(int id)
         {
-            return _doctorRepository.GetByID(id);
+            var result = _doctorRepository.GetByID(id);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Doctor");
         }
 
         public Doctor UpdateDoctor(Doctor doctor)
         {
-            return _doctorRepository.Update(doctor);
+            var result = _doctorRepository.Update(doctor);
+            if (result != null)
+            {
+                return result;
+            }
+            throw new NotFoundException("Doctor");
         }
     }
 }
