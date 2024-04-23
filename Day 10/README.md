@@ -19,8 +19,7 @@ The links to those repositories can be found below
 ## Output
 
 * Test Explorer Output
-[!TestExplorer](https://github.com/ash0306/Genspark-Training/blob/master/Day%2010/Test%20Explorer%20Output.png)
+![TestExplorer](https://github.com/ash0306/Genspark-Training/blob/master/Day%2010/Test%20Explorer%20Output.png)
 
 * Fine Code Coverage Output
-[!FineCodeCoverage](https://github.com/ash0306/Genspark-Training/blob/master/Day%2010/Fine%20Code%20Coverage%20Output.png)
-
+![FineCodeCoverage](https://github.com/ash0306/Genspark-Training/blob/master/Day%2010/Fine%20Code%20Coverage%20Output.png)
