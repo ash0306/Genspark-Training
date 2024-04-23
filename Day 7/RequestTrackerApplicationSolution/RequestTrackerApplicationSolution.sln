@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTrackerDALLibrary", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RequestTrackerBLLibrary", "ReqstTrackerBLLibrary\RequestTrackerBLLibrary.csproj", "{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTrackerTest", "RequestTrackerTest1\RequestTrackerTest.csproj", "{15A62004-64C0-47D9-96DD-7881886A9A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestTrackerBLTest", "DepartmentBLTest\RequestTrackerBLTest.csproj", "{180EE622-56A1-4B29-8A64-EA9C032903EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98C5EC9C-5AEF-4105-A42D-35653ADA75B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A62004-64C0-47D9-96DD-7881886A9A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A62004-64C0-47D9-96DD-7881886A9A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A62004-64C0-47D9-96DD-7881886A9A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A62004-64C0-47D9-96DD-7881886A9A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180EE622-56A1-4B29-8A64-EA9C032903EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180EE622-56A1-4B29-8A64-EA9C032903EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180EE622-56A1-4B29-8A64-EA9C032903EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180EE622-56A1-4B29-8A64-EA9C032903EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

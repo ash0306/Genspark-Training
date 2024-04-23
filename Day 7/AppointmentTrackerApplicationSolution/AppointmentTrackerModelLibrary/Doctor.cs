@@ -14,9 +14,8 @@
             DoctorAge = 0;
         }
 
-        public Doctor(int doctorId, string doctorName, string speciality)
+        public Doctor( string doctorName, string speciality)
         {
-            DoctorId = doctorId;
             DoctorName = doctorName;
             Speciality = speciality;
             DoctorAge = 0;

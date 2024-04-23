@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentTracker", "AppointmentTracker\AppointmentTracker.csproj", "{8DE1EA38-B28B-470A-8F45-83514DFE691F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentTracker", "AppointmentTracker\AppointmentTracker.csproj", "{8DE1EA38-B28B-470A-8F45-83514DFE691F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentTrackerModelLibrary", "AppointmentTrackerModelLibrary\AppointmentTrackerModelLibrary.csproj", "{F13AC2BB-313C-44CB-B52A-15EEF3C1BB1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentTrackerModelLibrary", "AppointmentTrackerModelLibrary\AppointmentTrackerModelLibrary.csproj", "{F13AC2BB-313C-44CB-B52A-15EEF3C1BB1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentTrackerDALLibrary", "AppointmentTrackerDALLibrary\AppointmentTrackerDALLibrary.csproj", "{4FD93DD6-8101-4F8D-89C3-5FA0ECA9EB39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentTrackerDALLibrary", "AppointmentTrackerDALLibrary\AppointmentTrackerDALLibrary.csproj", "{4FD93DD6-8101-4F8D-89C3-5FA0ECA9EB39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentTrackerBLLibrary", "AppointmentTrackerBLLibrary\AppointmentTrackerBLLibrary.csproj", "{76CDDDBE-4EB4-496E-B66B-454EEFAC6FF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentTrackerBLLibrary", "AppointmentTrackerBLLibrary\AppointmentTrackerBLLibrary.csproj", "{76CDDDBE-4EB4-496E-B66B-454EEFAC6FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentTrackerBLTest", "AppointmentTrackerBLTest\AppointmentTrackerBLTest.csproj", "{7A865FF5-3D40-4948-8748-1E4ECA444860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{76CDDDBE-4EB4-496E-B66B-454EEFAC6FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76CDDDBE-4EB4-496E-B66B-454EEFAC6FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76CDDDBE-4EB4-496E-B66B-454EEFAC6FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A865FF5-3D40-4948-8748-1E4ECA444860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A865FF5-3D40-4948-8748-1E4ECA444860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A865FF5-3D40-4948-8748-1E4ECA444860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A865FF5-3D40-4948-8748-1E4ECA444860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
