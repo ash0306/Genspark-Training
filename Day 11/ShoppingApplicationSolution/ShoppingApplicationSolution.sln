@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApplication", "ShoppingApplication\ShoppingApplication.csproj", "{BE1AC36F-7A84-489F-B300-901EB3CD2D56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApplication", "ShoppingApplication\ShoppingApplication.csproj", "{BE1AC36F-7A84-489F-B300-901EB3CD2D56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingModelLibrary", "ShoppingApplicationModelLibrary\ShoppingModelLibrary.csproj", "{EC980B53-F689-4086-8E14-6C589A69827B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingModelLibrary", "ShoppingApplicationModelLibrary\ShoppingModelLibrary.csproj", "{EC980B53-F689-4086-8E14-6C589A69827B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingDALLibrary", "ShoppingDALLibrary\ShoppingDALLibrary.csproj", "{86B148E9-D8D6-448F-898F-39939F5D10CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingDALLibrary", "ShoppingDALLibrary\ShoppingDALLibrary.csproj", "{86B148E9-D8D6-448F-898F-39939F5D10CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingBLLibrary", "ShoppingBLLibrary\ShoppingBLLibrary.csproj", "{8A386D86-32CF-4A7C-974A-17E9C9FBFE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingBLLibrary", "ShoppingBLLibrary\ShoppingBLLibrary.csproj", "{8A386D86-32CF-4A7C-974A-17E9C9FBFE52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingDALTest", "ShoppingDALTest\ShoppingDALTest.csproj", "{04E98D16-D452-4E03-999C-944FC26C81A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8A386D86-32CF-4A7C-974A-17E9C9FBFE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A386D86-32CF-4A7C-974A-17E9C9FBFE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A386D86-32CF-4A7C-974A-17E9C9FBFE52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E98D16-D452-4E03-999C-944FC26C81A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E98D16-D452-4E03-999C-944FC26C81A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E98D16-D452-4E03-999C-944FC26C81A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E98D16-D452-4E03-999C-944FC26C81A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
