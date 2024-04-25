@@ -16,7 +16,7 @@ namespace ShoppingApplication
         {
             _productService = new ProductBL();
             _customerService = new CustomerBL();
-            _cartService = new CartBL();
+            _cartService = new CartBL(_productService, _cartItemService);
             _cartItemService = new CartItemBL();
         }
         public static void Main(string[] args)
@@ -53,11 +53,13 @@ namespace ShoppingApplication
 
         private void DisplayMenu()
         {
-            Console.WriteLine("\nMenu:");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Menu:");
             Console.WriteLine("1. Manage Customers");
             Console.WriteLine("2. Manage Products");
             Console.WriteLine("3. Do Shopping");
             Console.WriteLine("4. Exit");
+            Console.WriteLine("---------------------------------");
             Console.Write("Choose an option: ");
         }
 
@@ -65,7 +67,8 @@ namespace ShoppingApplication
         {
             while (true)
             {
-                Console.WriteLine("\nManage Customer:");
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Manage Customer:");
                 Console.WriteLine("1. Add Customer");
                 Console.WriteLine("2. Get Customer By ID");
                 Console.WriteLine("3. Get Customer By Name");
@@ -73,6 +76,7 @@ namespace ShoppingApplication
                 Console.WriteLine("5. Delete Customer");
                 Console.WriteLine("6. View All Customers");
                 Console.WriteLine("7. Back to Main Menu");
+                Console.WriteLine("---------------------------------");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -106,12 +110,14 @@ namespace ShoppingApplication
 
         private void ViewAllCustomers()
         {
-            Console.WriteLine("\nAll Customers:");
+            Console.WriteLine("All Customers:");
+            Console.WriteLine("---------------------------------");
             var customers = _customerService.GetAllCustomers();
             foreach (var customer in customers)
             {
                 Console.WriteLine(customer);
             }
+            Console.WriteLine("---------------------------------");
         }
 
         private void DeleteCustomer()
@@ -205,7 +211,6 @@ namespace ShoppingApplication
             }
         }
 
-
         private void GetCustomerById()
         {
             try
@@ -261,7 +266,8 @@ namespace ShoppingApplication
         {
             while (true)
             {
-                Console.WriteLine("\nManage Products:");
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Manage Products:");
                 Console.WriteLine("1. Add Product");
                 Console.WriteLine("2. Get Product By ID");
                 Console.WriteLine("3. Get Product By Name");
@@ -269,6 +275,7 @@ namespace ShoppingApplication
                 Console.WriteLine("5. Delete Product");
                 Console.WriteLine("6. View All Products");
                 Console.WriteLine("7. Back to Main Menu");
+                Console.WriteLine("---------------------------------");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -355,12 +362,14 @@ namespace ShoppingApplication
 
         private void ViewAllProducts()
         {
-            Console.WriteLine("\nAll Products:");
+            Console.WriteLine("All Products:");
+            Console.WriteLine("---------------------------------");
             var products = _productService.GetAllProducts();
             foreach (var product in products)
             {
                 Console.WriteLine(product);
             }
+            Console.WriteLine("---------------------------------");
         }
 
         private void UpdateProduct()
@@ -465,7 +474,8 @@ namespace ShoppingApplication
         {
             while (true)
             {
-                Console.WriteLine("\nManage Cart:");
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Manage Cart:");
                 Console.WriteLine("1. Add to Cart");
                 Console.WriteLine("2. Get all items in Cart");
                 Console.WriteLine("3. Get Total price in cart");
@@ -474,6 +484,7 @@ namespace ShoppingApplication
                 Console.WriteLine("6. View cart details");
                 Console.WriteLine("7. Delete cart");
                 Console.WriteLine("8. Back to Main Menu");
+                Console.WriteLine("---------------------------------");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -489,15 +500,18 @@ namespace ShoppingApplication
                         break;
                         break;
                     case "4":
-                        //DeleteCartItems();
+                        //UpdateCartItems();
                         break;
                     case "5":
-                        ViewAllCarts();
+                        //DeleteCartItems();
                         break;
                     case "6":
-                        DeleteCart();
+                        ViewAllCarts();
                         break;
                     case "7":
+                        DeleteCart();
+                        break;
+                    case "8":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
@@ -516,7 +530,6 @@ namespace ShoppingApplication
             }
             return id;
         }
-
 
         private void AddToCart()
         {
@@ -667,10 +680,12 @@ namespace ShoppingApplication
                 Cart cart = _cartService.GetCartById(customer.CartId);
 
                 Console.WriteLine("Items in cart:");
-                foreach(var item in cart.CartItems)
+                Console.WriteLine("---------------------------------");
+                foreach (var item in cart.CartItems)
                 {
                     Console.WriteLine(item.Product.Name + "\tRs." + item.Price);
                 }
+                Console.WriteLine("---------------------------------");
             }
             catch (Exception e)
             {
@@ -684,10 +699,11 @@ namespace ShoppingApplication
             try 
             {
                 var carts = _cartService.GetAllCarts();
+                Console.WriteLine("---------------------------------");
                 foreach (var cart in carts)
                 {
-                    Console.WriteLine(cart);
-                    Console.WriteLine("------------------------");
+                    Console.WriteLine(cart.ToString());
+                    Console.WriteLine("---------------------------------");
                 }
             }
             catch (Exception e)
@@ -724,17 +740,35 @@ namespace ShoppingApplication
             }
         }
 
-        private void Delete()
-        {
-            try
-            {
+        //private void DeleteCartItems()
+        //{
+        //    try
+        //    {
+        //        Customer customer = GetCustomerFromUser();
 
-            }
-            catch ( Exception e )
-            {
-                Console.WriteLine($"An error occurred while deleting the cart items: {e.Message}");
-            }
-        }
+        //        if (customer == null)
+        //        {
+        //            Console.WriteLine("Customer with that ID does not exist");
+        //            ManageCart();
+        //        }
+        //        Console.WriteLine("Enter the ID of the cart item to be deleted:");
+        //        int itemId = int.Parse(Console.ReadLine()!);
+
+        //        Cart cart = _cartService.GetCartById(customer.CartId);
+
+        //        foreach(var item in cart.CartItems)
+        //        {
+        //            if(item.CartItemId == itemId)
+        //            {
+        //                cart.CartItems.Remove(item);
+        //                _cartItemService.DeleteCartItem(itemId);
+        //            }
+        //        }
+        //    }
+        //    catch ( Exception e )
+        //    {
+        //        Console.WriteLine($"An error occurred while deleting the cart items: {e.Message}");
+        //    }
+        //}
     }
 }
-

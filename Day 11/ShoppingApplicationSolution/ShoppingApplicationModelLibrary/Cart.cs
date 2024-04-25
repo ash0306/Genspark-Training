@@ -13,5 +13,12 @@ namespace ShoppingModelLibrary
         public Customer Customer { get; set; }//Navigation property
         public List<CartItem> CartItems { get; set; }//Navigation property
         public double TotalPrice { get; set; }
+
+        public override string ToString()
+        {
+            string cartItemsNames = string.Join(", ", CartItems.Select(item => item.Product.Name));
+
+            return $"Cart Id: {Id}, Customer Name: {Customer.Name}, Cart Total Price: {TotalPrice}, Cart Items: {cartItemsNames}";
+        }
     }
 }
