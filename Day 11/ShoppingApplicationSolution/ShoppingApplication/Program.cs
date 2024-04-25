@@ -487,19 +487,17 @@ namespace ShoppingApplication
                     case "3":
                         GetTotalPrice();
                         break;
-                    case "4":
-                        //UpdateCartItems();
                         break;
-                    case "5":
+                    case "4":
                         //DeleteCartItems();
                         break;
-                    case "6":
+                    case "5":
                         ViewAllCarts();
                         break;
-                    case "7":
+                    case "6":
                         DeleteCart();
                         break;
-                    case "8":
+                    case "7":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
