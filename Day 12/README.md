@@ -8,6 +8,7 @@
 
 * LINQ
 
+
 ## Work
 
 Worked on unit testing the shopping application from yesterday
