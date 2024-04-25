@@ -9,6 +9,8 @@ namespace ShoppingBLLibrary
     {
 
         readonly IRepository<int, Cart> _cartRepository;
+        readonly IRepository<int, CartItem> _cartItemRepository;
+        readonly IRepository<int, Product> _productRepository;
 
         [ExcludeFromCodeCoverage]
         public CartBL()
@@ -16,20 +18,33 @@ namespace ShoppingBLLibrary
             _cartRepository = new CartRepository();
         }
         [ExcludeFromCodeCoverage]
-        public CartBL(IRepository<int, Cart> cartRepository)
+        public CartBL(IRepository<int, Cart> cartRepository, IRepository<int, CartItem> cartItemRepository, IRepository<int,Product> productRepository)
         {
             _cartRepository = cartRepository;
+            _cartItemRepository = cartItemRepository;
+            _productRepository = productRepository;
+
         }
 
         public Cart AddCart(Cart cart)
         {
+            //List<CartItem> cartItems = (List<CartItem>)_cartItemRepository.GetAll().Where(item => item.CartId==cart.Id);
+            //cart.CartItems = cartItems;
+
             ProcessCart(cart);
+
             Cart result = _cartRepository.Add(cart);
-            if(result != null)
+            if(result == null)
             {
-                return result;
+                throw new NoCartWithGivenIdException();
             }
-            throw new NoCartWithGivenIdException();
+            foreach(var cartItem in cart.CartItems)
+            {
+                cartItem.Product.QuantityInHand -= cartItem.Quantity;
+                //_productRepository.Update(cartItem.Product);
+            }
+            return result;
+
         }
 
         public Cart DeleteCart(int id)
@@ -38,6 +53,10 @@ namespace ShoppingBLLibrary
             if(result != null)
             {
                 return result;
+            }
+            foreach(var item in result.CartItems)
+            {
+                //_cartItemRepository.Delete(item.CartItemId);
             }
             throw new NoCartWithGivenIdException();
         }
@@ -54,6 +73,10 @@ namespace ShoppingBLLibrary
 
         public Cart GetCartById(int id)
         {
+            if(id == 0)
+            {
+                throw new NoCartWithGivenIdException();
+            }
             var result = _cartRepository.GetByKey(id);
             if(result != null)
             {
@@ -79,7 +102,7 @@ namespace ShoppingBLLibrary
             double totalPrice = 0;
             foreach (var item in cart.CartItems)
             {
-                totalPrice += item.Price * item.Quantity;
+                totalPrice += item.Price;
             }
 
             if (totalPrice < 100)

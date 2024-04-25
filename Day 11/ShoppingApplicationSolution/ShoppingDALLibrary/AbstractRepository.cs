@@ -3,7 +3,9 @@
     public abstract class AbstractRepository<K, T> : IRepository<K, T>
     {
         protected List<T> items = new List<T>();
-        public T Add(T item)
+
+        
+        public virtual T Add(T item)
         {
             items.Add(item);
             return item;

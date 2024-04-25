@@ -15,5 +15,6 @@ namespace ShoppingModelLibrary
         public double Price { get; set; }
         public double Discount { get; set; }
         public DateTime PriceExpiryDate { get; set; }
+        public int CartItemId { get; set; }
     }
 }

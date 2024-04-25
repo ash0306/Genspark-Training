@@ -7,8 +7,6 @@ namespace ShoppingModelLibrary
         public int Id { get; set; }
         public double Price { get; set; }
         public string Name { get; set; } = string.Empty;
-
-        [ExcludeFromCodeCoverage]
         public string? Image { get; set; }
         public int QuantityInHand { get; set; }
 
@@ -17,7 +15,7 @@ namespace ShoppingModelLibrary
         {
             return "Id : " + Id +
                 "\nName : " + Name +
-                "\nPrice : $" + Price +
+                "\nPrice : Rs." + Price +
                 "\nNos in Stock : " + QuantityInHand;
         }
         [ExcludeFromCodeCoverage]
