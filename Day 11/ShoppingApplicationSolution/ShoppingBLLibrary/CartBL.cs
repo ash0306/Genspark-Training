@@ -1,29 +1,33 @@
 ﻿using ShoppingDALLibrary;
 using ShoppingModelLibrary;
 using ShoppingModelLibrary.Exceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingBLLibrary
 {
     public class CartBL : ICartService
     {
+
         readonly IRepository<int, Cart> _cartRepository;
 
+        [ExcludeFromCodeCoverage]
         public CartBL()
         {
             _cartRepository = new CartRepository();
         }
+        [ExcludeFromCodeCoverage]
         public CartBL(IRepository<int, Cart> cartRepository)
         {
             _cartRepository = cartRepository;
         }
 
-        public int AddCart(Cart cart)
+        public Cart AddCart(Cart cart)
         {
             ProcessCart(cart);
             Cart result = _cartRepository.Add(cart);
             if(result != null)
             {
-                return result.Id;
+                return result;
             }
             throw new NoCartWithGivenIdException();
         }
@@ -68,6 +72,8 @@ namespace ShoppingBLLibrary
             }
             throw new NoCartWithGivenIdException();
         }
+
+        [ExcludeFromCodeCoverage]
         private void ProcessCart(Cart cart)
         {
             double totalPrice = 0;

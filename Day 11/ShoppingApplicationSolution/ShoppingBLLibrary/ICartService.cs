@@ -11,7 +11,7 @@ namespace ShoppingBLLibrary
 {
     public interface ICartService
     {
-        int AddCart(Cart cart);
+        Cart AddCart(Cart cart);
         Cart GetCartById(int id);
         List<Cart> GetAllCarts();
         Cart UpdateCart(Cart cart);

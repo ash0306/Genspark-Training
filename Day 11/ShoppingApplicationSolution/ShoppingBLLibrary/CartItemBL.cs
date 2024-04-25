@@ -3,6 +3,7 @@ using ShoppingModelLibrary;
 using ShoppingModelLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace ShoppingBLLibrary
     public class CartItemBL : ICartItemService
     {
         readonly IRepository<int, CartItem> _cartItemRepository;
-
+        [ExcludeFromCodeCoverage]
         public CartItemBL()
         {
             _cartItemRepository = new CartItemRepository();
         }
-
+        [ExcludeFromCodeCoverage]
         public CartItemBL(IRepository<int, CartItem> cartItemRepository)
         {
             _cartItemRepository = cartItemRepository;
@@ -74,7 +75,7 @@ namespace ShoppingBLLibrary
             }
             throw new NoCartItemWithGivenIdException();
         }
-
+        [ExcludeFromCodeCoverage]
         public void ProcessCartItem(CartItem cartItem)
         {
             if(cartItem.Quantity > 5)

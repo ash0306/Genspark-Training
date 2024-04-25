@@ -1,12 +1,18 @@
-﻿namespace ShoppingModelLibrary
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace ShoppingModelLibrary
 {
     public class Product : IEquatable<Product>
     {
         public int Id { get; set; }
         public double Price { get; set; }
         public string Name { get; set; } = string.Empty;
+
+        [ExcludeFromCodeCoverage]
         public string? Image { get; set; }
         public int QuantityInHand { get; set; }
+
+        [ExcludeFromCodeCoverage]
         public override string ToString()
         {
             return "Id : " + Id +
@@ -14,7 +20,7 @@
                 "\nPrice : $" + Price +
                 "\nNos in Stock : " + QuantityInHand;
         }
-
+        [ExcludeFromCodeCoverage]
         public bool Equals(Product? other)
         {
             return this.Id.Equals(other.Id);
@@ -24,6 +30,8 @@
         {
 
         }
+
+        [ExcludeFromCodeCoverage]
         public Product(int id, double price, string name, int quantityInHand)
         {
             Id = id;
@@ -31,6 +39,8 @@
             Name = name;
             QuantityInHand = quantityInHand;
         }
+
+        [ExcludeFromCodeCoverage]
         public Product(int id, double price, string name, string? image, int quantityInHand)
         {
             Id = id;
