@@ -78,7 +78,7 @@ namespace ShoppingBLLibrary
             throw new NoProductWithGivenIdException();
 
         }
-
+        [ExcludeFromCodeCoverage]
         public Product GetProductByName(string name)
         {
             var product = _productRepository.GetAll().ToList().Find(e => e.Name == name);

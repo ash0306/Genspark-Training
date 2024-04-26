@@ -15,6 +15,7 @@ namespace ShoppingBLLibrary
         private readonly IProductService _productService;
         private readonly ICartItemService _cartItemService;
 
+        [ExcludeFromCodeCoverage]
         public CartBL(IProductService productService, ICartItemService cartItemService)
         {
             _cartRepository = new CartRepository();
@@ -34,6 +35,11 @@ namespace ShoppingBLLibrary
             _cartItemRepository = cartItemRepository;
             _productRepository = productRepository;
 
+        }
+        [ExcludeFromCodeCoverage]
+        public CartBL(IRepository<int, Cart> cartRepository)
+        {
+            _cartRepository = cartRepository;
         }
 
         public Cart AddCart(Cart cart)

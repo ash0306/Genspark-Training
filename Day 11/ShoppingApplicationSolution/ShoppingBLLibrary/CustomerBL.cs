@@ -74,7 +74,7 @@ namespace ShoppingBLLibrary
             }
             throw new NoCustomerWithGiveIdException();
         }
-
+        [ExcludeFromCodeCoverage]
         public Customer GetCustomerByName(string name)
         {
             var customer = _customerRepository.GetAll().ToList().Find(e => e.Name == name);

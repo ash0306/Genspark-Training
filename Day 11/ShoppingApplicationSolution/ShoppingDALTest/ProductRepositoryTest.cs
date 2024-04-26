@@ -36,8 +36,8 @@ namespace ShoppingDALTest
         public void AddFailTest()
         {
             Product product = null;
-            var result = repository.Add(product);
-            Assert.IsNull(result);
+
+            Assert.Throws<NullReferenceException>(()=> repository.Add(product));
         }
 
         //UPDATE

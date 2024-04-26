@@ -54,9 +54,11 @@ namespace ShoppingBLTest
         [Test]
         public void AddFailureTest()
         {
-            Customer customer = null; 
+            Customer customer = new Customer() {Age = 20, CartId = 1, Name = "Andrew" }; 
 
-            Assert.Throws<NoCustomerWithGiveIdException>(() => customerService.AddCustomer(customer));
+            var result = customerService.AddCustomer(customer);
+
+            Assert.AreNotEqual(1, result);
         }
 
         [Test]

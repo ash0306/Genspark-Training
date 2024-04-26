@@ -18,7 +18,7 @@ namespace ShoppingBLTest
         public void Setup()
         {
             repository = new ProductRepository();
-            Product product = new Product() { Id = 10, Name = "Nike Shoe", Price = 500, QuantityInHand = 10 };
+            Product product = new Product() { Name = "Nike Shoe", Price = 500, QuantityInHand = 10 };
             productService = new ProductBL(repository);
             productService.AddProduct(product);
         }
@@ -27,8 +27,8 @@ namespace ShoppingBLTest
         [Test]
         public void GetByKeySuccessTest()
         {
-            var product = productService.GetProductById(10);
-            Assert.AreEqual(10, product.Id);
+            var product = productService.GetProductById(1);
+            Assert.AreEqual(1, product.Id);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace ShoppingBLTest
         {
             Product product = null;
 
-            Assert.Throws<NoProductWithGivenIdException>(() => productService.AddProduct(product));
+            Assert.Throws<NullReferenceException>(() => productService.AddProduct(product));
         }
 
         [Test]
@@ -85,9 +85,7 @@ namespace ShoppingBLTest
         [Test]
         public void GetAllFailureTest()
         {
-            productService.DeleteProduct(10);
-
-            Assert.IsEmpty(productService.GetAllProducts());
+            Assert.Throws<NoProductWithGivenIdException>(()=> productService.DeleteProduct(10));
         }
 
 

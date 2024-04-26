@@ -22,3 +22,10 @@ Tasks
 1. Unit test the repository
 
 2. Unit test the BL
+
+
+## Output
+
+The results of the BL and DAL tests:
+
+[!alt text](./BL and DAL Test Results.png)

@@ -9,6 +9,8 @@ namespace ShoppingBLTest
     {
         IRepository<int, Cart> repository;
         ICartService cartService;
+        IRepository<int, Customer> customerRepository;
+        //ICustomer
         [SetUp]
         public void Setup()
         {
@@ -25,10 +27,11 @@ namespace ShoppingBLTest
         [Test]
         public void AddSuccessTest()
         {
-            Customer customer = new Customer() { Id = 102, Age = 25, Phone = "1234556789" };
-            CartItem cartItem = new CartItem() { CartId = 2 };
+            Customer customer = new Customer() {Name = "Ashhhh", Age = 25, Phone = "1234556789" };
+            Product product = new Product() { Name = "pen", Price = 30, QuantityInHand = 12, Image = "penn.png"};
+            CartItem cartItem = new CartItem() { CartId = 2, Price = 200, Product = product, ProductId = 1};
             List<CartItem> cartItems = new List<CartItem>() { cartItem };
-            Cart cart = new Cart() { Id = 2, Customer = customer, CustomerId = 102, TotalPrice = 100, CartItems = cartItems };
+            Cart cart = new Cart() { Customer = customer, TotalPrice = 100, CartItems = cartItems };
             
             var result = cartService.AddCart(cart);
 
@@ -38,14 +41,15 @@ namespace ShoppingBLTest
         [Test]
         public void AddFailureTest()
         {
-            Customer customer = new Customer() { Id = 102, Age = 25, Phone = "1234556789" };
-            CartItem cartItem = new CartItem() { CartId = 2 };
+            Customer customer = new Customer() { Name = "Ashhhh", Age = 25, Phone = "1234556789" };
+            Product product = new Product() { Name = "pen", Price = 30, QuantityInHand = 12, Image = "penn.png" };
+            CartItem cartItem = new CartItem() { CartId = 2, Price = 200, Product = product, ProductId = 1 };
             List<CartItem> cartItems = new List<CartItem>() { cartItem };
-            Cart cart = new Cart() { Id = 2, Customer = customer, CustomerId = 111, TotalPrice = 100, CartItems = cartItems };
+            Cart cart = new Cart() { Customer = customer, TotalPrice = 100, CartItems = cartItems };
 
             var result = cartService.AddCart(cart);
 
-            Assert.AreNotEqual(102, result.CustomerId);
+            Assert.AreNotEqual(1, result.CustomerId);
         }
 
         // GET ALL
