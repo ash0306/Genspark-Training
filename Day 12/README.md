@@ -28,4 +28,4 @@ Tasks
 
 The results of the BL and DAL tests:
 
-[!alt text](https://github.com/ash0306/Genspark-Training/blob/master/Day%2012/BL%20and%20DAL%20Test%20Results.png)
+![alt text](https://github.com/ash0306/Genspark-Training/blob/master/Day%2012/BL%20and%20DAL%20Test%20Results.png)
