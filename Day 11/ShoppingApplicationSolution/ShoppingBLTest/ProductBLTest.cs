@@ -42,9 +42,9 @@ namespace ShoppingBLTest
         {
             Product product = new Product() { Id = 2, Name = "Pen", Price = 20, QuantityInHand = 4 };
 
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
-            Assert.AreEqual(2, addedItemId);
+            Assert.AreEqual(2, addedItemId.Result);
         }
 
         [Test]
@@ -60,9 +60,9 @@ namespace ShoppingBLTest
         {
             Product product = new Product() { Id = 3, Name = "Eraser", Price = 5, QuantityInHand = 3 };
 
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
-            var deletedItem = productService.DeleteProduct(addedItemId);
+            var deletedItem = productService.DeleteProduct(addedItemId.Result);
             
             Assert.IsNotNull(deletedItem);
         }
@@ -78,8 +78,8 @@ namespace ShoppingBLTest
         {
             var products = productService.GetAllProducts();
 
-            Assert.IsNotNull(products);
-            Assert.IsNotEmpty(products);
+            Assert.IsNotNull(products.Result);
+            Assert.IsNotEmpty(products.Result);
         }
 
         [Test]
@@ -94,13 +94,13 @@ namespace ShoppingBLTest
         {
             Product product = new Product() { Id = 4, Name = "Scale", Price = 15.00, QuantityInHand = 20 };
 
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
             product.Price = 10.00;
 
             var updatedItem = productService.UpdateProduct(product);
 
-            Assert.AreEqual(updatedItem.Price, 10.00);
+            Assert.AreEqual(updatedItem.Result.Price, 10.00);
         }
 
 

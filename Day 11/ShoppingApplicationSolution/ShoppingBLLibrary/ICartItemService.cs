@@ -10,10 +10,10 @@ namespace ShoppingBLLibrary
 {
     public interface ICartItemService
     {
-        int AddCartItem(CartItem cartItem);
-        CartItem GetCartItemById(int id);
-        List<CartItem> GetAllCartItems();
-        CartItem UpdateCartItem(CartItem cartItem);
-        CartItem DeleteCartItem(int id);
+        Task<int> AddCartItem(CartItem cartItem);
+        Task<CartItem> GetCartItemById(int id);
+        Task<List<CartItem>> GetAllCartItems();
+        Task<CartItem> UpdateCartItem(CartItem cartItem);
+        Task<CartItem> DeleteCartItem(int id);
     }
 }

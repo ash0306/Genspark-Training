@@ -31,7 +31,7 @@ namespace ShoppingBLTest
         public void GetByKeySuccessTest()
         {
             var cartItem = cartItemService.GetCartItemById(1);
-            Assert.AreEqual(1, cartItem.CartId);
+            Assert.AreEqual(1, cartItem.Result.CartId);
         }
 
         [Test]
@@ -48,8 +48,8 @@ namespace ShoppingBLTest
             CartItem cartItem = new CartItem() { CartId = 1, Discount = 10, Price = 50, PriceExpiryDate = DateTime.Now, ProductId = 1, Quantity = 4, Product = product };
 
             // Action
-            int addedItemId = cartItemService.AddCartItem(cartItem);
-            var addedItem = cartItemService.GetCartItemById(addedItemId);
+            var addedItemId = cartItemService.AddCartItem(cartItem);
+            var addedItem = cartItemService.GetCartItemById(addedItemId.Result);
 
             // Assert
             Assert.IsNotNull(addedItem);
@@ -71,10 +71,10 @@ namespace ShoppingBLTest
             // Arrange
             Product product = new Product() { Id = 1, Name = "Pencil", Price = 50, QuantityInHand = 10 };
             CartItem cartItem = new CartItem() { CartId = 1, Discount = 10, Price = 50, PriceExpiryDate = DateTime.Now, ProductId = 1, Quantity = 4, Product = product };
-            int addedItemId = cartItemService.AddCartItem(cartItem);
+            var addedItemId = cartItemService.AddCartItem(cartItem);
 
             // Action
-            var deletedItem = cartItemService.DeleteCartItem(addedItemId);
+            var deletedItem = cartItemService.DeleteCartItem(addedItemId.Result);
 
             // Assert
             Assert.IsNotNull(deletedItem);
@@ -95,7 +95,7 @@ namespace ShoppingBLTest
 
             // Assert
             Assert.IsNotNull(cartItems);
-            Assert.IsNotEmpty(cartItems);
+            Assert.IsNotEmpty(cartItems.Result);
         }
 
         [Test]
@@ -117,15 +117,15 @@ namespace ShoppingBLTest
             // Arrange
             Product product = new Product() { Id = 2, Name = "Pen", Price = 50, QuantityInHand = 10 };
             CartItem cartItem = new CartItem() { CartId = 1, Discount = 10, Price = 50, PriceExpiryDate = DateTime.Now, ProductId = 2, Quantity = 4, Product = product };
-            int addedItemId = cartItemService.AddCartItem(cartItem);
-            cartItem.CartId = addedItemId;
+            var addedItemId = cartItemService.AddCartItem(cartItem);
+            cartItem.CartId = addedItemId.Result;
             cartItem.Quantity = 2; // Update quantity
 
             // Action
             var updatedItem = cartItemService.UpdateCartItem(cartItem);
 
             // Assert
-            Assert.AreEqual(cartItem.Quantity, updatedItem.Quantity);
+            Assert.AreEqual(cartItem.Quantity, updatedItem.Result.Quantity);
         }
 
 

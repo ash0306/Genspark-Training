@@ -42,11 +42,11 @@ namespace ShoppingBLLibrary
             _cartRepository = cartRepository;
         }
 
-        public Cart AddCart(Cart cart)
+        public async Task<Cart> AddCart(Cart cart)
         {
             ProcessCart(cart);
 
-            Cart result = _cartRepository.Add(cart);
+            Cart result = await _cartRepository.Add(cart);
             if(result == null)
             {
                 throw new NoCartWithGivenIdException();
@@ -60,9 +60,9 @@ namespace ShoppingBLLibrary
 
         }
 
-        public Cart DeleteCart(int id)
+        public async Task<Cart> DeleteCart(int id)
         {
-            var result = _cartRepository.Delete(id);
+            var result = await _cartRepository.Delete(id);
             if(result != null)
             {
                 return result;
@@ -74,9 +74,9 @@ namespace ShoppingBLLibrary
             throw new NoCartWithGivenIdException();
         }
 
-        public List<Cart> GetAllCarts()
+        public async Task<List<Cart>> GetAllCarts()
         {
-            var result = _cartRepository.GetAll();
+            var result = await _cartRepository.GetAll();
             if(result.Count != 0)
             {
                 return (List<Cart>)result;
@@ -84,13 +84,13 @@ namespace ShoppingBLLibrary
             throw new NoCartWithGivenIdException() ;
         }
 
-        public Cart GetCartById(int id)
+        public async Task<Cart> GetCartById(int id)
         {
             if(id == 0)
             {
                 throw new NoCartWithGivenIdException();
             }
-            var result = _cartRepository.GetByKey(id);
+            var result = await _cartRepository.GetByKey(id);
             if(result != null)
             {
                 return result;
@@ -98,10 +98,10 @@ namespace ShoppingBLLibrary
             throw new NoCartWithGivenIdException();
         }
 
-        public Cart UpdateCart(Cart cart)
+        public async Task<Cart> UpdateCart(Cart cart)
         {
             ProcessCart(cart);
-            var result = _cartRepository.Update(cart);
+            var result = await _cartRepository.Update(cart);
             if(result != null)
             {
                 return result;

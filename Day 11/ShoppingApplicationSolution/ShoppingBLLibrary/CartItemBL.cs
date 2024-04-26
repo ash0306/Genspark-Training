@@ -24,10 +24,10 @@ namespace ShoppingBLLibrary
             _cartItemRepository = cartItemRepository;
         }
 
-        public int AddCartItem(CartItem cartItem)
+        public async Task<int> AddCartItem(CartItem cartItem)
         {
             ProcessCartItem(cartItem);
-            CartItem result = _cartItemRepository.Add(cartItem);
+            CartItem result = await _cartItemRepository.Add(cartItem);
             if (result != null)
             {
                 return result.ProductId;
@@ -35,9 +35,9 @@ namespace ShoppingBLLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem DeleteCartItem(int id)
+        public async Task<CartItem> DeleteCartItem(int id)
         {
-            var result = _cartItemRepository.Delete(id);
+            var result = await _cartItemRepository.Delete(id);
             if (result != null)
             {
                 return result;
@@ -45,9 +45,9 @@ namespace ShoppingBLLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public List<CartItem> GetAllCartItems()
+        public async Task<List<CartItem>> GetAllCartItems()
         {
-            var result = _cartItemRepository.GetAll();
+            var result = await _cartItemRepository.GetAll();
             if (result.Count != 0)
             {
                 return (List<CartItem>)result;
@@ -55,9 +55,9 @@ namespace ShoppingBLLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem GetCartItemById(int id)
+        public async Task<CartItem> GetCartItemById(int id)
         {
-            var result = _cartItemRepository.GetByKey(id);
+            var result = await _cartItemRepository.GetByKey(id);
             if (result != null)
             {
                 return result;
@@ -65,16 +65,18 @@ namespace ShoppingBLLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem UpdateCartItem(CartItem CartItem)
+        public async Task<CartItem> UpdateCartItem(CartItem CartItem)
         {
             ProcessCartItem(CartItem);
-            var result = _cartItemRepository.Update(CartItem);
+            var result = await _cartItemRepository.Update(CartItem);
             if (result != null)
             {
                 return result;
             }
             throw new NoCartItemWithGivenIdException();
         }
+
+
         [ExcludeFromCodeCoverage]
         public void ProcessCartItem(CartItem cartItem)
         {

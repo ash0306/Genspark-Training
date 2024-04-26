@@ -44,7 +44,7 @@ namespace ShoppingDALTest
             Cart cart = new Cart() { Id = 2, Customer = customer, CustomerId = 201, TotalPrice = 100, CartItems = cartItems };
 
             var result = repository.Add(cart);
-            Assert.AreNotEqual(102, result.CustomerId);
+            Assert.AreNotEqual(102, result.Result.CustomerId);
         }
 
         // GET BY ID
@@ -79,7 +79,7 @@ namespace ShoppingDALTest
             var result = repository.GetAll();
 
             // Assert
-            Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.Result.Count > 0);
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace ShoppingDALTest
             var delete = repository.Delete(1);
             var result = repository.GetAll();
 
-            Assert.IsEmpty(result);
+            Assert.IsEmpty(result.Result);
         }
 
         // UPDATE
@@ -117,7 +117,7 @@ namespace ShoppingDALTest
             var result = repository.Delete(cartId);
             
             // Assert
-            Assert.Throws<NoCartWithGivenIdException>(() => repository.Update(cart)); ;
+            Assert.Throws<NoCartWithGivenIdException>(() => repository.Update(cart.Result)); ;
         }
 
         //DELETE

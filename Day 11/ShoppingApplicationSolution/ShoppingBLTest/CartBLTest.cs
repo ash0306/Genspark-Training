@@ -49,7 +49,7 @@ namespace ShoppingBLTest
 
             var result = cartService.AddCart(cart);
 
-            Assert.AreNotEqual(1, result.CustomerId);
+            Assert.AreNotEqual(1, result.Result.CustomerId);
         }
 
         // GET ALL
@@ -58,7 +58,7 @@ namespace ShoppingBLTest
         public void GetAllSuccessTest()
         {
             var result = cartService.GetAllCarts();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Result.Count);
         }
         [Test]
         public void GetAllFailureTest()
