@@ -46,4 +46,4 @@ Scenario:
 
 **Question 3**
 
- Worked on creating a new table in SQL Server with the given constraints the code for the same can be found [here]()
+ Worked on creating a new table in SQL Server with the given constraints the code for the same can be found [here](https://github.com/ash0306/Genspark-Training/blob/master/Day%2015/Day15SQLQueries.sql)
