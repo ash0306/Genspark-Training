@@ -83,7 +83,6 @@ ALTER ROLE role1 ADD MEMBER user1
 CREATE USER user2 WITHOUT LOGIN
 ALTER ROLE role2 ADD MEMBER user2
 
-
 -- Grant 'SELECT' permission on a sample table to 'role1'
 CREATE TABLE SampleTable (id INT, name VARCHAR(50))
 INSERT INTO SampleTable VALUES (1, 'Sample Data')
@@ -92,7 +91,7 @@ GRANT SELECT ON SampleTable TO role1 -- Granting permission to 'role1'
 --Demonstrate granting and revoking permissions from 'role1' perspective
 EXECUTE AS USER = 'user1'
 SELECT * FROM SampleTable -- This should work
-REVERT  -- Reverts the user back to the main user
+REVERT
 
 --Demonstrate granting and revoking permissions from 'role2' perspective
 EXECUTE AS USER = 'user2'
@@ -106,3 +105,11 @@ REVOKE SELECT ON SampleTable TO role1;
 EXECUTE AS USER = 'user1';
 SELECT * FROM SampleTable; -- This should now throw an error due to revoked permissions
 REVERT;
+
+
+-- For deleting the users and the roles
+DROP USER user1
+DROP USER user2
+DROP ROLE role1
+DROP ROLE role2
+DROP TABLE SampleTable
