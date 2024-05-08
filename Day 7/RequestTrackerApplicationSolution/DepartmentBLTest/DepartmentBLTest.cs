@@ -1,6 +1,7 @@
 ﻿using RequestTrackerBLLibrary;
 using RequestTrackerDALLibrary;
-using RequestTrackerModelLibrary;
+//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerBLTest
 {
@@ -12,7 +13,7 @@ namespace RequestTrackerBLTest
         public void Setup()
         {
             repository = new DepartmentRepository();
-            Department department = new Department() { Name = "IT", Department_Head = 101 };
+            Department department = new Department() { Name = "IT", DepartmentHead = 101 };
             repository.Add(department);
             departmentService = new DepartmentBL(repository);
         }

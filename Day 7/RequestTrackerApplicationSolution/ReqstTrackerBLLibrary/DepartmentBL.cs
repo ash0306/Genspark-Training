@@ -1,5 +1,6 @@
 ﻿using RequestTrackerDALLibrary;
-using RequestTrackerModelLibrary;
+//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerBLLibrary
 {
@@ -11,7 +12,12 @@ namespace RequestTrackerBLLibrary
             _departmentRepository = departmentrepository;
         }
 
-        public int AddDepartment(Department department)
+        public DepartmentBL()
+        {
+            _departmentRepository = new DepartmentRepository();
+        }
+
+        public int? AddDepartment(Department department)
         {
             var result = _departmentRepository.Add(department);
 
@@ -22,23 +28,13 @@ namespace RequestTrackerBLLibrary
             throw new DuplicateDepartmentNameException();
         }
 
-        public Department ChangeDepartmentName(string departmentOldName, string departmentNewName)
+        public Department UpdateDepartment(int id)
         {
-            var department = _departmentRepository.GetAll().Find(d => d.Name == departmentOldName);
-            if (department == null)
-            {
-                // Department with old name not found
-                throw new DepartmentNotFoundException();
-            }
-
-            // Check if the new name already exists
-            if (_departmentRepository.GetAll().Exists(d => d.Name == departmentNewName))
-            {
-                throw new DuplicateDepartmentNameException();
-            }
-
-            // Update department name
-            department.Name = departmentNewName;
+            Department department = GetDepartmentById(id);
+            Console.WriteLine("Enter department Name:");
+            department.Name = Console.ReadLine();
+            Console.WriteLine("Enter department head ID:");
+            department.DepartmentHead = Convert.ToInt32(Console.ReadLine());
             return _departmentRepository.Update(department);
         }
 
@@ -57,18 +53,17 @@ namespace RequestTrackerBLLibrary
             var department = _departmentRepository.GetAll().Find(d => d.Name == departmentName);
             if (department == null)
             {
-                // Department with old name not found
                 throw new DepartmentNotFoundException();
             }
             return department;
         }
 
-        public int GetDepartmentHeadId(int departmentId)
+        public int? GetDepartmentHeadId(int departmentId)
         {
             var department = _departmentRepository.GetByID(departmentId);
             if(department != null)
             {
-                return department.Department_Head;
+                return department.DepartmentHead;
             }
             throw new DepartmentNotFoundException();
         }

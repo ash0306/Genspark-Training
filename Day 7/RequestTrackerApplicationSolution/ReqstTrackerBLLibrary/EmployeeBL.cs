@@ -1,5 +1,6 @@
 ﻿using RequestTrackerDALLibrary;
-using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
+//using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace RequestTrackerBLLibrary
         {
             _employeeRepository = new EmployeeRepository();
         }
-        public int AddEmployee(Employee employee)
+        public int? AddEmployee(Employee employee)
         {
             var result = _employeeRepository.Add(employee);
 

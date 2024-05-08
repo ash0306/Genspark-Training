@@ -29,14 +29,15 @@ exec proc_GetAllBooksPublished 'Akiko'
 
 --2. Create a sp that will take the employee's firtname 
 --and print all the titles sold by him/her, price, quantity and the cost.
-create proc proc_GetAllTitles(@efname varchar(50))
+alter proc proc_GetAllTitles(@efname varchar(50))
 as
 begin
-	select t.title, t.price, s.qty
+	select t.title, sum(t.price) 'Price', sum(s.qty) 'Quantity', sum(t.price * s.qty) 'Cost'
 	from employee e
 	join titles t on t.pub_id = e.pub_id
 	join sales s on t.title_id = s.title_id
 	where e.fname = @efname
+	group by t.title
 end
 
 exec proc_GetAllTitles 'Paolo'

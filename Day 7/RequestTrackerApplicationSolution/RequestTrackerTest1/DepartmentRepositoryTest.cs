@@ -1,5 +1,6 @@
 using RequestTrackerDALLibrary;
-using RequestTrackerModelLibrary;
+//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerTest
 {
@@ -16,7 +17,7 @@ namespace RequestTrackerTest
         public void AddSuccessTest()
         {
             //Arrange 
-            Department department = new Department() { Name = "IT", Department_Head = 101 };
+            Department department = new Department() { Name = "IT", DepartmentHead = 101 };
             //Action
             var result = repository.Add(department);
             //Assert
@@ -27,9 +28,9 @@ namespace RequestTrackerTest
         public void AddFailTest()
         {
             //Arrange 
-            Department department = new Department() { Name = "IT", Department_Head = 101 };
+            Department department = new Department() { Name = "IT", DepartmentHead = 101 };
             repository.Add(department);
-            department = new Department() { Name = "IT", Department_Head = 102 };
+            department = new Department() { Name = "IT", DepartmentHead =  102 };
             //Action
             var result = repository.Add(department);
             //Assert
@@ -39,7 +40,7 @@ namespace RequestTrackerTest
         public void GetAllPassTest()
         {
             //Arrange 
-            Department department = new Department() { Name = "IT", Department_Head = 101 };
+            Department department = new Department() { Name = "IT", DepartmentHead = 101 };
             repository.Add(department);
             //Action
             var result = repository.GetAll();
@@ -56,11 +57,11 @@ namespace RequestTrackerTest
             //Assert
             Assert.AreEqual(0, result.Count);
         }
-        [TestCase(1, "Hr", 101)]
+        [TestCase(1, "Hr", "101")]
         public void GetPassTest(int id, string name, int hid)
         {
             //Arrange 
-            Department department = new Department() { Name = name, Department_Head = hid };
+            Department department = new Department() { Name = name, DepartmentHead = hid };
             repository.Add(department);
 
             //Action

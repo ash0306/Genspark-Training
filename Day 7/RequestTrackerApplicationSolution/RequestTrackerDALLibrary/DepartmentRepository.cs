@@ -1,19 +1,20 @@
-﻿using RequestTrackerModelLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerDALLibrary
 {
     public class DepartmentRepository : IRepository<int, Department>
     {
-        readonly Dictionary<int, Department> _departments;
-
+        dbRequestTrackerContext context = new dbRequestTrackerContext();
+        private List<Department> _departments;
         public DepartmentRepository()
         {
-            _departments = new Dictionary<int, Department>();
+            _departments = context.Departments.ToList();
         }
 
         int GenerateId()
@@ -22,28 +23,28 @@ namespace RequestTrackerDALLibrary
             {
                 return 1;
             }
-            int id = _departments.Keys.Max();
+            int id = _departments.Count;
             return ++id;
         }
 
         public Department Add(Department item)
         {
-            if (_departments.ContainsValue(item))
-            {
-                return null;
-            }
-            int id = GenerateId();
-            item.Id = id;
-            _departments.Add(id, item);
-            return item;
+            context.Departments.Add(item);
+            context.SaveChanges();
+            _departments = context.Departments.ToList();
+            if(_departments.Contains(item)) return item;
+            return null;
         }
 
         public Department Delete(int key)
         {
-            if (_departments.ContainsKey(key))
+            _departments = context.Departments.ToList();
+            var department = _departments.SingleOrDefault(d => d.Id == key);
+            if (department != null)
             {
-                var department = _departments[key];
-                _departments.Remove(key);
+                context.Departments.Remove(department);
+                context.SaveChanges();
+                _departments = context.Departments.ToList();
                 return department;
             }
             return null;
@@ -53,20 +54,30 @@ namespace RequestTrackerDALLibrary
         {
             if (_departments.Count == 0)
                 return null;
-            return _departments.Values.ToList();
+            return _departments;
         }
 
         public Department GetByID(int key)
         {
-            return _departments.ContainsKey(key) ? _departments[key] : null;
+            var department = _departments.SingleOrDefault(d => d.Id == key);
+            if (department != null)
+            {
+                return department;
+            }
+            return null;
         }
 
         public Department Update(Department item)
         {
-            if (_departments.ContainsKey(item.Id))
+            _departments = context.Departments.ToList();
+            var department = _departments.SingleOrDefault(d => d.Id == item.Id);
+            if (department != null)
             {
-                _departments[item.Id] = item;
-                return item;
+                department = item;
+                context.Departments.Update(department);
+                context.SaveChanges();
+                _departments = context.Departments.ToList();
+                return department;
             }
             return null;
         }

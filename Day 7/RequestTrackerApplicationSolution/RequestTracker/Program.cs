@@ -1,5 +1,6 @@
 ﻿using RequestTrackerBLLibrary;
-using RequestTrackerModelLibrary;
+//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerApp
 {
@@ -25,7 +26,7 @@ namespace RequestTrackerApp
             Console.WriteLine("------------------------------------");
             Console.WriteLine("Manage Departments:");
             Console.WriteLine("1. Add Department");
-            Console.WriteLine("2. Change Department Name");
+            Console.WriteLine("2. Update Department");
             Console.WriteLine("3. Get Department By ID");
             Console.WriteLine("4. Get Department By Name");
             Console.WriteLine("5. Delete Department");
@@ -47,7 +48,7 @@ namespace RequestTrackerApp
                         AddDepartment();
                         break;
                     case 2:
-                        ChangeDepartmentName();
+                        UpdateDepartment();
                         break;
                     case 3:
                         GetDepartmentById();
@@ -77,15 +78,15 @@ namespace RequestTrackerApp
                 Console.Write("Enter Department Name: ");
                 string name = Console.ReadLine()!;
                 Console.Write("Enter Department Head ID: ");
-                int headId = int.Parse(Console.ReadLine()!);
+                int? headId = Convert.ToInt32(Console.ReadLine());
 
                 Department department = new Department
                 {
                     Name = name,
-                    Department_Head = headId
+                    DepartmentHead = headId
                 };
 
-                int departmentId = _departmentService.AddDepartment(department);
+                int? departmentId = _departmentService.AddDepartment(department);
                 Console.WriteLine($"Department added with ID: {departmentId}");
             }
             catch (Exception e)
@@ -94,16 +95,14 @@ namespace RequestTrackerApp
             }
         }
 
-        private void ChangeDepartmentName()
+        private void UpdateDepartment()
         {
             try
             {
-                Console.Write("Enter the old department name: ");
-                string oldName = Console.ReadLine()!;
-                Console.Write("Enter the new department name: ");
-                string newName = Console.ReadLine()!;
+                Console.Write("Enter the department ID: ");
+                int id = Convert.ToInt32(Console.ReadLine()!);
 
-                Department department = _departmentService.ChangeDepartmentName(oldName, newName);
+                Department department = _departmentService.UpdateDepartment(id);
                 Console.WriteLine($"Department name changed to: {department.Name}");
             }
             catch (Exception e)
@@ -122,7 +121,7 @@ namespace RequestTrackerApp
                 Department department = _departmentService.GetDepartmentById(id);
                 if (department != null)
                 {
-                    Console.WriteLine($"Department ID: {department.Id}, Name: {department.Name}, Head ID: {department.Department_Head}");
+                    Console.WriteLine($"Department ID: {department.Id}, Name: {department.Name}, Head ID: {department.DepartmentHead}");
                 }
                 else
                 {
@@ -145,7 +144,7 @@ namespace RequestTrackerApp
                 Department department = _departmentService.GetDepartmentByName(name);
                 if (department != null)
                 {
-                    Console.WriteLine($"Department Name: {department.Name}, ID: {department.Id}, Head ID: {department.Department_Head}");
+                    Console.WriteLine($"Department Name: {department.Name}, ID: {department.Id}, Head ID: {department.DepartmentHead}");
                 }
                 else
                 {
@@ -191,7 +190,7 @@ namespace RequestTrackerApp
                 foreach (var department in departments)
                 {
                     Console.WriteLine("------------------------------------");
-                    Console.WriteLine(department);
+                    Console.WriteLine($"Department Name: {department.Name}, ID: {department.Id}, Head ID: {department.DepartmentHead}");
                     Console.WriteLine("------------------------------------");
                 }
             }
@@ -261,7 +260,7 @@ namespace RequestTrackerApp
                 foreach (var employee in employees)
                 {
                     Console.WriteLine("------------------------------------");
-                    Console.WriteLine(employee);
+                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment}");
                     Console.WriteLine("------------------------------------");
                 }
             }
@@ -293,9 +292,9 @@ namespace RequestTrackerApp
                     DateOfBirth = dob,
                     Salary = salary,
                     Role = role,
-                    EmployeeDepartment = employeeDepartment
+                    EmployeeDepartment = employeeDepartment.Id
                 };
-                int employeeId = _employeeService.AddEmployee(employee);
+                int? employeeId = _employeeService.AddEmployee(employee);
                 Console.WriteLine($"Employee added with ID: {employeeId}");
             }
             catch (Exception e)
@@ -315,7 +314,7 @@ namespace RequestTrackerApp
                 Employee employee = _employeeService.GetEmployeeById(id);
                 if (employee != null)
                 {
-                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment?.Name}");
+                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment}");
                 }
                 else
                 {
@@ -338,7 +337,7 @@ namespace RequestTrackerApp
                 Employee employee = _employeeService.GetEmployeeByName(name);
                 if (employee != null)
                 {
-                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment?.Name}");
+                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment}");
                 }
                 else
                 {
@@ -398,7 +397,8 @@ namespace RequestTrackerApp
                     if (!string.IsNullOrEmpty(departmentIdInput))
                     {
                         int departmentId = int.Parse(departmentIdInput);
-                        employee.EmployeeDepartment = _departmentService.GetDepartmentById(departmentId);
+                        Department dept = _departmentService.GetDepartmentById(departmentId);
+                        employee.EmployeeDepartment = dept.Id;
                     }
 
                     _employeeService.UpdateEmployee(employee);

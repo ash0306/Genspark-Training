@@ -81,9 +81,9 @@ A member may have a number of dependents (with known names), each of whom is all
 
 **ER Diagram**
 
-![ERD](./Day18VideoStoreERD.svg)
+![ERD](./VideoStoreERD.svg)
 
 
-### SQL QUeries
+### SQL Queries
 
 Worked on Outer join queries in SQL. The file for the same can be found [here](./Day18SQLQueries.sql)
