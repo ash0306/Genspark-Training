@@ -14,5 +14,6 @@
 ![ERD](./PharmacyERD.png)
 
 2. Complete the RequestTracker CodeFirstApproach. The repository for the same can be found [here](./RequestTrackerSolution)
+
 **Output**
 ![Output](./RequestTrackerOutput.gif)
