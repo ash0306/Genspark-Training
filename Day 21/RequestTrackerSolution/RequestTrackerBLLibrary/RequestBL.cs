@@ -16,6 +16,9 @@ namespace RequestTrackerBLLibrary
             IRepository<int, Request> repo = new RequestRepository(new RequestTrackerContext());
             _repository = repo;
         }
+
+
+
         public async Task<int> OpenRequest(Request request)
         {
             request.RequestStatus = "Open";
@@ -23,46 +26,56 @@ namespace RequestTrackerBLLibrary
             return result.RequestNumber;
         }
 
-        public async Task<bool> CloseRequest(int RequestId, Employee employee)
+        public async Task<Request> GetRequestById(int RequestId)
         {
-            var request = await _repository.Get(RequestId);
-            if(request == null)
-            {
-                return false;
-            }
-            request.ClosedDate = DateTime.Now;
-            request.RequestClosedBy = employee.Id;
-            //request.RequestClosedByEmployee = employee;
-            request.RequestStatus = "Closed";
-            var req = await _repository.Update(request);
-            return true;
-        }
-        public async Task<bool> UpdateRequestStatus(int RequestId, string ReqStatus)
-        {
-            var request = await _repository.Get(RequestId);
-            if (request == null)
-            {
-                return false;
-            }
-            request.RequestStatus = ReqStatus;
-            var req = await _repository.Update(request);
-            return true;
+            Request request = await _repository.Get(RequestId);
+            return request;
         }
 
-        public async Task<IList<Request>> GetAllRequests()
+        public async Task<IList<Request>> GetAllRequestsById(int requestRaisedBy)
         {
-            IList<Request> requests = await _repository.GetAll();
-            if(requests.Count == 0)
+            var requests = (await _repository.GetAll()).ToList().FindAll(r => r.RequestRaisedBy == requestRaisedBy);
+            if (requests.Count == 0)
             {
                 return null;
             }
             return requests;
         }
 
-        public async Task<Request> GetRequestById(int RequestId)
+        public async Task<IList<Request>> GetAllRequests()
         {
-            Request request = await _repository.Get(RequestId);
-            return request;
+            IList<Request> requests = await _repository.GetAll();
+            if (requests.Count == 0)
+            {
+                return null;
+            }
+            return requests;
+        }
+
+        public async Task<bool> CloseRequest(int RequestId, Employee employee)
+        {
+            Request validRequest = await _repository.Get(RequestId);
+            if (validRequest == null)
+            {
+                return false;
+            }
+            validRequest.ClosedDate = DateTime.Now;
+            validRequest.RequestClosedBy = employee.Id;
+            validRequest.RequestStatus = "Closed";
+            await _repository.Update(validRequest);
+            return true;
+        }
+
+        public async Task<bool> UpdateRequest(int RequestId, string status)
+        {
+            Request validRequest = await _repository.Get(RequestId);
+            if (validRequest == null)
+            {
+                return false;
+            }
+            validRequest.RequestStatus = status;
+            await _repository.Update(validRequest);
+            return true;
         }
     }
 }

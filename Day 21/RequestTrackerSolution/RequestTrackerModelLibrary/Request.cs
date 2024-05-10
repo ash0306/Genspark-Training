@@ -24,5 +24,7 @@ namespace RequestTrackerModelLibrary
 
         public int? RequestClosedBy { get; set; } = null;
         public Employee RequestClosedByEmployee { get; set; }
+
+        public ICollection<RequestSolution> RequestSolutions { get; set; }
     }
 }

@@ -15,7 +15,8 @@ namespace RequestTrackerModelLibrary
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Request> Requests { get; set; }
-
+        public DbSet<RequestSolution> RequestSolutions { get; set; }
+        public DbSet<SolutionFeedback> SolutionFeedbacks { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>().HasData(
@@ -24,6 +25,8 @@ namespace RequestTrackerModelLibrary
                 new Employee { Id = 103, Name = "Bimu", Password = "bimu123", Role = "User" }
                 );
 
+            modelBuilder.Entity<SolutionFeedback>().HasKey(r => r.FeedbackId);
+            
             modelBuilder.Entity<Request>()
                .HasOne(r => r.RaisedByEmployee)
                .WithMany(e => e.RequestsRaised)
@@ -37,6 +40,31 @@ namespace RequestTrackerModelLibrary
                .HasForeignKey(r => r.RequestClosedBy)
                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<RequestSolution>()
+                .HasOne(rs => rs.RequestRaised)
+                .WithMany(r => r.RequestSolutions)
+                .HasForeignKey(rs => rs.RequestId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
+            modelBuilder.Entity<RequestSolution>()
+                .HasOne(rs => rs.SolvedByEmployee)
+                .WithMany(e => e.SolutionsProvided)
+                .HasForeignKey(rs => rs.SolvedBy)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+            modelBuilder.Entity<SolutionFeedback>()
+                .HasOne(sf => sf.Solution)
+                .WithMany(s => s.Feedbacks)
+                .HasForeignKey(sf => sf.SolutionId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+            modelBuilder.Entity<SolutionFeedback>()
+              .HasOne(sf => sf.FeedbackByEmployee)
+              .WithMany(e => e.FeedbacksGiven)
+              .HasForeignKey(sf => sf.FeedbackBy)
+              .OnDelete(DeleteBehavior.Restrict)
+              .IsRequired();
 
         }
     }
