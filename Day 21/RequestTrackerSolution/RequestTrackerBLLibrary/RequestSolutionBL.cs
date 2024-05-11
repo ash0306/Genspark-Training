@@ -42,8 +42,6 @@ namespace RequestTrackerBLLibrary
             return requestSolution;
         }
 
-
-
         public async Task<IList<RequestSolution>> GetAllAdminRequestSolutions()
         {
             IList<RequestSolution> requests = await _requestSolutionRepository.GetAll();
@@ -75,8 +73,17 @@ namespace RequestTrackerBLLibrary
             return solutions;
         }
 
+        public async Task<RequestSolution> UpdateSolutionAsSolved(int solutionId)
+        {
+            var reqSolution = await _requestSolutionRepository.Get(solutionId);
 
-
+            if (reqSolution != null)
+            {
+                reqSolution.IsSolved = true;
+                await _requestSolutionRepository.Update(reqSolution);
+            }
+            return reqSolution;
+        }
 
         public async Task<RequestSolution> RespondToSolution(int requestSolutionId, string comment)
         {

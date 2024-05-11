@@ -13,7 +13,7 @@ namespace RequestTrackerBLLibrary
         public Task<bool> CloseRequest(int RequestId, Employee employee);
 
         public Task<bool> UpdateRequest(int RequestId, string status);
-
+        public Task<IList<Request>> GetAllOpenRequests();
         Task<Request> GetRequestById(int RequestId);
 
         Task<IList<Request>> GetAllRequests();

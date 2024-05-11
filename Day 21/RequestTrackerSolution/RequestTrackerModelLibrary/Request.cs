@@ -26,5 +26,10 @@ namespace RequestTrackerModelLibrary
         public Employee RequestClosedByEmployee { get; set; }
 
         public ICollection<RequestSolution> RequestSolutions { get; set; }
+
+        public override string ToString()
+        {
+            return $"Request Number: {RequestNumber}\nRequest Message: {RequestMessage}\nRequest Date: {RequestDate}\nClosed Date: {ClosedDate}\nRequest Status: {RequestStatus}\nRaised By Employee Id: {RequestRaisedBy}\nClosed By Employee Id: {RequestClosedBy}";
+        }
     }
 }

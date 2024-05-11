@@ -39,8 +39,6 @@ namespace RequestTrackerModelLibrary
             sb.AppendLine($"Is Solved: {IsSolved}");
             sb.AppendLine($"Request Raiser Comment: {RequestRaiserComment ?? "N/A"}");
 
-            // Add logic to handle Feedbacks collection if needed
-
             return sb.ToString();
         }
     }

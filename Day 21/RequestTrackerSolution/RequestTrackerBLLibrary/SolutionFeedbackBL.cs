@@ -23,15 +23,22 @@ namespace RequestTrackerBLLibrary
             return result;
         }
 
-        public async Task<IList<SolutionFeedback>> GetAllAdminFeedbacks(int solutionId)
+        public async Task<IList<SolutionFeedback>> GetAllAdminFeedbacks(List<int> solutionIds)
         {
             var allFeedbacks = await _solutionFeedbackRepository.GetAll();
 
-            var feedbacks = allFeedbacks
-                                    .Where(f => f.SolutionId == solutionId)
-                                    .ToList();
+            var feedbackList = new List<SolutionFeedback>();
 
-            return feedbacks;
+            foreach (var item in solutionIds)
+            {
+                var feedbacks = allFeedbacks
+                                    .Where(f => f.SolutionId == item)
+                                    .ToList();
+                feedbackList.AddRange(feedbacks);
+            }
+            
+
+            return feedbackList;
         }
 
         public async Task<SolutionFeedback> GetFeedbackByFeedbackId(int feedbackId)

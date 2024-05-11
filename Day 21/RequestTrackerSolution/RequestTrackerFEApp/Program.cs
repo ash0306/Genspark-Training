@@ -30,12 +30,13 @@ namespace RequestTrackerFEAPP
             while (!exit)
             {
                 Console.Clear();
+                Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("Welcome to Request Tracker");
                 Console.WriteLine("1. Login");
                 Console.WriteLine("2. Register");
                 Console.WriteLine("3. Exit");
-                Console.Write("Enter your choice: ");
-                string? choice = Console.ReadLine();
+                Console.WriteLine("-----------------------------------------------");
+                string? choice = program.GetChoiceFromUser();
 
                 switch (choice)
                 {
@@ -60,29 +61,36 @@ namespace RequestTrackerFEAPP
                 }
             }
         }
-
+        string GetChoiceFromUser()
+        {
+            Console.Write("Enter your choice: ");
+            string? choice = Console.ReadLine();
+            return choice;
+        }
         async Task GetLoginDetails()
         {
             Console.Clear();
-            Console.WriteLine("-----Login-----");
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("Login");
+            Console.WriteLine("-----------------------------------------------");
             await Console.Out.WriteLineAsync("Please enter Employee Id");
             int id = Convert.ToInt32(Console.ReadLine());
             await Console.Out.WriteLineAsync("Please enter your password");
             string? password = Console.ReadLine() ?? "";
             await EmployeeLoginAsync(id, password);
         }
-
         async Task GetRegisterDetails()
         {
             Console.Clear();
-            Console.WriteLine("-----Register-----");
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("Register");
+            Console.WriteLine("-----------------------------------------------");
             await Console.Out.WriteLineAsync("Please enter Employee Id");
             int id = Convert.ToInt32(Console.ReadLine());
             await Console.Out.WriteLineAsync("Please enter your password");
             string? password = Console.ReadLine() ?? "";
             await EmployeeRegisterAsync(id, password);
         }
-
         async Task EmployeeLoginAsync(int username, string password)
         {
             Employee employee = new Employee() { Password = password, Id = username };
@@ -92,6 +100,8 @@ namespace RequestTrackerFEAPP
             {
                 CurrentLoggedInEmployee = result;
                 await Console.Out.WriteLineAsync("Login Success");
+                Console.WriteLine("-----------------------------------------------");
+                Task.Delay(2000);
                 if (CurrentLoggedInEmployee.Role == "Admin")
                     await ManageAdminRequests();
                 else
@@ -102,7 +112,6 @@ namespace RequestTrackerFEAPP
                 Console.Out.WriteLine("Invalid username or password");
             }
         }
-
         async Task EmployeeRegisterAsync(int username, string password)
         {
             string role = "User";
@@ -128,6 +137,7 @@ namespace RequestTrackerFEAPP
             while (!exit)
             {
                 Console.Clear();
+                Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("User Request Management Menu");
                 Console.WriteLine("1. Raise Request");
                 Console.WriteLine("2. View Request Status");
@@ -135,8 +145,8 @@ namespace RequestTrackerFEAPP
                 Console.WriteLine("4. Give Feedback");
                 Console.WriteLine("5. Respond to Solution");
                 Console.WriteLine("6. Logout");
-                Console.Write("Enter your choice: ");
-                string? choice = Console.ReadLine();
+                Console.WriteLine("-----------------------------------------------");
+                string? choice = GetChoiceFromUser();
 
                 switch (choice)
                 {
@@ -144,10 +154,10 @@ namespace RequestTrackerFEAPP
                         await AddRequest();
                         break;
                     case "2":
-                        await ViewRequestDetails();
+                        await ViewUserRequestDetails();
                         break;
                     case "3":
-                        await ViewSolutions();
+                        await ViewUserSolutions();
                         break;
                     case "4":
                         await GiveFeedback();
@@ -171,6 +181,112 @@ namespace RequestTrackerFEAPP
             }
         }
 
+        async Task AddRequest() //user & admin
+        {
+            Console.Write("Request Message: ");
+            string? requestMessage = Console.ReadLine() ?? "";
+            DateTime currentDateTime = DateTime.Now;
+            DateTime requestDate = currentDateTime;
+
+            Request request = new Request
+            {
+                RequestMessage = requestMessage,
+                RequestDate = requestDate,
+                RequestStatus = "Opened",
+                RequestRaisedBy = CurrentLoggedInEmployee.Id,
+                RequestClosedBy = CurrentLoggedInEmployee?.Id ?? 0
+            };
+
+            var AddUserRequest = await requestBL.OpenRequest(request);
+            Console.WriteLine("Request Added Successfully with ID : " + AddUserRequest);
+        }
+
+        async Task ViewUserRequestDetails() //user
+        {
+            var requestDetails = await requestBL.GetAllRequestsById(CurrentLoggedInEmployee.Id);
+            if (requestDetails == null)
+            {
+                Console.WriteLine("Request not found!");
+                return;
+            }
+            foreach (var reqdet in requestDetails)
+            {
+                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine(reqdet.ToString());
+                Console.WriteLine("-----------------------------------------------");
+            }
+        }
+
+        async Task<bool> ViewUserSolutions() //user
+        {
+            Console.WriteLine("All the requests for the logged in user are:");
+            await ViewUserRequestDetails();
+            Console.WriteLine("Enter Request Number to View Solutions:");
+            int requestNumber = Convert.ToInt32(Console.ReadLine());
+            var solution = await solutionBL.GetAllUserRequestSolutions(CurrentLoggedInEmployee.Id, requestNumber);
+            if (solution == null)
+            {
+                Console.WriteLine("No solution found for this request.");
+                return false;
+            }
+            foreach (var sol in solution)
+            {
+                if (sol.RequestId == requestNumber)
+                {
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.WriteLine(sol.ToString());
+                    Console.WriteLine("-----------------------------------------------");
+                }
+            }
+            return true;
+        }
+
+        async Task GiveFeedback() //user & admin
+        {
+            bool isSolutionPresent = await ViewUserSolutions();
+            if (!isSolutionPresent)
+            {
+                return;
+            }
+            Console.WriteLine("Enter the solution ID to give feedback:");
+            int solutionId = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter your rating (out of 5): ");
+            int rating = int.Parse(Console.ReadLine() ?? "0");
+            Console.WriteLine("Enter your remarks: ");
+            string remarks = Console.ReadLine() ?? "";
+
+            var feedback = new SolutionFeedback
+            {
+                Rating = rating,
+                Remarks = remarks,
+                SolutionId = solutionId,
+                FeedbackBy = CurrentLoggedInEmployee.Id,
+                FeedbackDate = DateTime.Now
+            };
+
+            await feedbackBL.AddFeedback(feedback);
+            Console.WriteLine("Feedback submitted successfully.");
+        }
+
+        async Task RespondToSolution() //user
+        {
+            ViewUserSolutions();
+            Console.WriteLine("Enter the solution ID to respond:");
+            int solutionId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter your response: ");
+            string response = Console.ReadLine() ?? "";
+
+            var solution = await solutionBL.RespondToSolution(solutionId, response);
+            if (solution == null)
+            {
+                Console.WriteLine("Solution not found.");
+                return;
+            }
+
+            Console.WriteLine("Response submitted successfully.");
+        }
+
         async Task ManageAdminRequests()
         {
             bool exit = false;
@@ -178,6 +294,7 @@ namespace RequestTrackerFEAPP
             while (!exit)
             {
                 Console.Clear();
+                Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("Admin Request Management Menu");
                 Console.WriteLine("1. Raise Request");
                 Console.WriteLine("2. View Request Status (All Requests)");
@@ -188,8 +305,9 @@ namespace RequestTrackerFEAPP
                 Console.WriteLine("7. Mark Request as Closed");
                 Console.WriteLine("8. View Feedbacks (Only feedbacks given to them)");
                 Console.WriteLine("9. Logout");
-                Console.Write("Enter your choice: ");
-                string? choice = Console.ReadLine();
+                Console.WriteLine("-----------------------------------------------");
+
+                string? choice = GetChoiceFromUser();
 
                 switch (choice)
                 {
@@ -233,110 +351,9 @@ namespace RequestTrackerFEAPP
             }
         }
 
-        async Task AddRequest()
+        async Task ProvideSolution() //admin
         {
-            Console.Write("Request Message: ");
-            string? requestMessage = Console.ReadLine() ?? "";
-            DateTime currentDateTime = DateTime.Now;
-            DateTime requestDate = currentDateTime;
-
-            Request request = new Request
-            {
-                RequestMessage = requestMessage,
-                RequestDate = requestDate,
-                RequestStatus = "Opened",
-                RequestRaisedBy = CurrentLoggedInEmployee.Id,
-                RequestClosedBy = CurrentLoggedInEmployee?.Id ?? 0
-            };
-
-            var Addrequest = await requestBL.OpenRequest(request);
-            Console.WriteLine("Request Added Successfully with ID : " + Addrequest);
-        }
-
-        async Task ViewRequestDetails()
-        {
-            var requestDetails = await requestBL.GetAllRequestsById(CurrentLoggedInEmployee.Id);
-            if (requestDetails == null)
-            {
-                Console.WriteLine("Request not found!");
-                return;
-            }
-            foreach (var reqdet in requestDetails)
-            {
-                Console.WriteLine("\n---------------------------------------");
-                Console.WriteLine($"Request Number: {reqdet.RequestNumber}");
-                Console.WriteLine($"Request Message: {reqdet.RequestMessage}");
-                Console.WriteLine($"Request Date: {reqdet.RequestDate}");
-                Console.WriteLine($"Closed Date: {reqdet.ClosedDate}");
-                Console.WriteLine($"Request Status: {reqdet.RequestStatus}");
-                Console.WriteLine($"Raised By Employee Id: {reqdet.RequestRaisedBy}");
-                Console.WriteLine($"Closed By Employee Id: {reqdet.RequestClosedBy}");
-                Console.WriteLine("---------------------------------------\n");
-            }
-        }
-
-        async Task ViewSolutions()
-        {
-            Console.WriteLine("Enter Request Number to View Solutions:");
-            int requestNumber = Convert.ToInt32(Console.ReadLine());
-            var solution = await solutionBL.GetAllUserRequestSolutions(CurrentLoggedInEmployee.Id, requestNumber);
-            foreach (var sol in solution)
-            {
-                if (sol.RequestId == requestNumber)
-                {
-                    Console.WriteLine($"Solution ID: {sol.SolutionId}, Description: {sol.SolutionDescription}, Comments: {sol.RequestRaiserComment}");
-                }
-            }
-            if (solution == null)
-            {
-                Console.WriteLine("No solution found for this request.");
-                return;
-            }
-
-            //Console.WriteLine($"Solution ID: {solution.SolutionId}, Description: {solution.SolutionDescription}");
-        }
-
-        async Task GiveFeedback()
-        {
-            //Console.WriteLine("Enter the solution ID to give feedback:");
-            //int solutionId = Convert.ToInt32(Console.ReadLine());
-            //Console.WriteLine("Enter your rating (out of 5): ");
-            //float rating = float.Parse(Console.ReadLine() ?? "0");
-            //Console.WriteLine("Enter your remarks: ");
-            //string remarks = Console.ReadLine() ?? "";
-
-            //var feedback = new SolutionFeedback
-            //{
-            //    Rating = rating,
-            //    Remarks = remarks,
-            //    SolutionId = solutionId,
-            //    FeedbackBy = CurrentLoggedInEmployee?.Id ?? 0,
-            //    FeedbackDate = DateTime.Now
-            //};
-
-            //await feedbackBL.AddFeedback(feedback);
-            //Console.WriteLine("Feedback submitted successfully.");
-        }
-
-        async Task RespondToSolution()
-        {
-            Console.WriteLine("Enter the solution ID to respond:");
-            int solutionId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter your response: ");
-            string response = Console.ReadLine() ?? "";
-
-            var solution = await solutionBL.RespondToSolution(solutionId, response);
-            if (solution == null)
-            {
-                Console.WriteLine("Solution not found.");
-                return;
-            }
-
-            Console.WriteLine("Response submitted successfully.");
-        }
-
-        async Task ProvideSolution()
-        {
+            ViewAllRequests();
             Console.WriteLine("Enter Request Number to Provide Solution:");
             int requestNumber = Convert.ToInt32(Console.ReadLine());
             var res = await requestBL.GetRequestById(requestNumber);
@@ -359,53 +376,76 @@ namespace RequestTrackerFEAPP
             Console.WriteLine("Solution provided successfully.");
         }
 
-        async Task MarkRequestAsClosed()
+        async Task MarkRequestAsClosed() //admin
         {
-            //Console.WriteLine("Enter Request Number to Mark as Closed:");
-            //int requestNumber = Convert.ToInt32(Console.ReadLine());
-            //var request = await requestBL.GetRequestById(requestNumber);
+            await GetAllOpenRequests();
 
-            ////close last solution
-            //var solution = await solutionBL.GetAllSolutions();
-            //solution[^1].IsSolved = true;
-            //await solutionBL.UpdateSolution(solution[^1]);
-            //if (solution == null)
-            //{
-            //    Console.WriteLine("No solution found for this request.");
-            //    return;
-            //}
-            ////close req
-            //if (request == null)
-            //{
-            //    Console.WriteLine("Request not found.");
-            //    return;
-            //}
+            Console.WriteLine("Enter Request Number to be Marked as Closed:");
+            int requestNumber = Convert.ToInt32(Console.ReadLine());
+            var request = await requestBL.GetRequestById(requestNumber);
 
-            //request.RequestStatus = "Closed";
-            //request.ClosedDate = DateTime.Now;
-            //await requestBL.UpdateRequest(request, request.RequestStatus);
-            //Console.WriteLine("Request marked as closed successfully.");
+            //close last solution
+            var solution = request.RequestSolutions.ToList();
 
-            //To Be Implemented
+            if (solution.Count == 0)
+            {
+                Console.WriteLine("No solution found for this request.");
+            }
+            else
+            {
+                await UpdateSolutionStatus(solution);
+            }
+            request.ClosedDate = DateTime.Now;
+            await requestBL.UpdateRequest(requestNumber, "Closed");
+            Console.WriteLine("Request marked as closed successfully.");
+        }
+        async Task UpdateSolutionStatus(IList<RequestSolution> solutions)
+        {
+            Console.Out.WriteLine("Solutions Given for the selected reuqest: ");
+
+            foreach (var solution in solutions)
+            {
+                Console.Out.WriteLine(solution);
+            }
+
+            Console.WriteLine("Which one of the solution helped you to solve ur request?");
+            int solutionId = Convert.ToInt32(Console.ReadLine());
+
+            await solutionBL.UpdateSolutionAsSolved(solutionId);
+
+            return;
+
+        }
+        async Task GetAllOpenRequests()
+        {
+            var openRequests = await requestBL.GetAllOpenRequests();
+
+            foreach (var openRequest in openRequests)
+            {
+                Console.WriteLine(openRequest);
+            }
+        }
+        async Task ViewFeedbacks() //admin
+        {
+            var allSolutions = await solutionBL.GetAllAdminRequestSolutions();
+            var solutionIds = new List<int>();
+            foreach(var solution in allSolutions)
+            {
+                if(solution.SolvedBy == CurrentLoggedInEmployee?.Id)
+                    solutionIds.Add(solution.SolutionId);
+            }
+
+            var allFeedbacks = await feedbackBL.GetAllAdminFeedbacks(solutionIds);
+
+            foreach (var item in allFeedbacks)
+            {
+                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine(item.ToString());
+                Console.WriteLine("-----------------------------------------------");
+            }
         }
 
-        async Task ViewFeedbacks()
-        {
-            //Console.WriteLine("Enter Request Number to View Feedbacks:");
-            //int requestNumber = Convert.ToInt32(Console.ReadLine());
-
-            //var feedback = await feedbackBL.GetFeedback(requestNumber);
-            //if (feedback == null)
-            //{
-            //    Console.WriteLine("No feedback found for this request.");
-            //    return;
-            //}
-
-            //Console.WriteLine($"Feedback ID: {feedback.FeedbackId}, Rating: {feedback.Rating}, Remarks: {feedback.Remarks}");
-        }
-
-
-        async Task ViewAllRequests()
+        async Task ViewAllRequests() //admin
         {
             var allRequests = await requestBL.GetAllRequests();
             if (allRequests == null || allRequests.Count == 0)
@@ -415,11 +455,13 @@ namespace RequestTrackerFEAPP
             }
             foreach (var request in allRequests)
             {
-                Console.WriteLine($"Request Number: {request.RequestNumber}, Message: {request.RequestMessage}, Status: {request.RequestStatus}");
+                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine(request.ToString());
+                Console.WriteLine("-----------------------------------------------");
             }
         }
 
-        async Task ViewAllSolutions()
+        async Task ViewAllSolutions() //admin
         {
             var allSolutions = await solutionBL.GetAllAdminRequestSolutions();
             if (allSolutions == null || allSolutions.Count == 0)
@@ -427,9 +469,12 @@ namespace RequestTrackerFEAPP
                 Console.WriteLine("No solutions found.");
                 return;
             }
+
             foreach (var solution in allSolutions)
             {
-                Console.WriteLine($"Solution ID: {solution.SolutionId}, Description: {solution.SolutionDescription}");
+                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine(solution.ToString());
+                Console.WriteLine("-----------------------------------------------");
             }
         }
 

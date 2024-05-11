@@ -11,7 +11,7 @@ namespace RequestTrackerBLLibrary
     {
         Task<SolutionFeedback> AddFeedback(SolutionFeedback feedback);
 
-        Task<IList<SolutionFeedback>> GetAllAdminFeedbacks(int solutionId);
+        Task<IList<SolutionFeedback>> GetAllAdminFeedbacks(List<int> solutionId);
 
         Task<SolutionFeedback> GetFeedbackByFeedbackId(int userId);
 

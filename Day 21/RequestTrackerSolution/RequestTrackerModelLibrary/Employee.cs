@@ -8,7 +8,9 @@
         public string Role { get; set; }
         public override string ToString()
         {
-            return Id + " " + Name + " " + Role;
+            return "Enmployee ID:" + Id 
+                + "\nEmployee Name:" + Name 
+                + "\nEmployee Role:" + Role;
         }
         public virtual bool PasswordCheck(string password)
         {

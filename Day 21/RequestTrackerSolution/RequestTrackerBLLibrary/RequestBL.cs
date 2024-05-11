@@ -77,5 +77,15 @@ namespace RequestTrackerBLLibrary
             await _repository.Update(validRequest);
             return true;
         }
+        public async Task<IList<Request>> GetAllOpenRequests()
+        {
+            IList<Request> requests = (await _repository.GetAll())
+                                        .Where(r => r.RequestStatus.ToLower() != "closed").ToList();
+            if (requests.Count == 0)
+            {
+                return null;
+            }
+            return requests;
+        }
     }
 }
