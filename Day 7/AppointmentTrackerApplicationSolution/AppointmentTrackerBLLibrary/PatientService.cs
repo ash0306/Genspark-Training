@@ -1,6 +1,6 @@
 ﻿using AppointmentTrackerBLLibrary.Exceptions;
 using AppointmentTrackerDALLibrary;
-using AppointmentTrackerModelLibrary;
+using AppointmentTrackerDALLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

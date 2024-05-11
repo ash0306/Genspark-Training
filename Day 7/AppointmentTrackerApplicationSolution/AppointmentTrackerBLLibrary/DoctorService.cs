@@ -1,6 +1,7 @@
 ﻿using AppointmentTrackerBLLibrary.Exceptions;
 using AppointmentTrackerDALLibrary;
-using AppointmentTrackerModelLibrary;
+using AppointmentTrackerDALLibrary.Model;
+using DoctorAppointmentDALLibrary;
 
 namespace AppointmentTrackerBLLibrary
 {
@@ -11,6 +12,10 @@ namespace AppointmentTrackerBLLibrary
         public DoctorService(IRepository<int, Doctor> doctorRepository)
         {
             _doctorRepository = doctorRepository;
+        }
+        public DoctorService()
+        {
+            _doctorRepository = new DoctorRepository();
         }
         public int AddDoctor(Doctor doctor)
         {
