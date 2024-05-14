@@ -6,6 +6,8 @@ namespace ClinicAPI.Interfaces
     {
         public Task<IEnumerable<Doctor>> GetAllDoctors();
         public Task<IEnumerable<Doctor>> GetDoctorsBySpeciality(string speciality);
-        public Task<int> UpdateDoctorExperience(int id, int experience);
+        public Task<Doctor> UpdateDoctorExperience(int id, int experience);
+        public Task<Doctor> AddDoctor(Doctor doctor);
+        public Task<int> DeleteDoctor(int id);
     }
 }

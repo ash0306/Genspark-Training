@@ -3,6 +3,7 @@ using ClinicAPI.Interfaces;
 using ClinicAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClinicAPI.Controllers
 {
@@ -54,6 +55,34 @@ namespace ClinicAPI.Controllers
                 return Ok(doctor);
             }
             catch(NoSuchDoctorException nsde)
+            {
+                return NotFound(nsde);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<int>> DeleteDoctor(int id)
+        {
+            try
+            {
+                var doctorDeleted = await _doctorService.DeleteDoctor(id);
+                return Ok(doctorDeleted);
+            }
+            catch(NoSuchDoctorException nsde)
+            {
+                return NotFound(nsde);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Doctor>> AddDoctor([FromBody] Doctor doctor)
+        {
+            try
+            {
+                var doc = await _doctorService.AddDoctor(doctor);
+                return Ok(doc);
+            }
+            catch(NoDoctorsFoundException nsde)
             {
                 return NotFound(nsde);
             }

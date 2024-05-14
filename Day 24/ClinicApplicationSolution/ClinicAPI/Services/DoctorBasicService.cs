@@ -12,6 +12,26 @@ namespace ClinicAPI.Services
         {
             _repository = repository;
         }
+
+        public async Task<Doctor> AddDoctor(Doctor doctor)
+        {
+            var doc = await _repository.Add(doctor);
+            if(doc == null)
+            {
+                throw new NoDoctorsFoundException();
+            }
+            return doc;
+        }
+
+        public async Task<int> DeleteDoctor(int id)
+        {
+            var doctor = await _repository.Get(id);
+            if(doctor == null)
+                throw new NoDoctorsFoundException();
+            var deletedDoctor = await _repository.Delete(id);
+            return deletedDoctor.Id;
+        }
+
         public async Task<IEnumerable<Doctor>> GetAllDoctors()
         {
             var doctors = await _repository.Get();
@@ -28,14 +48,14 @@ namespace ClinicAPI.Services
             return doctors;
         }
 
-        public async Task<int> UpdateDoctorExperience(int id, int experience)
+        public async Task<Doctor> UpdateDoctorExperience(int id, int experience)
         {
             var doctor = await _repository.Get(id);
             if (doctor == null)
                 throw new NoSuchDoctorException();
             doctor.Experience = experience;
             var updatedDoctor = await _repository.Update(doctor);
-            return updatedDoctor.Id;
+            return updatedDoctor;
         }
     }
 }
