@@ -17,6 +17,9 @@ namespace EmployeeRequestTrackerAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<IList<Employee>>> Get()
         {
             try
@@ -26,10 +29,14 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoEmployeesFoundException nefe)
             {
-                return NotFound(nefe.Message);
+                return NotFound(new ErrorModel(404,nefe.Message));
             }
         }
+
         [HttpPut]
+        [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<Employee>> Put(int id, string phone)
         {
             try
@@ -39,12 +46,15 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoSuchEmployeeException nsee)
             {
-                return NotFound(nsee.Message);
+                return NotFound(new ErrorModel(404, nsee.Message));
             }
         }
 
         [HttpGet]//get by id using get - input via query
         [Route("GetEmployeeByPhone")]
+        [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<Employee>> Get(string phone)
         {
             try
@@ -54,11 +64,14 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch(NoSuchEmployeeException nsee)
             {
-                return NotFound(nsee);
+                return NotFound(new ErrorModel(404, nsee.Message));
             }
         }
 
         [HttpPost]//get by id using post - input via body
+        [ProducesResponseType(typeof(IList<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<Employee>> Post([FromBody]string phone)
         {
             try
@@ -68,7 +81,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoSuchEmployeeException nsee)
             {
-                return NotFound(nsee);
+                return NotFound(new ErrorModel(404, nsee.Message));
             }
         }
     }

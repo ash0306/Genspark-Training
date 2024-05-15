@@ -1,11 +1,12 @@
-using EmployeeRequestTrackerAPI.Contexts;
-using EmployeeRequestTrackerAPI.Intefaces;
-using EmployeeRequestTrackerAPI.Models;
-using EmployeeRequestTrackerAPI.Repositories;
-using EmployeeRequestTrackerAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using PizzaShop.Services;
+using PizzaShopAPI.Contexts;
+using PizzaShopAPI.Interfaces;
+using PizzaShopAPI.Models;
+using PizzaShopAPI.Repositories;
+using PizzaShopAPI.Services;
 
-namespace EmployeeRequestTrackerAPI
+namespace PizzaShopAPI
 {
     public class Program
     {
@@ -21,19 +22,21 @@ namespace EmployeeRequestTrackerAPI
             builder.Services.AddSwaggerGen();
 
             #region contexts
-            builder.Services.AddDbContext<RequestTrackerContext>(
+            builder.Services.AddDbContext<PizzaShopContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
                 );
             #endregion
 
             #region repositories
-            builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepository>();
+            builder.Services.AddScoped<IRepository<int, Pizza>, PizzaRepository>();
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            builder.Services.AddScoped<IRepository<int, Order>, OrderRepository>();
             #endregion
 
             #region services
-            builder.Services.AddScoped<IEmployeeService, EmployeeBasicService>();
+            builder.Services.AddScoped<IPizzaService, PizzaService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             #endregion
 
             var app = builder.Build();
