@@ -64,3 +64,7 @@ ORDER BY w.power DESC, wp.age DESC;
 
 The repository for the assignment work can be found [here](./PizzaShopApplicationSolution)
 
+
+**Output**
+
+![PizzaShopAPIOutput](./PizzaShopOutput.gif)
