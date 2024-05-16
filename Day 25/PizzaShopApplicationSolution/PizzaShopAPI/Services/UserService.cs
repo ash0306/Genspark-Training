@@ -6,20 +6,26 @@ using System.Text;
 using PizzaShopAPI.Exceptions;
 using System.Collections;
 using PizzaShopAPI.Services;
+using AutoMapper;
 
 namespace PizzaShop.Services
 {
     public class UserService : IUserService
     {
         private readonly IRepository<int, User> _repository;
+        private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UserService(IRepository<int, User> repository)
+        public UserService(IRepository<int, User> repository, ITokenService tokenService)
         {
             _repository = repository;
+            _tokenService = tokenService;
         }
-        public async Task<UserLoginDTO> Login(UserLoginDTO loginDTO)
+
+        public async Task<LoginReturnDTO> Login(UserLoginDTO loginDTO)
         {
-            var userDB = await _repository.Get(loginDTO.Id);
+            var userDB = (await _repository.GetAll()).SingleOrDefault(u=>u.Email == loginDTO.Email);
+
             if (userDB == null)
             {
                 throw new UnauthorizedUserException("Invalid username or password");
@@ -30,10 +36,19 @@ namespace PizzaShop.Services
             bool isPasswordSame = ComparePassword(encrypterPass, userDB.Password);
             if (isPasswordSame)
             {
-                loginDTO.Password = Encoding.UTF8.GetString(userDB.Password);
-                return loginDTO;
+                //loginDTO.Password = Encoding.UTF8.GetString(userDB.Password);
+                var loginReturnDTO = MapUserToLoginReturnDTO(userDB);
+                return loginReturnDTO;
             }
             throw new UnauthorizedUserException("Invalid username or password");
+        }
+        private LoginReturnDTO MapUserToLoginReturnDTO(User userDB)
+        {
+            LoginReturnDTO result = new LoginReturnDTO();
+            result.UserId = userDB.Id;
+            result.Email = userDB.Email;
+            result.Token = _tokenService.GenerateToken(userDB);
+            return result;
         }
 
         private bool ComparePassword(byte[] encrypterPass, byte[] password)

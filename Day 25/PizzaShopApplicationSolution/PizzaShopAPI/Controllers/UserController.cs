@@ -17,9 +17,9 @@ namespace PizzaShopAPI.Controllers
         }
 
         [HttpPost("Login")]
-        [ProducesResponseType(typeof(UserLoginDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LoginReturnDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(UserLoginDTO), StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<UserLoginDTO>> Login(UserLoginDTO userLoginDTO)
+        public async Task<ActionResult<LoginReturnDTO>> Login(UserLoginDTO userLoginDTO)
         {
             try
             {
@@ -35,6 +35,7 @@ namespace PizzaShopAPI.Controllers
                 });
             }
         }
+
         [HttpPost("Register")]
         [ProducesResponseType(typeof(UserRegisterDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(UserRegisterDTO), StatusCodes.Status400BadRequest)]

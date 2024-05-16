@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaShopAPI.Interfaces;
 using PizzaShopAPI.Models.DTOs;
@@ -17,6 +18,7 @@ namespace PizzaShopAPI.Controllers
             _pizzaService = pizzaService;
         }
 
+        [Authorize]
         [HttpGet("Get Pizzas In Stock")]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status404NotFound)]

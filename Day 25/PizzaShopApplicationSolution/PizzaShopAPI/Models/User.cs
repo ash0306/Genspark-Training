@@ -1,5 +1,8 @@
-﻿namespace PizzaShopAPI.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace PizzaShopAPI.Models
 {
+    [Index(nameof(Email), IsUnique = true)]
     public class User
     {
         public int Id { get; set; }
