@@ -39,7 +39,7 @@ namespace PizzaShopAPI.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("Add Pizza")]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status400BadRequest)]

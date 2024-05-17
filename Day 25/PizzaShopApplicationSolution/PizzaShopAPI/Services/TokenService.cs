@@ -21,7 +21,9 @@ namespace PizzaShopAPI.Services
         {
             string token = string.Empty;
             var claims = new List<Claim>(){
-                new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             };
             var credentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
             var myToken = new JwtSecurityToken(null, null, claims, expires: DateTime.Now.AddDays(2), signingCredentials: credentials);

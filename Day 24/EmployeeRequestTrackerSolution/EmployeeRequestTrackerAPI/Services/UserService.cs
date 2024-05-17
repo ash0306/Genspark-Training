@@ -33,11 +33,11 @@ namespace EmployeeRequestTrackerAPI.Services
             if (isPasswordSame)
             {
                 var employee = await _employeeRepo.Get(loginDTO.UserId);
-                // if(userDB.Status =="Active")
-                //{
-                LoginReturnDTO loginReturnDTO = MapEmployeeToLoginReturn(employee);
-                return loginReturnDTO;
-                // }
+                if (userDB.Status == "Active")
+                {
+                    LoginReturnDTO loginReturnDTO = MapEmployeeToLoginReturn(employee);
+                    return loginReturnDTO;
+                }
 
                 throw new UserNotActiveException("Your account is not activated");
             }
@@ -108,6 +108,35 @@ namespace EmployeeRequestTrackerAPI.Services
             user.PasswordHashKey = hMACSHA.Key;
             user.Password = hMACSHA.ComputeHash(Encoding.UTF8.GetBytes(employeeDTO.Password));
             return user;
+        }
+
+        public async Task<UserStatusDTO> UpdateUserStatus(UserStatusDTO userStatusDTO)
+        {
+            try
+            {
+                User user = await _userRepo.Get(userStatusDTO.EmployeeId);
+                user.Status = userStatusDTO.status;
+
+                var result = await _userRepo.Update(user);
+
+                userStatusDTO = MapUserToUserStatusDTO(result);
+
+                return userStatusDTO;
+            }
+            catch(Exception ex)
+            {
+                throw new NoSuchEmployeeException();
+            }
+        }
+
+        private UserStatusDTO MapUserToUserStatusDTO(User result)
+        {
+            UserStatusDTO userStatusDTO = new UserStatusDTO() { 
+                EmployeeId = result.EmployeeId,
+                status = result.Status
+            };
+
+            return userStatusDTO;
         }
     }
 }

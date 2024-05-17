@@ -3,6 +3,7 @@ using EmployeeRequestTrackerAPI.Models.DTOs;
 using EmployeeRequestTrackerAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeRequestTrackerAPI.Controllers
 {
@@ -39,6 +40,23 @@ namespace EmployeeRequestTrackerAPI.Controllers
             try
             {
                 Employee result = await _userService.Register(userDTO);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("UpdateStatus")]
+        [ProducesResponseType(typeof(UserStatusDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<UserStatusDTO>> UpdateStatus(UserStatusDTO userStatusDTO)
+        {
+            try
+            {
+                UserStatusDTO result = await _userService.UpdateUserStatus(userStatusDTO);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -4,6 +4,7 @@ using EmployeeRequestTrackerAPI.Models;
 using EmployeeRequestTrackerAPI.Repositories;
 using EmployeeRequestTrackerAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -71,13 +72,17 @@ namespace EmployeeRequestTrackerAPI
             #region repositories
             builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepository>();
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            builder.Services.AddScoped<IRepository<int, Request>, RequestRepository>();
             #endregion
 
             #region services
             builder.Services.AddScoped<IEmployeeService, EmployeeBasicService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IRequestService, RequestService>();
             #endregion
+
+            
 
             var app = builder.Build();
 

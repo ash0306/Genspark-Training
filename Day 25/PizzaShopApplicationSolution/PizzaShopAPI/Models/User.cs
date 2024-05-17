@@ -10,5 +10,6 @@ namespace PizzaShopAPI.Models
         public string Email { get; set; }
         public byte[] Password { get; set; }
         public byte[] PasswordHashKey { get; set; }
+        public string Role { get; set; }
     }
 }
