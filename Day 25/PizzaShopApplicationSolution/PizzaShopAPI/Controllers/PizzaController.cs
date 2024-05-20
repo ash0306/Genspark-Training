@@ -11,10 +11,12 @@ namespace PizzaShopAPI.Controllers
     [ApiController]
     public class PizzaController : ControllerBase
     {
+        private readonly ILogger<PizzaController> _logger;
         private readonly IPizzaService _pizzaService;
 
-        public PizzaController(IPizzaService pizzaService)
+        public PizzaController(IPizzaService pizzaService, ILogger<PizzaController> logger)
         {
+            _logger = logger;
             _pizzaService = pizzaService;
         }
 
@@ -31,6 +33,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status404NotFound,
@@ -52,6 +55,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
@@ -72,6 +76,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status404NotFound,

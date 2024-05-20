@@ -10,10 +10,12 @@ namespace PizzaShopAPI.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+        private readonly ILogger<OrderController> _logger;
         private readonly IOrderService _orderService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ILogger<OrderController> logger)
         {
+            _logger = logger;
             _orderService = orderService;
         }
 
@@ -29,6 +31,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
@@ -50,6 +53,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status404NotFound,
