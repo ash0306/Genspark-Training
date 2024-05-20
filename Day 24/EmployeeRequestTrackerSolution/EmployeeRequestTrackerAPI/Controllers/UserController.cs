@@ -12,9 +12,12 @@ namespace EmployeeRequestTrackerAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly ILogger<UserController> _logger;
+
+        public UserController(IUserService userService, ILogger<UserController> logger)
         {
             _userService = userService;
+            _logger = logger;
         }
 
         [HttpPost("Login")]
@@ -29,6 +32,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogCritical("User not activated");
                 return Unauthorized(new ErrorModel(401, ex.Message));
             }
         }

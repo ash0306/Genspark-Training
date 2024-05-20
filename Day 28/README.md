@@ -4,27 +4,23 @@
 
 - ASP .Net Web API application
 
-- JWT Web Token Authentication
+- LINQ with SQL 
 
-- Role-based authentication
+- Logging
+
 
 ## Work
 
-### Role-based Authentication
+### LINQ
 
-Added role based authentication for the following:
+- Used the Database-First approach to scaffold the pubs database.
+- Used LINQ to query the data from the database.
 
-- Updating Employee Status
-- Adding Pizza 
+The repository for the work done on LINQ can be found [here](./UnderstandingLINQSolution)
 
-The repository for Employee
+### Logging
 
-### Request and its Business Logic
-
-Implemented the following BL:
-- Raise Request
-- Get Request _ user
-- Get Request _ Admin
+- Used logging to log error and other information tot he console.
 
 The repository for the Employee Request Tracker API can be found [here](https://github.com/ash0306/Genspark-Training/tree/master/Day%2024/EmployeeRequestTrackerSolution)
 The repository for the Pizza Shop API can be found [here](https://github.com/ash0306/Genspark-Training/tree/master/Day%2025/PizzaShopApplicationSolution)

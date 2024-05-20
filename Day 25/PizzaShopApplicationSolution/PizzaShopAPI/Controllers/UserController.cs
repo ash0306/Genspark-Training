@@ -9,10 +9,12 @@ namespace PizzaShopAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ILogger<UserController> logger)
         {
+            _logger = logger;
             _userService = userService;
         }
 
@@ -28,6 +30,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogCritical("User not authorised");
                 return Unauthorized(new
                 {
                     StatusCode = StatusCodes.Status401Unauthorized,
@@ -48,6 +51,7 @@ namespace PizzaShopAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogCritical("User not registered");
                 return BadRequest(new
                 {
                     StatusCode = StatusCodes.Status500InternalServerError,
