@@ -25,12 +25,3 @@
 
 The repository for the Employee Request Tracker API can be found [here](https://github.com/ash0306/Genspark-Training/tree/master/Day%2024/EmployeeRequestTrackerSolution)
 
-### Mini Project
-
-- Started to work on the Backend Mini Project
-
-- Worked on the ERD for the mini project
-
-- **ER Diagram**
-![erd](./BackendMiniProjectERD.png)
-
