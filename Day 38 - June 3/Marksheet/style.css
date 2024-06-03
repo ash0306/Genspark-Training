@@ -1,0 +1,86 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+hr{
+    border: none;
+    height: 3px;
+    background: black;
+    margin: 20px;
+}
+
+.main-container{
+    width: 900px;
+    /* height: 2000px; */
+    border: 2px solid #ff0000;
+}
+
+.logo{
+    display: flex;
+    justify-content: space-between;
+    font-size: smaller !important;
+}
+
+.extra-logo{
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    padding: 0;
+}
+
+.univ-logo{
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    text-align: center;
+}
+
+.user-details{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+table, th, td {
+    text-align: center;
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+.semester{
+    text-align: center;
+    margin: 10px;
+}
+
+.marks{
+    width: 100%;
+    margin: 20px 0;
+}
+
+.summary{
+    margin: 10px;
+}
+
+.footer{
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.signature{
+    font-size: 10px;
+    align-self: flex-end;
+}
+
+.sign-logo{
+    width: 100px;
+    height: 100px;
+}
