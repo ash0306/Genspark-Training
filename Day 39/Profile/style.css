@@ -1,0 +1,155 @@
+body{
+    display: block;
+    margin: 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #F6F5F2;
+    color: #10439F;
+}
+
+hr{
+    height: 2px;
+    background: #656565;
+}
+
+section{
+    margin: 40px 0 40px 0;
+    padding: 40px 0 40px 0;
+}
+
+h2{
+    color: #c7387b;
+}
+
+a{
+    text-decoration: none;
+    color: #10439F;
+}
+
+.nav-bar{
+    background-color: #F6F5F2;
+    justify-content: space-evenly;
+    padding: 20px;
+    display: flex;
+    position: sticky;
+    height: 20px;
+    top: 0;
+}
+
+.name{
+    font-size: 30px;
+    width: 50%;
+}
+
+.name a{
+    text-decoration: none;
+    color: #10439F;
+}
+
+.links{
+    text-align: right;
+    width: 50%;
+}
+
+.nav-link{
+    padding: 20px;
+    text-decoration: none;
+    color: #10439F;
+}
+
+.main-container{
+    padding: 0 100px;
+}
+
+.intro-main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.intro-left{
+    width: 60%;
+}
+
+.intro-left h1{
+    font-size: 40px;
+    color: #c7387b;
+}
+
+.intro-right{
+    width: 40%;
+}
+
+.profile-pic{
+    margin: auto;
+    display: block;
+    background-color: #23bce7;
+    border: solid 1px white;
+    border-radius: 15%;
+    width: 250px;
+    height: 250px;
+}
+
+.about-me{
+    /* margin: 80px 0 0 0; */
+    text-align: center;
+}
+
+#education{
+    /* margin: 80px 0 0 0; */
+    text-align: center;
+}
+
+.education-tabs, .project-tabs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edu-tab{
+    padding: 20px;
+    width: fit-content;
+    margin: 20px;
+    border: 1px solid #656565;
+    border-radius: 10px;
+}
+
+#projects{
+    /* margin: 80px 0 0 0; */
+    text-align: center;
+}
+
+.proj-tab{
+    width: 50%;
+    text-align: left;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #656565;
+    border-radius: 10px;
+}
+
+#contact{
+    text-align: center;
+}
+
+.contact-main{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-info{
+    width: 90%;
+}
+
+.notes{
+    margin: auto;
+}
+
+#extra{
+    text-align: center;
+}
+
+table, td{
+    margin: auto;
+    padding: 30px;
+    text-align: left;
+}
