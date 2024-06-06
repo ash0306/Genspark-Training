@@ -1,0 +1,6 @@
+I am making a change in master at day 2 
+
+
+Hello
+This is file from branch ash
+

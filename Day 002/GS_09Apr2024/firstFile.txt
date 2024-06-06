@@ -1,0 +1,8 @@
+I have made a first change after staging , 
+now the file is monitored by git , so it will tell you that there are some changes so you have to commit it to github 
+for other to see the changes with proper msg. 
+
+changes to learn conflict
+now I and creating a conflict by change same file locally and remote also 
+Trying to change in the remote file to create conflit 
+

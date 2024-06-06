@@ -1,0 +1,12 @@
+here after creating a practice.txt on github 
+i am creating practice1.txt locally so that a conflict will occure 
+
+in order to solve it I have to first pull the remote changes and then try to push new changes
+
+at the same time I am changing the practice1.txt locally and on the same line ie 5
+and 6 . and the conflict will be created when i push it
+
+so Now I have successfully solve the two file conflict , now to create conflict in same file i am changing line 5 
+and line 6 on github i.e. remotely.
+
+after that I have solve the conflict and now will try to push again 
