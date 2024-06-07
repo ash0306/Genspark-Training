@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="w-4/5 border rounded border-zinc shadow h-4/5">
+        <div class="bg-[#F7F9FD]">
+            <div class="shadow rounded-lg ">
+                <div id="top-nav-bar" class="flex w-full p-5 justify-center">
+                    <button class="bg-white h-9 shadow-lg w-10 border border-zinc rounded-md overflow-hidden">
+                        <i class="text-[#464F60] fa-solid fa-filter"></i>
+                    </button>
+                    <div class="basis-10/12 ml-5">
+                        <input type="text" class="h-full border rounded-md w-1/2 shadow-lg border-zinc p-1.5" placeholder="Search....">
+                    </div>
+                    <div class="p-1 text-white bg-[#2264E5] rounded-md shadow-lg left-0 basis-2/12 text-center">
+                        <button type="button" class="w-full">+ Add Customer</button>
+                    </div>
+                </div>
+                <div class="overflow-x overflow-y w-full">
+                    <table class="table-auto min-w-full overflow-y-scroll h-[400px] block">
+                        <thead class="w-full sticky top-0">
+                            <tr class="bg-[#F7F9FD] text-left ">
+                                <th class=" px-4 py-2"><input type="checkbox"></th>
+                                <th class="px-2 py-2 hover:text-[#2264E5]"># <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5]">Name <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5]">Description <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5]">Status <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5] text-right">Rate <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5] text-right">Balance <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                                <th class="px-4 py-2 hover:text-[#2264E5] text-right">Deposit <i class="text-[#BCC2CE] fa-solid fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">1</td>
+                                <td class="px-4 py-2">Ann Culhane</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#4F5AED]"><button type="button" class="rounded-full bg-[#F0F1FA] px-4">Open</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-red-500">-$270.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class=" px-4 py-2"><input type="checkbox"></td>
+                                <td class=" px-4 py-2">2</td>
+                                <td class=" px-4 py-2">Ahmad Rosser</td>
+                                <td class=" px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class=" px-4 py-2 text-[#14804A]"><button type="button" class="rounded-full bg-[#E1FCEF] px-4">Paid</button></td>
+                                <td class=" px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class=" px-4 py-2 text-right text-green-500 text-right">$270.00 <span class="text-[#687182] text-right">CAD</span></td>
+                                <td class=" px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class=" px-4 py-2"><input type="checkbox"></td>
+                                <td class=" px-4 py-2">3</td>
+                                <td class=" px-4 py-2">Zain Calzoni</td>
+                                <td class=" px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class=" px-4 py-2 text-[#4F5AED]"><button type="button" class="rounded-full bg-[#F0F1FA] px-4">Open</button></td>
+                                <td class=" px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class=" px-4 py-2 text-right text-red-500">-$20.00 <span class="text-[#687182] text-right">CAD</span></td>
+                                <td class=" px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class=" px-4 py-2"><input type="checkbox"></td>
+                                <td class=" px-4 py-2">4</td>
+                                <td class=" px-4 py-2">Leo Stanton</td>
+                                <td class=" px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class=" px-4 py-2 text-[#5A6376]"><button type="button" class="rounded-full bg-[#E9EDF5] px-4">Inactive</button></td>
+                                <td class=" px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class=" px-4 py-2 text-right text-green-500">$600.00 <span class="text-[#687182] text-right">CAD</span></td>
+                                <td class=" px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class=" px-4 py-2"><input type="checkbox"></td>
+                                <td class=" px-4 py-2">5</td>
+                                <td class=" px-4 py-2">Kaiya Vetrovs</td>
+                                <td class=" px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class=" px-4 py-2 text-[#4F5AED]"><button type="button" class="rounded-full bg-[#F0F1FA] px-4">Open</button></td>
+                                <td class=" px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class=" px-4 py-2 text-right text-red-500">-$350.00 <span class="text-[#687182] text-right">CAD</span></td>
+                                <td class=" px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">6</td>
+                                <td class="px-4 py-2">Ryan Westervelt</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#14804A]"><button type="button" class="rounded-full bg-[#E1FCEF] px-4">Paid</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-red-500">-$270.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">7</td>
+                                <td class="px-4 py-2">Corey Stanton</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#F04A4A]"><button type="button" class="rounded-full bg-[#FCE1E1] px-4">Due</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-green-500">$30.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">8</td>
+                                <td class="px-4 py-2">Adison Aminoff</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#4F5AED]"><button type="button" class="rounded-full bg-[#F0F1FA] px-4">Open</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-red-500">-$270.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">9</td>
+                                <td class="px-4 py-2">Alfredo Aminoff</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#5A6376]"><button type="button" class="rounded-full bg-[#E9EDF5] px-4">Inactive</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-green-500">$460.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            <tr class="hover:bg-[#F7F9FD]">
+                                <td class="px-4 py-2"><input type="checkbox"></td>
+                                <td class="px-4 py-2">10</td>
+                                <td class="px-4 py-2">Allison Botosh</td>
+                                <td class="px-4 py-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla...</td>
+                                <td class="px-4 py-2 text-[#4F5AED]"><button type="button" class="rounded-full bg-[#F0F1FA] px-4">Open</button></td>
+                                <td class="px-4 py-2 text-right">$70.00 CAD</td>
+                                <td class="px-4 py-2 text-right text-red-500">$0.00 <span class="text-[#687182]">CAD</span></td>
+                                <td class="px-4 py-2 text-right">$500.00 CAD</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-between items-center w-full bg-[#F4F7FC] py-2 px-4 text-[#687182]">
+                    <p>1-10 of 10</p>
+                    <div class="flex flex-row gap-10">
+                    <div class="flex flex-row items-center">
+                        <p>Rows per page:</p>
+                        <span class="ml-2">10</span>
+                        <i class="ml-1 fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <div class="bg-[#F7F9FC] border border-zinc px-2 rounded-lg">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </div>
+                        <p>1/1</p>
+                        <div class="bg-[#F7F9FC] border border-zinc px-2 rounded-lg">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
