@@ -18,3 +18,5 @@ The design file for the login page can be found [here](https://www.figma.com/des
 
 - GMail Banner
     - The work done on this can be found [here](./GMailBanner/)
+
+![output](./GMailBanner/assets/Output.png)
