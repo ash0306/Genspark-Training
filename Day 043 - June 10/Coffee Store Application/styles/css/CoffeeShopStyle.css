@@ -1,0 +1,9 @@
+#div-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+#nav-btn:active {
+  outline: none !important;
+  border: none !important;
+}/*# sourceMappingURL=CoffeeShopStyle.css.map */

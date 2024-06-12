@@ -1,0 +1,16 @@
+#div-container{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#nav-btn:focus, #nav-btn:active{
+    outline-style: none !important;
+    border-style: none;
+    border: white;
+}
+
+.navbar-toggler{
+    outline-style: none !important;
+    border-style: none;
+    border: white;
+}
