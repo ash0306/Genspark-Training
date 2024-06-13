@@ -66,6 +66,37 @@
                     <div>
                         <form class="container needs-validation" novalidate>
                             <div class="row m-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                                <div class="invalid-feedback">
+                                    Please enter a Name.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid name
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="dob" class="form-label">Date Of Birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                                <div class="invalid-feedback">
+                                    Please enter a Date Of Birth.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Date of birth
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" minlength="10" maxlength="10" placeholder="Enter phone number"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number in the format [xxxxxxxxxx] with no country code.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Phone
+                                </div>
+                            </div>
+                            <div class="row m-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter email" required>
                                 <div class="invalid-feedback">
@@ -76,9 +107,29 @@
                                 </div>
                             </div>
                             <div class="row m-3">
+                                <label for="role" class="form-label">Role</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
+                                    <label class="form-check-label" for="flexRadio1">
+                                        Admin
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
+                                    <label class="form-check-label" for="flexRadio1">
+                                        Manager
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
+                                    <label class="form-check-label" for="flexRadio1">
+                                        Barista
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row m-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password"
-                                    minlength="7" required>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password" minlength="7" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid password of min length 7.
                                 </div>
@@ -91,8 +142,8 @@
                             </div>
                             <div class="row m-3 text-center">
                                 <p class="m-0">New to Bean & Brew?</p>
-                                <p class="m-0"><a href="#" class="text-decoration-none">Register as customer</a></p>
-                                <p class="m-0"><a href="./AdminPages/Register.html" class="text-decoration-none">Register as employee</a></p>
+                                <p class="m-0"><a href="../CustomerPages/Register.html" class="text-decoration-none">Register as customer</a></p>
+                                <p class="m-0"><a href="#" class="text-decoration-none">Register as employee</a></p>
                             </div>
                         </form>
                     </div>

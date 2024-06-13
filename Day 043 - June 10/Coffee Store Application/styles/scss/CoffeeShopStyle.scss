@@ -4,15 +4,11 @@
 }
 
 #nav-btn:focus, #nav-btn:active{
-    outline-style: none !important;
-    border-style: none;
-    border: white;
+    
 }
 
 .navbar-toggler{
-    outline-style: none !important;
-    border-style: none;
-    border: white;
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
 }
 
 #div-content{
@@ -20,8 +16,31 @@
     margin-bottom: 100px;
 }
 
-// .card-text {
-//     overflow: hidden;
-//     white-space: nowrap;
-//     text-overflow: ellipsis;
-// }
+//cart
+#switchCheck:checked {
+    background-color: black;
+    border-color: black;
+}
+
+#switchCheck:checked:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+#switchCheck:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+
+// register
+#flexRadio.form-check-input:checked{
+    background-color: black;
+    border-color: black;
+}
+
+.form-check-input:checked:focus{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+.form-check-input:focus{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
