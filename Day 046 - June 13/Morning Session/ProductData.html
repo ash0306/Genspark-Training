@@ -1,0 +1,136 @@
+<!-- Create a page where you will have a table of products.
+There should also be a form where we can enter the product data.
+When a new product is entered it should get appended in the table
+Both form for adding Product and the Table for display in the same page -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #productForm{
+            border-radius: 20px;
+            margin: 50px auto;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            border: black solid 1px;
+            padding: 10px;
+        }
+        
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            border-radius: 10px;
+            width: fit-content;
+            margin:auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Product Data</h1>
+
+    <form id="productForm">
+        <h2>Add Product</h2>
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required>
+        <br>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" name="productPrice" step="1.00" required>
+        <br>
+        <label for="productQuantity">Product Quantity:</label>
+        <input type="number" id="productQuantity" name="productQuantity" step="1" value="1" required>
+        <br>
+        <input type="submit" value="Add Product">
+    </form>
+    
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Product 1</td>
+                <td>$10.00</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Product 2</td>
+                <td>$15.00</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Product 3</td>
+                <td>$20.00</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('productForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            var productName = document.getElementById('productName').value;
+            var productPrice = document.getElementById('productPrice').value;
+            var productQuantity = document.getElementById('productQuantity').value;
+
+            var table = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+
+            var idCell = newRow.insertCell(0);
+            var nameCell = newRow.insertCell(1);
+            var priceCell = newRow.insertCell(2);
+            var quantityCell = newRow.insertCell(3);
+
+            var rowCount = table.rows.length;
+            idCell.innerHTML = rowCount;
+            nameCell.innerHTML = productName;
+            priceCell.innerHTML = '$' + parseFloat(productPrice).toFixed(2);
+            quantityCell.innerHTML = productQuantity;
+
+            document.getElementById('productForm').reset();
+        });
+    </script>
+</body>
+
+</html>
