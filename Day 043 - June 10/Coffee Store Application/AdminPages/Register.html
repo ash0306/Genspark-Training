@@ -45,11 +45,9 @@
                 <div class="col-sm-12 col-md-6">
                     <div id="navBarToggleContent"
                         class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
-                        <a href="../CustomerPages/Products.html" class="text-dark text-decoration-none">Products</a>
-                        <a href="../CustomerPages/Orders.html" class="text-dark text-decoration-none">Orders</a>
-                        <a href="../CustomerPages/User.html" class="text-dark text-decoration-none">User</a>
-                        <a href="../CustomerPages/Cart.html" class="text-dark text-decoration-none"><i
-                                class="bi bi-cart"></i></a>
+                        <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
+                        <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
+                        <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
                         <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a href="../Login.html"
                                 class="text-light text-decoration-none">Login</a></button>
                     </div>
@@ -57,6 +55,7 @@
             </div>
         </div>
 
+        <!-- REGISTRATION FORM -->
         <div class="container p-3" id="div-content">
             <div class="row">
                 <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
@@ -109,22 +108,28 @@
                             <div class="row m-3">
                                 <label for="role" class="form-label">Role</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
-                                    <label class="form-check-label" for="flexRadio1">
+                                    <input class="form-check-input" type="radio" name="flexRadioButton" id="flexRadio" required>
+                                    <label class="form-check-label" for="flexRadio">
                                         Admin
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
-                                    <label class="form-check-label" for="flexRadio1">
+                                    <input class="form-check-input" type="radio" name="flexRadioButton" id="flexRadio" required>
+                                    <label class="form-check-label" for="flexRadio">
                                         Manager
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadio1" id="flexRadio">
-                                    <label class="form-check-label" for="flexRadio1">
+                                    <input class="form-check-input" type="radio" name="flexRadioButton" id="flexRadio" required>
+                                    <label class="form-check-label" for="flexRadio">
                                         Barista
                                     </label>
+                                    <div class="invalid-feedback">
+                                        Please select a valid role.
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Valid role
+                                    </div>
                                 </div>
                             </div>
                             <div class="row m-3">
@@ -185,36 +190,8 @@
         </div>
     </div>
 
-    <script>
+    <script src="../scripts/ValidationScript.js">
         AOS.init({ duration: 1500 });
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation');
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-
-                form.classList.add('was-validated');
-            }, false);
-        });
-
-        // Real-time validation
-        document.querySelectorAll('.needs-validation .form-control').forEach(function (input) {
-            input.addEventListener('input', function () {
-                if (input.checkValidity()) {
-                    input.classList.remove('is-invalid');
-                    input.classList.add('is-valid');
-                } else {
-                    input.classList.remove('is-valid');
-                    input.classList.add('is-invalid');
-                }
-            });
-        });
     </script>
 </body>
 
