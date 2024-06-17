@@ -48,7 +48,7 @@
                         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
                         <a href="./User.html" class="text-dark text-decoration-none">User</a>
                         <a href="./Cart.html" class="text-dark text-decoration-none"><i class="bi bi-cart"></i></a>
-                        <button type="button" class="btn btn-dark rounded-lg px-3"><a href="../Login.html"
+                        <button type="button" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
                                 class="text-light text-decoration-none">Login</a></button>
                     </div>
                 </div>
@@ -67,8 +67,7 @@
                     <div class="accordion shadow rounded-xl" id="accordionOrders">
                         <div class="accordion-item" data-aos="flip-left">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orderOne"
-                                    aria-expanded="true" aria-controls="orderOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orderOne" aria-expanded="true" aria-controls="orderOne">
                                     Order #1
                                 </button>
                             </h2>
@@ -181,6 +180,69 @@
 
     <script>
         AOS.init({ duration: 1500 });
+
+        document.addEventListener('DOMContentLoaded', function(){
+            var token = sessionStorage.getItem('customerToken');
+
+            const tokenArray = token.split('.');
+            const tokenPayload = JSON.parse(atob(tokenArray[1]));
+            const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+            console.log(tokenId);
+            
+            fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId=106', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(async (response) => {
+                const data = await response.json();
+                console.log(data);
+
+                var orderDiv = document.getElementById('accordionOrders');
+                orderDiv.innerHTML = '';
+
+                data.forEach(element => {
+                    var count = 1;
+                    var orderItem = document.createElement('div');
+                    orderItem.className = 'accordion-item';
+                    orderItem.setAttribute('data-aos', 'flip-left');
+                    var orderItems = element.orderItems;
+                    // var orderList = document.createElement('ul');
+
+                    // orderItems.forEach(item => {    
+                    //     var itemBody = `
+                    //         <li>${item.productName}</li>
+                    //     `;
+                    //     orderList.appendChild(itemBody);
+                    // })
+                    
+                    const orderBody = `
+                    <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#order${count}" aria-expanded="true" aria-controls="order${count}">
+                                    Order #${element.orderId}
+                                </button>
+                    </h2>
+                    <div id="order${count}" class="accordion-collapse collapse" data-bs-parent="#accordionOrders">
+                        <div class="accordion-body">
+                            <ul>
+                                <li><strong>Order ID:</strong>${element.orderId}</li>
+                                <li><strong>Order Items:</strong>
+                                    
+                                </li>
+                                <li><strong>Order Status:</strong>${element.orderStatus}</li>
+                                <li><strong>Total Price:</strong>${element.totalOrderPrice}</li>
+                            </ul>
+                        </div>
+                    </div>`;
+                    orderItem.innerHTML = orderBody;
+                    orderDiv.appendChild(orderItem);
+                    count++;
+                });
+
+            }).catch(error => {
+                console.error(error);
+            })
+        })
     </script>
 </body>
 
