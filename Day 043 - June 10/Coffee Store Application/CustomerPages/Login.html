@@ -57,6 +57,7 @@
             </div>
         </div>
 
+        <!-- Login Form -->
         <div class="container p-3" id="div-content">
             <div class="row">
                 <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
@@ -86,16 +87,54 @@
                                     Valid password
                                 </div>
                             </div>
-                            <div class="row m-3">
+                            <div class="row m-3" id="login-btn">
                                 <button type="submit" class="btn btn-dark w-auto">Login</button>
                             </div>
                             <div class="row m-3 text-center">
                                 <p class="m-0">New to Bean & Brew?</p>
-                                <p class="m-0"><a href="#" class="text-decoration-none">Register as customer</a></p>
-                                <p class="m-0"><a href="./AdminPages/Register.html" class="text-decoration-none">Register as employee</a></p>
+                                <p class="m-0"><a href="./Register.html" class="text-decoration-none">Register as customer</a></p>
+                                <p class="m-0"><a href="../AdminPages/Register.html" class="text-decoration-none">Register as employee</a></p>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Modals -->
+        <!-- Invalid Login Modal -->
+        <div class="modal fade" id="invalidLoginModal" tabindex="-1" aria-labelledby="invalidLoginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="invalidLoginModalLabel">Login Failed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Invalid email or password. Please try again.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Already Logged In Modal -->
+        <div class="modal fade" id="alreadyLoggedInModal" tabindex="-1" aria-labelledby="alreadyLoggedInModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alreadyLoggedInModalLabel">Already Logged In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    You are already logged in. Would you like to log out to log in with a different account?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="logoutBtn">Log Out</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -135,36 +174,7 @@
     </div>
 
     <script src="../scripts/ValidationScript.js"></script>
-    <script>
-        AOS.init({ duration: 1500 });
-
-        document.addEventListener("DOMContentLoaded", function (){
-            const form = document.querySelector("form.needs-validation");
-
-            form.addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
-
-                fetch("http://localhost:5228/api/customer/login",{
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password:  password
-                    })
-                }).then(async (response) => {
-                    console.log(response);
-                    var data = await response.json();
-                    console.log(data);
-                    sessionStorage.setItem("customerToken", `${data.token}`);
-                });
-            });
-        })
-    </script>
+    <script src="./scripts/LoginScript.js"></script>
 </body>
 
 </html>

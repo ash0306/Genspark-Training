@@ -109,6 +109,23 @@
             </div>
         </div>
 
+        <!-- Not Logged In Modal -->
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notLoggedInModalLabel">Not Logged In</h5>
+                </div>
+                <div class="modal-body">
+                    You are not logged in. Please Login to continue using our services.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="login-btn">Login</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div class="container p-10 mb-5">
             <div class="row">
@@ -143,9 +160,7 @@
         </div>
     </div>
 
-    <script>
-        AOS.init({ duration: 1500 });
-    </script>
+    <script src="./scripts/CartScript.js"></script>
 </body>
 
 </html>

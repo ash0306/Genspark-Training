@@ -63,12 +63,25 @@
                 </div>
                 <div class="col-8" data-aos="zoom-in-left">
                     <h1 class="fw-bold">User Details</h1>
-                    <ul class="list-group list-group-flush my-5">
-                        <li class="list-group-item"><strong>Name : </strong>Adeline Reilly</li>
-                        <li class="list-group-item"><strong>Date Of Birth : </strong>10/10/2000</li>
-                        <li class="list-group-item"><strong>Email ID : </strong>adeline_m@gmail.com</li>
-                        <li class="list-group-item"><strong>Phone : </strong>1233455678</li>
+                    <ul class="list-group list-group-flush my-5" id="user-details">
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Not Logged In Modal -->
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notLoggedInModalLabel">Not Logged In</h5>
+                </div>
+                <div class="modal-body">
+                    You are not logged in. Please Login to continue using our services.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="login-btn">Login</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -107,9 +120,7 @@
         </div>
     </div>
 
-    <script>
-        AOS.init({ duration: 1500 });
-    </script>
+    <script src="./scripts/UserScript.js"></script>
 </body>
 
 </html>
