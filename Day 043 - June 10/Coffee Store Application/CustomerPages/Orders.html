@@ -65,77 +65,7 @@
             <div class="row">
                 <div class="col-md-6 order-md-1 order-2">
                     <div class="accordion shadow rounded-xl" id="accordionOrders">
-                        <div class="accordion-item" data-aos="flip-left">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orderOne" aria-expanded="true" aria-controls="orderOne">
-                                    Order #1
-                                </button>
-                            </h2>
-                            <div id="orderOne" class="accordion-collapse collapse" data-bs-parent="#accordionOrders">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li><strong>Order ID:</strong>1</li>
-                                        <li><strong>Order Items:</strong>
-                                            <ul>
-                                                <li>Hot Drink</li>
-                                                <li>Cold Drink</li>
-                                                <li>Snack</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Discount:</strong>0.00</li>
-                                        <li><strong>Total Price:</strong>30.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item" data-aos="flip-left">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#orderTwo" aria-expanded="false" aria-controls="orderTwo">
-                                    Order #2
-                                </button>
-                            </h2>
-                            <div id="orderTwo" class="accordion-collapse collapse" data-bs-parent="#accordionOrders">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li><strong>Order ID:</strong>2</li>
-                                        <li><strong>Order Items:</strong>
-                                            <ul>
-                                                <li>Hot Drink</li>
-                                                <li>Cold Drink</li>
-                                                <li>Snack</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Discount:</strong>0.00</li>
-                                        <li><strong>Total Price:</strong>30.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item" data-aos="flip-left">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#orderThree" aria-expanded="false" aria-controls="orderThree">
-                                    Order #3
-                                </button>
-                            </h2>
-                            <div id="orderThree" class="accordion-collapse collapse" data-bs-parent="#accordionOrders">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li><strong>Order ID:</strong>3</li>
-                                        <li><strong>Order Items:</strong>
-                                            <ul>
-                                                <li>Hot Drink</li>
-                                                <li>Cold Drink</li>
-                                                <li>Snack</li>
-                                            </ul>
-                                        </li>
-                                        <li><strong>Discount:</strong>0.00</li>
-                                        <li><strong>Total Price:</strong>30.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-6 order-md-2 order-1 d-flex justify-content-center py-3" data-aos="fade-left">
@@ -187,9 +117,9 @@
             const tokenArray = token.split('.');
             const tokenPayload = JSON.parse(atob(tokenArray[1]));
             const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
-            console.log(tokenId);
+            // console.log(tokenId);
             
-            fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId=106', {
+            fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId=' + tokenId, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -201,20 +131,24 @@
                 var orderDiv = document.getElementById('accordionOrders');
                 orderDiv.innerHTML = '';
 
+                if(response.statusCode != 200) {
+                    orderDiv.innerHTML = `${data.message}`;
+                    return;
+                }
+                
+
                 data.forEach(element => {
                     var count = 1;
                     var orderItem = document.createElement('div');
                     orderItem.className = 'accordion-item';
                     orderItem.setAttribute('data-aos', 'flip-left');
-                    var orderItems = element.orderItems;
-                    // var orderList = document.createElement('ul');
+                    var orderList = document.createElement('ul');
 
-                    // orderItems.forEach(item => {    
-                    //     var itemBody = `
-                    //         <li>${item.productName}</li>
-                    //     `;
-                    //     orderList.appendChild(itemBody);
-                    // })
+                    element.orderItems.forEach(item => {    
+                        var listItem = document.createElement('li');
+                        listItem.textContent = item.productName;
+                        orderList.appendChild(listItem);
+                    });
                     
                     const orderBody = `
                     <h2 class="accordion-header">
@@ -227,7 +161,9 @@
                             <ul>
                                 <li><strong>Order ID:</strong>${element.orderId}</li>
                                 <li><strong>Order Items:</strong>
-                                    
+                                    <ul>
+                                        ${orderList.innerHTML}
+                                    </ul>
                                 </li>
                                 <li><strong>Order Status:</strong>${element.orderStatus}</li>
                                 <li><strong>Total Price:</strong>${element.totalOrderPrice}</li>
@@ -236,7 +172,6 @@
                     </div>`;
                     orderItem.innerHTML = orderBody;
                     orderDiv.appendChild(orderItem);
-                    count++;
                 });
 
             }).catch(error => {
