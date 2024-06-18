@@ -10,16 +10,11 @@
                 alert('Div Clicked');
             });
             $('#btnClick').click(()=>{
-                // $('.clsData').css('background-color','yellow');
-                // $('.clsData').html('<h2>Changed</h2>');
-                // $('.clsData').toggle(1000,()=>{
-                //     alert('Toggle Completed');
-                // });
-                $('.btnClick').click(function(){
-                    var div = $(".clsData");
-                    div.animate({left: '100px'}, "slow");
-                    div.animate({fontSize: '3em'}, "slow");
-                }); 
+                $('.clsData').css('background-color','yellow');
+                $('.clsData').html('<h2>Changed</h2>');
+                $('.clsData').toggle(1000,()=>{
+                    alert('Toggle Completed');
+                });
             });
         })
     </script>
