@@ -4,19 +4,19 @@ document.addEventListener("DOMContentLoaded", function (){
     const form = document.querySelector("form.needs-validation");
 
     // Check if already logged in
-    if(sessionStorage.getItem("customerToken")){
+    if(sessionStorage.getItem("employeeToken")){
         var alreadyLoggedInModal = new bootstrap.Modal(document.getElementById('alreadyLoggedInModal'));
         alreadyLoggedInModal.show();
 
         // Log out button functionality
         document.getElementById("logoutBtn").addEventListener("click", function() {
-            sessionStorage.removeItem("customerToken");
+            sessionStorage.removeItem("employeeToken");
             alreadyLoggedInModal.hide();
         });
 
         document.getElementById("modal-close").addEventListener("click", function() {
             window.location.href = './index.html';
-        })
+        });
     }
 
     form.addEventListener("submit", function (event) {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function (){
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        fetch("http://localhost:5228/api/customer/login",{
+        fetch("http://localhost:5228/api/employee/login",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function (){
             console.log(response);
             var data = await response.json();
             // console.log(data);
-            sessionStorage.setItem("customerToken", `${data.token}`);
+            sessionStorage.setItem("employeeToken", `${data.token}`);
 
             var loginBtnRow = document.getElementById("login-btn");
 
