@@ -1,8 +1,9 @@
 AOS.init({ duration: 1500 });
+var token = sessionStorage.getItem('customerToken');
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    if(sessionStorage.getItem("customerToken")==null){
+    if(token==null){
         var notLoggedInModal = new bootstrap.Modal(document.getElementById('notLoggedInModal'));
         notLoggedInModal.show();
 
@@ -12,7 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    var token = sessionStorage.getItem('customerToken');
+    getProducts();
+
+});
+
+function getProducts(){
     fetch('http://localhost:5228/api/product/menu', {
         method: 'GET',
         headers: {
@@ -79,22 +84,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }).catch(error => {
         console.error(error);
     });
+}
 
-    // Function to create a card element
-    function createCard(item) {
-        const productCard = document.createElement('div');
-        productCard.className = 'card col-md-3 shadow-lg';
-        productCard.setAttribute('data-aos', 'flip-up');
+function createCard(item) {
+    const productCard = document.createElement('div');
+    productCard.className = 'card col-md-3 shadow-lg';
+    productCard.setAttribute('data-aos', 'flip-up');
 
-        const cardContent = `
-            <img src="${item.image}" class="card-img-top p-5 m-auto"  alt="${item.name}">
-            <div class="card-body h-auto">
-                <h5 class="card-title">${item.name}</h5>
-                <p class="card-text">${item.description}</p>
-                <p><strong>Rs.${item.price}</strong></p>
-                <a href="#" class="btn btn-dark">Add to cart</a>
-            </div>`;
-        productCard.innerHTML = cardContent;
-        return productCard;
+    const cardContent = `
+        <img src="${item.image}" class="card-img-top p-5 m-auto"  alt="${item.name}">
+        <div class="card-body h-auto">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.description}</p>
+            <p id="price"><strong>Rs.${item.price}</strong></p>
+            <button class="btn btn-dark" onclick="addToCart('${item.name}','${item.price}')">Add to cart</button>
+        </div>`;
+    productCard.innerHTML = cardContent;
+    return productCard;
+}
+
+
+function addToCart(name, price) {
+        let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        
+        let newItem = {
+            name: name,
+            price: price
+        };
+        
+        // Add the new item to the cart
+        cart.push(newItem);
+        
+        // Save the updated cart to session storage
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        
+        console.log('Item added to cart:', newItem);
+        console.log('Current cart:', cart);
     }
-});

@@ -1,5 +1,12 @@
 AOS.init({ duration: 1500 });
 
+var count = 0;
+var token = sessionStorage.getItem('customerToken');
+
+const tokenArray = token.split('.');
+const tokenPayload = JSON.parse(atob(tokenArray[1]));
+const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+
 document.addEventListener('DOMContentLoaded', function(){
 
     if(sessionStorage.getItem("customerToken")==null){
@@ -12,15 +19,12 @@ document.addEventListener('DOMContentLoaded', function(){
         return;
     }
 
-    var count = 0;
-    var token = sessionStorage.getItem('customerToken');
-
-    const tokenArray = token.split('.');
-    const tokenPayload = JSON.parse(atob(tokenArray[1]));
-    const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
-    // console.log(tokenId);
+    displayOrders();
     
-    fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId=107', {
+})
+
+function displayOrders() {
+    fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId='+tokenId, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -107,4 +111,4 @@ document.addEventListener('DOMContentLoaded', function(){
     }).catch(error => {
         console.error(error);
     })
-})
+}

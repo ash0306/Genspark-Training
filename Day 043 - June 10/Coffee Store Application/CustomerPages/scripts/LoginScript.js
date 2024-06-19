@@ -1,7 +1,6 @@
 AOS.init({ duration: 1500 });
 
 document.addEventListener("DOMContentLoaded", function (){
-    const form = document.querySelector("form.needs-validation");
 
     // Check if already logged in
     if(sessionStorage.getItem("customerToken")){
@@ -19,6 +18,13 @@ document.addEventListener("DOMContentLoaded", function (){
         })
     }
 
+    login();
+})
+
+function login(){
+    const form = document.querySelector("form.needs-validation");
+
+    
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -57,4 +63,4 @@ document.addEventListener("DOMContentLoaded", function (){
             }
         });
     });
-})
+}

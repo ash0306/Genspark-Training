@@ -48,3 +48,7 @@ document.addEventListener('DOMContentLoaded', function(){
         console.error(error);
     })
 })
+
+function redirect(){
+    window.location.href = './UpdatePhone.html';
+}

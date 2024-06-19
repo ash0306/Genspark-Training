@@ -28,14 +28,15 @@
         <div class="container p-3">
             <div class="row">
                 <div class="col-6 p-3">
-                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a></h1>
+                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a>
+                    </h1>
                 </div>
                 <div class="col-6 d-md-none d-sm-flex justify-content-end">
                     <nav class="navbar">
                         <div class="container-fluid d-flex justify-content-end">
                             <button id="nav-btn" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navBarToggleContent" aria-controls="navBarToggleContent" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                                data-bs-target="#navBarToggleContent" aria-controls="navBarToggleContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                         </div>
@@ -47,78 +48,73 @@
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
                         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
                         <a href="./User.html" class="text-dark text-decoration-none">User</a>
-                        <a href="./Cart.html" class="text-dark text-decoration-none"><i class="bi bi-cart"></i></a>
-                        <button type="button" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
+                        <a href="./Cart.html" class="text-dark text-decoration-none"><i
+                                class="bi bi-cart"></i></a>
+                        <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a href="#"
                                 class="text-light text-decoration-none">Login</a></button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Cart Details -->
+        <!-- Update Form -->
         <div class="container p-3" id="div-content">
-            <div class="row" data-aos="fade-right">
-                <div class="col">
-                    <h1 class="fw-bold my-3">Cart Details</h1>
-                </div>
-            </div>
-            <div class="row" data-aos="flip-left">
-                <div class="col d-flex justify-content-center">
-                    <img class="img-fluid" src="./assets/cart.png" alt="cart">
-                </div>
-            </div>
             <div class="row">
-                <div class="col">
-                    <h2 class="fw-bold my-3" data-aos="fade-right">Cart Items</h2>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6 p-0" id="cart-items">
-                                <ul class="list-group list-group-flush">
-                                </ul>
-                            </div>
-                            <div class="col-6 p-0" id="cart-price">
-                                <ul class="list-group text-end list-group-flush">
-                                </ul>
-                            </div>
-                        </div>
+                <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
+                    <div>
+                        <h1 class="text-center">UPDATE</h1>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-end">
-                    <form class="flex flex-column justify-content-end" id="orderForm">
-                        <div class="form-check form-switch text-start">
-                            <input class="form-check-input border border-dark" type="checkbox" role="switch" id="switchCheck">
-                            <label class="form-check-label" for="switchCheck">Use Loyalty Points?</label>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-dark" onclick="placeOrder()">Place Order</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" id="order-result">
+                    <div>
+                        <form class="container needs-validation" novalidate>
+                            <div class="row m-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Email
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="phone" class="form-label">New Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter the new phone number"
+                                    minlength="10" maxlength="10" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number of length 10. No need to add country code
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid phone
+                                </div>
+                            </div>
+                            <div class="row m-3" id="update-btn">
+                                <button type="submit" class="btn btn-dark w-auto" onclick="updatePhone()">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Not Logged In Modal -->
-        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
+        <!-- Error Modals -->
+        <!-- Invalid Email Modal -->
+        <div class="modal fade" id="invalidEmailModal" tabindex="-1" aria-labelledby="invalidEmailModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="notLoggedInModalLabel">Not Logged In</h5>
+                    <h5 class="modal-title" id="invalidEmailModalLabel">Update Failed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    You are not logged in. Please Login to continue using our services.
+                    Invalid email. Please try again.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" id="login-btn">Login</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Footer -->
         <div class="container p-10 mb-5">
@@ -154,7 +150,8 @@
         </div>
     </div>
 
-    <script src="./scripts/CartScript.js"></script>
+    <script src="../scripts/ValidationScript.js"></script>
+    <script src="./scripts/UpdatePhoneScript.js"></script>
 </body>
 
 </html>
