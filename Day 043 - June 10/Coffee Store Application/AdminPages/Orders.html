@@ -61,6 +61,7 @@
                         class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
                         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
+                        <a href="./Customers.html" class="text-dark text-decoration-none">Customers</a>
                         <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
                         <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
                                 class="text-light text-decoration-none">Login</a></button>
@@ -76,33 +77,7 @@
                     <h1 class="fw-bold">Placed Orders</h1>
                 </div>
             </div>
-            <div class="row justify-content-center gap-5 m-3">
-                <div class="card col-md-3" id="placed-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #1</h5>
-                        <p class="card-text">
-                            <ul>
-                                <li>Item #1</li>
-                                <li>Item #2</li>
-                                <li>Item #3</li>
-                            </ul>
-                        </p>
-                        <a href="#" class="btn btn-dark">Move to preparing</a>
-                    </div>
-                </div>
-                <div class="card col-md-3" id="placed-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #2</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                        <a href="#" class="btn btn-dark">Move to preparing</a>
-                    </div>
-                </div>
+            <div class="row justify-content-center gap-5 m-3" id="placedOrder">
             </div>
         </div>
 
@@ -113,90 +88,34 @@
                     <h1 class="fw-bold">Preparing Orders</h1>
                 </div>
             </div>
-            <div class="row justify-content-center gap-5 m-3">
-                <div class="card col-md-3" id="preparing-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #3</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                        <a href="#" class="btn btn-dark">Move to completed</a>
-                    </div>
-                </div>
-                <div class="card col-md-3" id="preparing-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #4</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                        <a href="#" class="btn btn-dark">Move to completed</a>
-                    </div>
-                </div>
+            <div class="row justify-content-center gap-5 m-3" id="preparingOrder">
             </div>
         </div>
-
-        <!-- COMPLETED ORDER -->
+        
+        <!-- READY ORDER -->
         <div class="container p-3" id="div-content">
             <div class="row">
                 <div class="col">
-                    <h1 class="fw-bold">Completed Orders</h1>
+                    <h1 class="fw-bold">Ready Orders</h1>
                 </div>
             </div>
-            <div class="row justify-content-center gap-5 m-3">
-                <div class="card col-md-3" id="completed-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #5</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
-                <div class="card col-md-3" id="completed-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #6</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
+            <div class="row justify-content-center gap-5 m-3" id="readyOrder">
             </div>
         </div>
 
-        <!-- CANCELLED ORDER -->
-        <div class="container p-3" id="div-content">
-            <div class="row">
-                <div class="col">
-                    <h1 class="fw-bold">Cancelled Orders</h1>
+        <!-- Not Logged In Modal -->
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notLoggedInModalLabel">Not Logged In</h5>
                 </div>
-            </div>
-            <div class="row justify-content-center gap-5 m-3">
-                <div class="card col-md-3" id="cancelled-order">
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #7</h5>
-                        <p class="card-text">
-                        <ul>
-                            <li>Item #1</li>
-                            <li>Item #2</li>
-                            <li>Item #3</li>
-                        </ul>
-                        </p>
-                    </div>
+                <div class="modal-body">
+                    You are not logged in. Please Login to continue using our services.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="login-btn">Login</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -235,9 +154,8 @@
         </div>
     </div>
 
-    <script>
-        AOS.init({ duration: 1500 });
-    </script>
+    <script src="./scripts/NavbarScript.js"></script>
+    <script src="./scripts/OrderScript.js"></script>
 </body>
 
 </html>

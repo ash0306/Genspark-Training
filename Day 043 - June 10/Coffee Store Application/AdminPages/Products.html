@@ -59,6 +59,7 @@
                         class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
                         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
+                        <a href="./Customers.html" class="text-dark text-decoration-none">Customers</a>
                         <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
                         <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
                                 class="text-light text-decoration-none">Login</a></button>
@@ -70,13 +71,15 @@
         <!-- Product Details -->
         <div class="container p-3" id="div-container">
             <div class="row">
-                <div class="col">
+                <div class="col" id="mainColumn">
                     <h1 class="fw-bold my-3">Product Details</h1>
                     <div class="d-flex justify-content-end gap-2 my-3">
-                        <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a
-                                href="#" class="text-light text-decoration-none">+ Add Product</a></button>
-                        <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a
-                                href="#" class="text-light text-decoration-none">Update Product</a></button>
+                        <form id="search-form" class="d-flex" role="search">
+                            <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                            <button class="btn btn-dark mx-2" type="submit">Search</button>
+                        </form>
+                        <button type="button" href="#" class="btn btn-outline-dark rounded-lg px-3">+ Add Product</button>
+                        <button type="button" href="#" class="btn btn-outline-dark rounded-lg px-3">Update Product</button>
                     </div>
                     <div class="text-wrap">
                         <table class="table table-bordered table-responsive table-auto table-striped table-hover" id="table-custom">
@@ -150,6 +153,7 @@
         </div>
     </div>
 
+    <script src="./scripts/NavbarScript.js"></script>
     <script src="./scripts/ProductScript.js"></script>
 </body>
 
