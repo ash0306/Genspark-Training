@@ -1,0 +1,19 @@
+{
+  "name": "logintest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loginScript.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^24.1.0"
+  }
+}
