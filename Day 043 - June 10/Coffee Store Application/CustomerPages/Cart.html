@@ -47,7 +47,7 @@
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
                         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
                         <a href="./User.html" class="text-dark text-decoration-none">User</a>
-                        <a href="./Cart.html" class="text-dark text-decoration-none"><i class="bi bi-cart"></i></a>
+                        <a href="./Cart.html" class="text-dark text-decoration-none h4"><i class="bi bi-cart"></i></a>
                         <button type="button" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
                                 class="text-light text-decoration-none">Login</a></button>
                     </div>
@@ -62,45 +62,44 @@
                     <h1 class="fw-bold my-3">Cart Details</h1>
                 </div>
             </div>
-            <div class="row" data-aos="flip-left">
-                <div class="col d-flex justify-content-center">
+            <br>
+            <div class="row gap-4">
+                <div class="col-md-5 d-flex justify-content-center" data-aos="fade-right">
                     <img class="img-fluid" src="./assets/cart.png" alt="cart">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 class="fw-bold my-3" data-aos="fade-right">Cart Items</h2>
+                <div class="col-md-6" data-aos="fade-left">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-6 p-0" id="cart-items">
-                                <ul class="list-group list-group-flush">
-                                </ul>
-                            </div>
-                            <div class="col-6 p-0" id="cart-price">
-                                <ul class="list-group text-end list-group-flush">
-                                </ul>
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="card mb-3">
+                                    <div class="card-body" id="cart-body">
+                                        <h2 class="card-title fw-bold my-3">Cart Items</h2>
+                                        <div id="cart-items">
+                                        </div>
+                                        <div class="d-flex justify-content-between fw-bold" id="cart-total">
+                                        </div>
+                                        <br>
+                                        <div class="col text-end">
+                                            <form class="flex justify-content-end" id="orderForm">
+                                                <div class="form-check form-switch text-start">
+                                                    <input class="form-check-input border border-dark" type="checkbox" role="switch" id="switchCheck">
+                                                    <label class="form-check-label" for="switchCheck">Use Loyalty Points?</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-dark" >Place Order</button>
+                                            </form>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col" id="order-result">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-end">
-                    <form class="flex flex-column justify-content-end" id="orderForm">
-                        <div class="form-check form-switch text-start">
-                            <input class="form-check-input border border-dark" type="checkbox" role="switch" id="switchCheck">
-                            <label class="form-check-label" for="switchCheck">Use Loyalty Points?</label>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-dark" onclick="placeOrder()">Place Order</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" id="order-result">
-                </div>
-            </div>
+            
         </div>
 
         <!-- Not Logged In Modal -->

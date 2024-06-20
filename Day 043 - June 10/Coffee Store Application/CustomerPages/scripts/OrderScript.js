@@ -46,7 +46,6 @@ function displayOrders() {
         data.forEach(element => {
             var orderItem = document.createElement('div');
             orderItem.className = 'accordion-item';
-            orderItem.setAttribute('data-aos', 'flip-left');
             var orderList = document.createElement('ul');
 
             element.orderItems.forEach(item => {    
@@ -75,7 +74,7 @@ function displayOrders() {
                                 </li>
                                 <li><strong>Order Status:</strong>${element.orderStatus}</li>
                                 <li><strong>Total Price:</strong>${element.totalOrderPrice}</li>
-                                <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+                                <button class="btn btn-danger my-3" id="cancel-btn">Cancel</button>
                             </ul>
                         </div>
                     </div>`;
