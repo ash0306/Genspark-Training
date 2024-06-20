@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean & Brew</title>
+    <link rel="icon" href="../assets/images/icon.png" type="image/png">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/styles/css/CoffeeShopStyle.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body class="px-10">
+    <div>
+        <!-- NAV BAR -->
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-6 p-3">
+                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a>
+                    </h1>
+                </div>
+                <div class="col-6 d-md-none d-sm-flex justify-content-end">
+                    <nav class="navbar">
+                        <div class="container-fluid d-flex justify-content-end">
+                            <button id="nav-btn" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navBarToggleContent" aria-controls="navBarToggleContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="navBarToggleContent"
+                        class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
+                        <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
+                        <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
+                        <a href="./User.html" class="text-dark text-decoration-none">User</a>
+                        <a href="./Cart.html" class="text-dark text-decoration-none h4"><i
+                                class="bi bi-cart"></i></a>
+                        <button type="button" href="#" class="btn btn-dark rounded-lg px-3"><a href="./Login.html"
+                                class="text-light text-decoration-none">Login</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <div class="container p-3" id="div-content">
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
+                    <div>
+                        <h1 class="text-center">REGISTER</h1>
+                    </div>
+                    <div>
+                        <form class="container needs-validation" novalidate>
+                            <div class="row m-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                                <div class="invalid-feedback">
+                                    Please enter a Name.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid name
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="dob" class="form-label">Date Of Birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Date Of Birth. The user should be atleast 18 years of age.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Date of birth
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" minlength="10" maxlength="10" placeholder="Enter phone number" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number in the format [xxxxxxxxxx] with no country code.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Phone
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid Email
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password"
+                                    minlength="7" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid password of min length 7.
+                                </div>
+                                <div class="valid-feedback">
+                                    Valid password
+                                </div>
+                            </div>
+                            <div class="row m-3" id="register-btn">
+                                <button type="submit" class="btn btn-dark w-auto">Register</button>
+                            </div>
+                            <div class="row m-3 text-center">
+                                <p class="m-0">Already Registered?</p>
+                                <p class="m-0"><a href="./Login.html" class="text-decoration-none">Login here</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="container p-10 mb-5">
+            <div class="row">
+                <div class="col">
+                    <h1 class="fw-bold">Contact Us</h1>
+                </div>
+            </div>
+            <div class="row py-3">
+                <div class="col-md-6">
+                    <h5 class="fw-bold">Address</h5>
+                    <p class="text-muted">
+                        Bean & Brew<br>
+                        123 Main Street<br>
+                        Shire, Prythian 12345
+                    </p>
+                    <h5 class="fw-bold">Contact</h5>
+                    <p class="text-muted">
+                        Phone: 1234567890<br>
+                        Email: beanandbrew@email.com
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="py-3">Socials:</h5>
+                    <h4 class="text-muted">
+                        <i class="bi bi-facebook m-2"></i>
+                        <i class="bi bi-google m-2"></i>
+                        <i class="bi bi-twitter m-2"></i>
+                        <i class="bi bi-instagram m-2"></i>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/scripts/ValidationScript.js"></script>
+
+    <script src="../assets/scripts/RegisterScript.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+#div-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.navbar-toggler {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+#div-content {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+#switchCheck:checked {
+  background-color: black;
+  border-color: black;
+}
+
+#switchCheck:checked:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+#switchCheck:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+#flexRadio.form-check-input:checked {
+  background-color: black;
+  border-color: black;
+}
+
+.form-check-input:checked:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}/*# sourceMappingURL=CoffeeShopStyle.css.map */

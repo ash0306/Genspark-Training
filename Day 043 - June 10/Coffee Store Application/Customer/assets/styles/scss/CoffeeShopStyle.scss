@@ -1,0 +1,44 @@
+#div-container{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#div-content {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+//navbar
+.navbar-toggler{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+
+//cart -user
+#switchCheck:checked {
+    background-color: black;
+    border-color: black;
+}
+
+#switchCheck:checked:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+#switchCheck:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+
+// register
+#flexRadio.form-check-input:checked{
+    background-color: black;
+    border-color: black;
+}
+
+.form-check-input:checked:focus{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+.form-check-input:focus{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
