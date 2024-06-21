@@ -59,42 +59,47 @@
 
         <!-- Login Form -->
         <div class="container p-3" id="div-content">
-            <div class="row">
-                <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
-                    <div>
-                        <h1 class="text-center">LOGIN</h1>
-                    </div>
-                    <div>
-                        <form class="container needs-validation" novalidate>
-                            <div class="row m-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email.
-                                </div>
-                                <div class="valid-feedback">
-                                    Valid Email
-                                </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 container border rounded shadow-lg">
+                    <div class="row">
+                        <div class="d-none d-md-block col-5">
+                            <img src="../assets/images/login.jpg" class="img-fluid" style="height: 450px;"></img>
+                        </div>
+                        <div class="py-5 col-12 col-md-7">
+                            <div>
+                                <h1 class="text-center">LOGIN</h1>
                             </div>
-                            <div class="row m-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password"
-                                    minlength="7" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid password of min length 7.
+                            <form class="container needs-validation" novalidate>
+                                <div class="row m-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email.
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Valid Email
+                                    </div>
                                 </div>
-                                <div class="valid-feedback">
-                                    Valid password
+                                <div class="row m-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter password"
+                                        minlength="7" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid password of min length 7.
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Valid password
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row m-3" id="login-btn">
-                                <button type="submit" class="btn btn-dark w-auto">Login</button>
-                            </div>
-                            <div class="row m-3 text-center">
-                                <p class="m-0">New to Bean & Brew?</p>
-                                <p class="m-0"><a href="./Register.html" class="text-decoration-none">Register here</a></p>
-                            </div>
-                        </form>
+                                <div class="row m-3" id="login-btn">
+                                    <button type="submit" class="btn btn-dark w-auto">Login</button>
+                                </div>
+                                <div class="row m-3 text-center">
+                                    <p class="m-0">New to Bean & Brew?</p>
+                                    <p class="m-0"><a href="./Register.html" class="text-decoration-none">Register here</a></p>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
