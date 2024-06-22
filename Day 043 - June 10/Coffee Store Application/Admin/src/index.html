@@ -17,6 +17,9 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 <body class="px-10">
     <div>
@@ -53,10 +56,10 @@
             <div class="row">
                 <div class="col-md-6 text-center" data-aos="fade-right">
                     <h1 class="fw-bold display-1 p-3">Crafting Perfection, One Brew at a Time</h1>
-                    <h5 class="p-3 fw-light font-monospace text-muted">Indulge in every pour!</h5>
+                    <h5 class="p-3 fw-light font-monospace text-muted" id="typed-element"></h5>
                 </div>
                 <div class="col-md-6 d-flex justify-content-center" data-aos="fade-left">
-                    <img src="../assets/images/shop.png" alt="Bean & Brew" class="img-fluid">
+                    <img src="../assets/images/shop.png" alt="Bean & Brew" class="img-fluid" style="height: 488px;">
                 </div>
             </div>
         </div>
@@ -82,13 +85,13 @@
         <!-- Featured -->
         <div class="container p-10" id="div-container">
             <div class="row">
-                <div class="col" data-aos="fade-down-right">
+                <div class="col" data-aos="fade-right">
                     <h1 class="fw-bold">Featured</h1>
                 </div>
             </div>
             <!-- Carousel -->
             <div class="row">
-                <div id="carouselAutoplaying" class="carousel slide mx-auto py-3" data-bs-ride="carousel">
+                <div id="carouselAutoplaying" class="carousel slide mx-auto py-3" data-bs-ride="carousel" data-aos="fade-left">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="../assets/images/featured/coffee.jpg" class="d-block w-100 mx-auto" >
@@ -122,7 +125,7 @@
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-black rounded"></span>
+                        <span class="carousel-control-next-icon bg-black rounded-lg"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
@@ -163,9 +166,7 @@
         </div>
     </div>
 
-    <script>
-        AOS.init({ duration: 1500 });
-    </script>
+    <script src="../assets/scripts/index.js"></script>
     <script src="../assets/scripts/NavbarScript.js"></script>
 </body>
 </html>

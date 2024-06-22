@@ -3,13 +3,13 @@
   margin-bottom: 100px;
 }
 
-.navbar-toggler {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
-}
-
 #div-content {
   margin-top: 50px;
   margin-bottom: 100px;
+}
+
+.navbar-toggler {
+  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
 }
 
 #switchCheck:checked {
@@ -36,4 +36,15 @@
 
 .form-check-input:focus {
   box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }/*# sourceMappingURL=CoffeeShopStyle.css.map */

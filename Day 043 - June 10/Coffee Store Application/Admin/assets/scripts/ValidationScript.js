@@ -8,7 +8,6 @@ Array.prototype.slice.call(forms).forEach(function (form) {
             event.preventDefault();
             event.stopPropagation();
         }
-
         form.classList.add('was-validated');
     }, false);
 });

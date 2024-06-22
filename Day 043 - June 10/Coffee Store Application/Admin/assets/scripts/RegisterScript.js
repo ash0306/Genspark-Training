@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function (){
             }
         }
 
+        // console.log(`email: ${email}, password: ${password}, name: ${name}, dob: ${dob}, phone: ${phone}, role: ${role}`);
         if(role == 'Admin'){
             var fetchUrl = "http://localhost:5228/api/employee/register/admin";
         }
@@ -78,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function (){
                 phone: phone
             })
         }).then(async (response) => {
-            console.log(response);
+            // console.log(response);
             var data = await response.json();
-            console.log(data);
+            // console.log(data);
 
             var registerBtnRow = document.getElementById("register-btn");
 
