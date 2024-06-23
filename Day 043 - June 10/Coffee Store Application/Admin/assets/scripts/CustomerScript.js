@@ -32,7 +32,7 @@ function getAllDetails() {
                 <td>${element.name}</td>
                 <td>${element.email}</td>
                 <td>${element.phone}</td>
-                <td>${element.dateOfBirth}</td>
+                <td>${new Date(element.dateOfBirth).toLocaleDateString()}</td>
                 <td>${element.loyaltyPoints}</td>
             `;
             tableBody.appendChild(row);

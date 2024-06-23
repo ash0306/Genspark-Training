@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateProduct(){
-    var updates = [];
     const form = document.getElementById("productForm");
 
     form.addEventListener("submit", function (event) {

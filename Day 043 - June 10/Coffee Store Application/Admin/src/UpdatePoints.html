@@ -57,50 +57,46 @@
             </div>
         </div>
 
-        <!-- Customer Details -->
+        <!-- Update points Form -->
         <div class="container p-3" id="div-content">
-            <div class="row">
-                <div class="col">
-                    <h1 class="fw-bold my-3">Customer Details</h1>
-                    <div class="d-flex justify-content-end gap-2 my-3">
-                        <form id="search-form" class="d-flex" role="search">
-                            <input class="form-control mx-2" type="search" placeholder="Enter email to search" aria-label="Search" id="search-input">
-                            <button class="btn btn-dark mx-2" type="submit">Search</button>
-                        </form>
-                        <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href='./UpdatePoints.html'">Update Loyalty Points</button>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 container border rounded shadow-lg">
+                    <div class="row d-flex">
+                        <div class="py-5 col-12">
+                            <div>
+                                <h1 class="text-center">UPDATE LOYALTY POINTS</h1>
+                            </div>
+                            <form class="container needs-validation" id="pointsForm" novalidate>
+                                <!-- EMAIL -->
+                                <div class="row m-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter customer email" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email.
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Valid email.
+                                    </div>
+                                </div>
+                                <!-- POINTS -->
+                                <div class="row m-3">
+                                    <label for="points" class="form-label">Loyalty Points</label>
+                                    <input type="number" class="form-control" id="points" required>
+                                    <div class="form-text">Note: The entered value will be added to the existing loyalty points</div>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid non negative number for points.
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Valid loyalty points.
+                                    </div>
+                                </div>
+                                <!-- SUBMIT -->
+                                <div class="row m-3" id="submit-btn">
+                                    <button type="submit" class="btn btn-dark w-auto" onclick="updatePoints()">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="text-wrap">
-                        <table class="table table-bordered table-responsive table-auto table-striped table-hover" id="table-custom">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Date of Birth</th>
-                                    <th scope="col">Loyalty Points</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Not Logged In Modal -->
-        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="notLoggedInModalLabel">Not Logged In</h5>
-                </div>
-                <div class="modal-body">
-                    You are not logged in. Please Login to continue using our services.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" id="login-btn">Login</button>
-                </div>
                 </div>
             </div>
         </div>
@@ -139,9 +135,8 @@
         </div>
     </div>
 
-    <script src="../assets/scripts/TokenValidationScript.js"></script>
-    <script src="../assets/scripts/NavbarScript.js"></script>
-    <script src="../assets/scripts/CustomerScript.js"></script>
+    <script src="../assets/scripts/ValidationScript.js"></script>
+    <script src="../assets/scripts/UpdatePointsScript.js"></script>
 </body>
 
 </html>
