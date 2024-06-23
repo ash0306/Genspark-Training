@@ -1,9 +1,15 @@
+var typed = new Typed("#cart-typed", {
+    strings: ["Cart Details"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
 document.addEventListener('DOMContentLoaded', function() {
     
     AOS.init({ duration: 1500 });
     
     if (sessionStorage.getItem("customerToken") == null) {
-        console.log("customerToken is null");
+        // console.log("customerToken is null");
         var notLoggedInModal = new bootstrap.Modal(document.getElementById('notLoggedInModal'));
         notLoggedInModal.show();
 

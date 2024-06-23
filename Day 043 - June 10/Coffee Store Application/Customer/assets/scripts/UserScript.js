@@ -1,11 +1,5 @@
 AOS.init({ duration: 1500 });
 
-var token = sessionStorage.getItem('customerToken');
-
-const tokenArray = token.split('.');
-const tokenPayload = JSON.parse(atob(tokenArray[1]));
-const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
-
 document.addEventListener('DOMContentLoaded', function(){
 
     if(sessionStorage.getItem("customerToken")==null){
@@ -20,6 +14,19 @@ document.addEventListener('DOMContentLoaded', function(){
     
     displayUserDetails();
 })
+
+var userTyped = new Typed("#user-typed", {
+    strings: ["User Details"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+
+var token = sessionStorage.getItem('customerToken');
+
+const tokenArray = token.split('.');
+const tokenPayload = JSON.parse(atob(tokenArray[1]));
+const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
 
 function displayUserDetails(){
     fetch('http://localhost:5228/api/customer/getById?id='+tokenId, {

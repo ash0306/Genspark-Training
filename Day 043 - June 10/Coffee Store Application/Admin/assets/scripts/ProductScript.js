@@ -1,5 +1,12 @@
 var token = sessionStorage.getItem('employeeToken');
 
+var typed = new Typed("#typed-element", {
+    strings: ["Product Details"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+
 document.addEventListener('DOMContentLoaded', function () {
 
     getAllProducts();

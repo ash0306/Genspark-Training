@@ -1,5 +1,24 @@
 var token = sessionStorage.getItem('employeeToken');
 
+var placedTyped = new Typed("#typed-placed", {
+    strings: ["Placed Orders"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+}); 
+var prepareTyped = new Typed("#typed-prepare", {
+    strings: ["Prepared Orders"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+}); 
+var placedTyped = new Typed("#typed-ready", {
+    strings: ["Ready Orders"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+}); 
+
 document.addEventListener('DOMContentLoaded', function() {
     displayOrders();
 });

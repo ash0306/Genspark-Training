@@ -1,11 +1,11 @@
 AOS.init({ duration: 1500 });
 
-var count = 0;
-var token = sessionStorage.getItem('customerToken');
-
-const tokenArray = token.split('.');
-const tokenPayload = JSON.parse(atob(tokenArray[1]));
-const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+var typed = new Typed("#order-typed", {
+    strings: ["Orders"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -22,6 +22,13 @@ document.addEventListener('DOMContentLoaded', function(){
     displayOrders();
     
 })
+
+var count = 0;
+var token = sessionStorage.getItem('customerToken');
+
+const tokenArray = token.split('.');
+const tokenPayload = JSON.parse(atob(tokenArray[1]));
+const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
 
 function displayOrders() {
     fetch('http://localhost:5228/api/orders/getOrderByCustomerId?customerId='+tokenId, {

@@ -31,6 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function getAllAdminDetails(){
+    var typed = new Typed("#typed-element1", {
+        strings: ["Employee Details"],
+        typeSpeed: 50,
+        cursorChar: "",
+        loop: false
+    });
     adminDetailsDiv.style.display = 'block';
     employeeDetailsDiv.style.display = 'none';
 
@@ -83,6 +89,12 @@ function getAllAdminDetails(){
 }
 
 function getEmployeeDetails(){
+    var typed = new Typed("#typed-element2", {
+        strings: ["Employee Details"],
+        typeSpeed: 50,
+        cursorChar: "",
+        loop: false
+    });
     adminDetailsDiv.style.display = 'none';
     employeeDetailsDiv.style.display = 'block';
 

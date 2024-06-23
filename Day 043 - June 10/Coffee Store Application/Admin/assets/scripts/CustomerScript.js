@@ -1,3 +1,10 @@
+var typed = new Typed("#typed-element", {
+    strings: ["Customer Details"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+
 document.addEventListener('DOMContentLoaded', function(){
     getAllDetails();
 

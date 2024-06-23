@@ -1,6 +1,25 @@
 AOS.init({ duration: 1500 });
 var token = sessionStorage.getItem('customerToken');
 
+var hotDrinkTyped = new Typed("#hotDrinks-typed", {
+    strings: ["Hot Drinks"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+var coldDrinkTyped = new Typed("#coldDrinks-typed", {
+    strings: ["Cold Drinks"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+var snackTyped = new Typed("#snacks-typed", {
+    strings: ["Snacks"],
+    typeSpeed: 50,
+    cursorChar: "",
+    loop: false
+});
+
 document.addEventListener('DOMContentLoaded', function () {
 
     if(token==null){
