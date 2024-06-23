@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function(){
     var token = sessionStorage.getItem('employeeToken');
     const tokenArray = token.split('.');
     const tokenPayload = JSON.parse(atob(tokenArray[1]));
-    // console.log(tokenPayload);
-    const tokenId = tokenPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
     adminRole = tokenPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
     const navbar = document.getElementById('navBarToggleContent');

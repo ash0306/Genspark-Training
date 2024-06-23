@@ -61,19 +61,19 @@
         </div>
 
         <!-- Admin Employee Details -->
-        <div class="container p-3" id="div-container">
+        <div class="container p-3" id="div-container" style="margin-top: 50px;">
             <div class="row">
                 <div class="col">
                     <h1 class="fw-bold my-3" id="typed-element1"></h1>
-                    <div class="d-flex justify-content-end gap-2 my-3">
+                    <div class="d-flex justify-content-md-end justify-content-between flex-column flex-md-row gap-2 my-3">
                         <form id="search-form" class="d-flex" role="search">
                             <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
                             <button class="btn btn-dark mx-2" type="submit">Search</button>
                         </form>
-                        <button type="button" href="#" class="btn btn-outline-dark rounded-lg px-3">Update Employee Salary</button>
+                        <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href = './UpdateSalary.html'">Update Employee Salary</button>
                     </div>
-                    <div class="text-wrap">
-                        <table class="table table-bordered table-responsive table-auto table-striped table-hover" id="table-custom">
+                    <div class="text-wrap table-responsive">
+                        <table class="table table-bordered table-auto table-striped table-hover" id="table-custom">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -108,6 +108,7 @@
             </div>
         </div>
 
+        <!-- Error Modals -->
         <!-- Not Logged In Modal -->
         <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="notLoggedInModal" tabindex="-1" aria-labelledby="notLoggedInModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -120,6 +121,24 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" id="login-btn">Login</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unable to update modal -->
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="unableToUpdateModal" tabindex="-1" aria-labelledby="unableToUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="unableToUpdateModalLabel">Unable to update</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Unable to update employee status at the moment. Please try again later.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
                 </div>
             </div>

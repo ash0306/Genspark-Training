@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the frontend for the Coffee Shop Management API. It is built using FIgma for designing and HTML and Bootstrap CSS for developing the web-based application.
+This is the frontend for the Coffee Shop Management API. It is built using Figma for designing and HTML and Bootstrap CSS for developing the web-based application.
 
 ## Design Files
 

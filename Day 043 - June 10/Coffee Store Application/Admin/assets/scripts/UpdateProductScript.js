@@ -39,6 +39,10 @@ function updateProduct(){
             if(priceInput.value){
                 updatePrice(nameInput.value, priceInput.value);
             }
+
+            var redirectMessage = createElement('p');
+            redirectMessage.textContent = "Update successful. Redirecting...";
+            submitBtn.appendChild(redirectMessage);
             
             window.setTimeout(() => {
                 window.location.href = "./Products.html";

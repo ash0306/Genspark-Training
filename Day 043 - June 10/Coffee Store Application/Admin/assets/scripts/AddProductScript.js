@@ -60,7 +60,7 @@ function newProduct(){
             var submitBtn = document.getElementById("submit-btn");
             if(response.status === 200) {
                 var successMessage = document.createElement("p");
-                successMessage.textContent = "Product added successfully";
+                successMessage.textContent = "Product added successfully. Redirecting...";
                 successMessage.style.color = "green";
                 submitBtn.appendChild(successMessage);
                 setTimeout(() => {

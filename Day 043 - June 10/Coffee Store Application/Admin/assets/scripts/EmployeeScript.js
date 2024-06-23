@@ -63,10 +63,12 @@ function getAllAdminDetails(){
                 statusClass = 'text-success fw-bold';
                 buttonText = 'Deactivate Employee';
                 buttonClass = 'btn btn-danger';
+                functionName = 'deactivateEmployee';
             } else if (element.status === 'Inactive') {
                 statusClass = 'text-danger fw-bold';
                 buttonText = 'Activate Employee';
                 buttonClass = 'btn btn-success';
+                functionName = 'activateEmployee';
             }
                 
             row.innerHTML = `
@@ -78,7 +80,7 @@ function getAllAdminDetails(){
                 <td>${element.salary}</td>
                 <td>${element.role}</td>
                 <td class="${statusClass}">${element.status}<br>
-                <button class="${buttonClass}">${buttonText}</button>
+                <button class="${buttonClass}" onclick="${functionName}('${element.id}')">${buttonText}</button>
                 </td>`;
             tableBody.appendChild(row);
         });
@@ -173,4 +175,76 @@ function searchResults(employeeEmail){
             tableBody.appendChild(row);
         });
     }).catch(error => console.log(error));
+}
+
+function deactivateEmployee(employeeId){
+    if(employeeId === tokenId){
+        var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
+        notUpdatedModal.show();
+        var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
+        if (modalBody) {
+            modalBody.innerHTML += `<br> Cannot update your own status!!!`;
+        }
+        return;
+    }
+    fetch('http://localhost:5228/api/employee/deactivateEmployee?id='+employeeId,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    }).then(async(response) => {
+        // console.log(response);
+        var data = response.json();
+        // console.log(data);
+
+        if (response.ok) {
+            location.reload();
+        }
+        else{
+            var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
+            notUpdatedModal.show();
+
+            var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
+            if (modalBody) {
+                modalBody.innerHTML += ` ${data.message}`;
+            }
+        }
+    })
+}
+
+function activateEmployee(employeeId){
+    if(employeeId === tokenId){
+        var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
+        notUpdatedModal.show();
+        var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
+        if (modalBody) {
+            modalBody.innerHTML += `<br> Cannot update your own status!!!`;
+        }
+        return;
+    }
+    fetch('http://localhost:5228/api/employee/activateEmployee?id='+employeeId,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    }).then(async(response) => {
+        // console.log(response);
+        var data = response.json();
+        // console.log(data);
+
+        if (response.ok) {
+            location.reload();
+        }
+        else{
+            var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
+            notUpdatedModal.show();
+
+            var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
+            if (modalBody) {
+                modalBody.innerHTML += ` ${data.message}`;
+            }
+        }
+    })
 }

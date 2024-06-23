@@ -5,7 +5,18 @@ var typed = new Typed("#typed-element", {
     loop: false
 });
 
+var adminRole = '';
+
+var token = sessionStorage.getItem('employeeToken');
+const tokenArray = token.split('.');
+const tokenPayload = JSON.parse(atob(tokenArray[1]));
+adminRole = tokenPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
 document.addEventListener('DOMContentLoaded', function(){
+    if(adminRole === 'Admin'){
+        var updateBtn = document.getElementById('updateBtn');
+        updateBtn.style.display = 'none';
+    }
     getAllDetails();
 
     const searchInput = document.getElementById('search-input');
@@ -18,8 +29,6 @@ document.addEventListener('DOMContentLoaded', function(){
         searchResults(customerEmail);
     });
 });
-
-var token = sessionStorage.getItem('employeeToken');
 
 function getAllDetails() {
     fetch('http://localhost:5228/api/customer/getAll',{
