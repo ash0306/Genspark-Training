@@ -1,5 +1,12 @@
 AOS.init({ duration: 1500 });
 
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+const name = document.getElementById("name").value;
+const dob = document.getElementById("dob").value;
+const phone = document.getElementById("phone").value;
+var role = '';
+
 function isValidAge() {
     const dobInput = document.getElementById('dob');
     const dobValue = dobInput.value;
@@ -34,18 +41,23 @@ document.getElementById('dob').addEventListener('input', function () {
     isValidAge();
 });
 
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
+}
+
 document.addEventListener("DOMContentLoaded", function (){
     const form = document.querySelector("form.needs-validation");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
-
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const name = document.getElementById("name").value;
-        const dob = document.getElementById("dob").value;
-        const phone = document.getElementById("phone").value;
-        var role = '';
 
         var radios = document.getElementsByName('flexRadioButton');
         for (var i = 0, length = radios.length; i < length; i++) {
@@ -55,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function (){
             }
         }
 
-        // console.log(`email: ${email}, password: ${password}, name: ${name}, dob: ${dob}, phone: ${phone}, role: ${role}`);
         if(role == 'Admin'){
             var fetchUrl = "http://localhost:5228/api/employee/register/admin";
         }
@@ -66,41 +77,37 @@ document.addEventListener("DOMContentLoaded", function (){
             var fetchUrl = "http://localhost:5228/api/employee/register/barista";
         }
 
-        fetch(`${fetchUrl}`,{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                password:  password,
-                name: name,
-                dob: dob,
-                phone: phone
-            })
-        }).then(async (response) => {
-            // console.log(response);
-            var data = await response.json();
-            // console.log(data);
-
-            var registerBtnRow = document.getElementById("register-btn");
-
-            if (response.status == 200) {
-                var successMessage = document.createElement("p");
-                successMessage.textContent = "Registration successful. Redirecting ...";
-                successMessage.style.color = "green";
-                registerBtnRow.appendChild(successMessage);
-
-                setTimeout(() => {
-                    window.location.href = "./Login.html";
-                }, 3000);
-            }
-            else{
-                var errorMessage = document.createElement("p");
-                errorMessage.textContent = data.message;
-                errorMessage.style.color = "red";
-                registerBtnRow.appendChild(errorMessage);
-            }
-        });
+        register(fetchUrl);
     });
 })
+
+function register(fetchUrl){
+    fetch(`${fetchUrl}`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            password:  password,
+            name: name,
+            dob: dob,
+            phone: phone
+        })
+    }).then(async (response) => {
+        // console.log(response);
+        var data = await response.json();
+        // console.log(data);
+
+        if (response.status == 200) {
+            newToast("bg-success", "Registration successful. Redirecting ...");
+
+            setTimeout(() => {
+                window.location.href = "./Login.html";
+            }, 2000);
+        }
+        else{
+            newToast("bg-danger", "Registration failed."+data.message);
+        }
+    });
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean & Brew</title>
-    <link rel="icon" href="../assets/images/icon.png" type="image/png">
+    <link rel="icon" href="../assets/images/logo.png" type="image/png">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/styles/css/CoffeeShopStyle.css">
@@ -28,8 +28,8 @@
         <!-- NAV BAR -->
         <div class="container p-3">
             <div class="row">
-                <div class="col-6 p-3">
-                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a>
+                <div class="col-6 p-2">
+                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none"><img src="../assets/images/logo.png" class="img-fluid" style="width: 40px;" alt="Bean&Brew"> Bean & Brew</a>
                     </h1>
                 </div>
                 <div class="col-6 d-md-none d-sm-flex justify-content-end">
@@ -43,7 +43,7 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-6 p-2">
                     <div id="navBarToggleContent"
                         class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
@@ -62,8 +62,8 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-9 container border rounded shadow-lg">
                     <div class="row d-flex">
-                        <div class="d-none d-md-block col-5">
-                            <img src="../assets/images/register.jpg" class="img-fluid" style="height: 100%;"></img>
+                        <div class="d-none d-md-block col-5 p-0">
+                            <img src="../assets/images/register.jpg" class="img-fluid rounded-start" style="height: 100%;"></img>
                         </div>
                         <div class="py-5 col-12 col-md-7">
                             <div>
@@ -158,6 +158,17 @@
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+            <div id="toastNotification" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         </div>

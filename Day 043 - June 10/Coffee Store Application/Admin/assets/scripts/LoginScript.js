@@ -1,24 +1,20 @@
 AOS.init({ duration: 1500 });
 
 document.addEventListener("DOMContentLoaded", function (){
-    // Check if already logged in
-    if(sessionStorage.getItem("employeeToken")){
-        var alreadyLoggedInModal = new bootstrap.Modal(document.getElementById('alreadyLoggedInModal'));
-        alreadyLoggedInModal.show();
-
-        // Log out button functionality
-        document.getElementById("logoutBtn").addEventListener("click", function() {
-            sessionStorage.removeItem("employeeToken");
-            alreadyLoggedInModal.hide();
-        });
-
-        document.getElementById("modal-close").addEventListener("click", function() {
-            window.location.href = './index.html';
-        });
-    }
-
     login();
 })
+
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
+}
 
 function login(){
     const form = document.querySelector("form.needs-validation");
@@ -44,20 +40,14 @@ function login(){
             // console.log(data);
             sessionStorage.setItem("employeeToken", `${data.token}`);
 
-            var loginBtnRow = document.getElementById("login-btn");
-
             if (response.status == 200) {
-                var successMessage = document.createElement("p");
-                successMessage.textContent = "Login successful. Redirecting ...";
-                successMessage.style.color = "green";
-                loginBtnRow.appendChild(successMessage);
+                newToast("bg-success", "Login successful. Redirecting...")
 
                 setTimeout(() => {
                     window.location.href = "./index.html";
-                }, 3000);
+                }, 2000);
             } else {
-                var invalidLoginModal = new bootstrap.Modal(document.getElementById('invalidLoginModal'));
-                invalidLoginModal.show();
+                newToast("bg-danger", "Invalid email or password. Try again.");
             }
         });
     });

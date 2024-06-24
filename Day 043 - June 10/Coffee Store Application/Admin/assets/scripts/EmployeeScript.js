@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function newToast(classBackground, message){
     const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
     var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
     toast.classList.add(`${classBackground}`);
     var toastBody = document.querySelector(".toast-body");
     if (toastBody) {
