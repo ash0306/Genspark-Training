@@ -21,6 +21,9 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body class="px-10">
@@ -64,9 +67,6 @@
                 </div>
                 <div class="col-md-8" data-aos="zoom-in-left">
                     <h1 class="fw-bold" id="user-typed"></h1>
-                    <div class="d-flex justify-content-end gap-2 my-3">
-                        <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="redirect()">Update Phone number</button>
-                    </div>
                     <ul class="list-group list-group-flush my-5" id="user-details">
                     </ul>
                 </div>
@@ -86,6 +86,17 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" id="login-btn">Login</button>
                 </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+            <div id="toastNotification" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         </div>

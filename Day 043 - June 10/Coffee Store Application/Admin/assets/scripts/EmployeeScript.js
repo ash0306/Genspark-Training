@@ -129,7 +129,7 @@ function addRow(element){
         
         <td>
             <span class="salary-view">${element.salary}</span>
-            <input type="text" class="salary-edit form-control d-none" value="${element.salary}">
+            <input type="number" class="salary-edit form-control d-none" value="${element.salary}">
             <i class="bi bi-pencil-square salary-edit-icon" style="cursor: pointer;"></i>
             <button class="btn btn-primary btn-sm salary-save d-none m-1">Save</button>
         </td>

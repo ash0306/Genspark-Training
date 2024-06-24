@@ -80,7 +80,7 @@ function getProducts(){
             const cardImg = card.querySelector('.card-img-top');
             const cardBody = card.querySelector('.card-body');
 
-            cardImg.addEventListener('click', function () {
+            card.addEventListener('mouseover', function () {
                 if (cardBody.style.display === 'none' || cardBody.style.display === '') {
                     cardImg.style.display = 'none';
                     cardBody.style.display = 'block';
@@ -90,7 +90,7 @@ function getProducts(){
                 }
             });
 
-            cardBody.addEventListener('click', function () {
+            card.addEventListener('mouseout', function () {
                 if (cardImg.style.display === 'none' || cardImg.style.display === '') {
                     cardBody.style.display = 'none';
                     cardImg.style.display = 'block';
@@ -111,7 +111,7 @@ function createCard(item) {
     productCard.setAttribute('data-aos', 'flip-up');
 
     const cardContent = `
-        <img src="${item.image}" class="card-img-top p-5 m-auto"  alt="${item.name}">
+        <img src="${item.image}" class="card-img-top py-4"  alt="${item.name}">
         <div class="card-body h-auto">
             <h5 class="card-title">${item.name}</h5>
             <p class="card-text">${item.description}</p>

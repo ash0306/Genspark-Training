@@ -14,8 +14,8 @@ adminRole = tokenPayload["http://schemas.microsoft.com/ws/2008/06/identity/claim
 
 document.addEventListener('DOMContentLoaded', function(){
     if(adminRole === 'Admin'){
-        var updateBtn = document.getElementById('updateBtn');
-        updateBtn.style.display = 'none';
+        // var editBtn = document.getElementById('edit-icon');
+        // editBtn.style.display = 'none';
     }
     getAllDetails();
 
@@ -64,7 +64,7 @@ function getAllDetails() {
                 <td>
                     <span class="points-view">${element.loyaltyPoints}</span>
                     <input type="text" class="points-edit form-control d-none" value="${element.loyaltyPoints}">
-                    <i class="bi bi-pencil-square points-edit-icon" style="cursor: pointer;"></i>
+                    <i class="bi bi-pencil-square points-edit-icon" style="cursor: pointer;" id="edit-icon"></i>
                     <button class="btn btn-primary btn-sm points-save d-none m-1">Save</button>
                 </td>
             `;
@@ -74,6 +74,10 @@ function getAllDetails() {
             const pointsEdit = row.querySelector('.points-edit');
             const pointsEditIcon = row.querySelector('.points-edit-icon');
             const pointsSave = row.querySelector('.points-save');
+
+            if (adminRole === 'Admin') {
+                pointsEditIcon.style.display = 'none';
+            }
 
             pointsEditIcon.addEventListener('click', () => {
                 pointsView.classList.add('d-none');
