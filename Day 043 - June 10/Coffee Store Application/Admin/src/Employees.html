@@ -70,7 +70,7 @@
                             <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
                             <button class="btn btn-dark mx-2" type="submit">Search</button>
                         </form>
-                        <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href = './UpdateSalary.html'">Update Employee Salary</button>
+                        <!-- <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href = './Update'">Update Employee Salary</button> -->
                     </div>
                     <div class="text-wrap table-responsive">
                         <table class="table table-bordered table-auto table-striped table-hover" id="table-custom">
@@ -125,21 +125,14 @@
                 </div>
             </div>
         </div>
-
-        <!-- Unable to update modal -->
-        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="unableToUpdateModal" tabindex="-1" aria-labelledby="unableToUpdateModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="unableToUpdateModalLabel">Unable to update</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Unable to update employee status at the moment. Please try again later.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+        
+        <!-- Toast Notification -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+            <div id="toastNotification" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         </div>

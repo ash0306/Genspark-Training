@@ -8,12 +8,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const navbar = document.getElementById('navBarToggleContent');
 
+    if(token!==null){
+        navbar.innerHTML ='';
+        navbar.innerHTML = `
+        <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
+        <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
+        <a href="./Customers.html" class="text-dark text-decoration-none">Customers</a>
+        <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
+        <button type="button"class="btn btn-dark rounded-lg px-3"><a href="./Logout.html"
+                class="text-light text-decoration-none">Logout</a></button>`;
+    }
+
     if(adminRole=='Admin'){
         navbar.innerHTML ='';
         navbar.innerHTML = `
         <a href="./Customers.html" class="text-dark text-decoration-none">Customers</a>
         <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
         <button type="button" href="#" class="btn btn-dark rounded-lg px-3">
-        <a href="./Login.html" class="text-light text-decoration-none">Login</a></button>`;
+        <a href="./Logout.html" class="text-light text-decoration-none">Logout</a></button>`;
     }
 })

@@ -21,6 +21,9 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body class="px-10">
@@ -57,45 +60,14 @@
             </div>
         </div>
 
-        <!-- Update salary Form -->
+        <!-- Logout -->
         <div class="container p-3" id="div-content">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6 container border rounded shadow-lg">
-                    <div class="row d-flex">
-                        <div class="py-5 col-12">
-                            <div>
-                                <h1 class="text-center">UPDATE SALARY</h1>
-                            </div>
-                            <form class="container needs-validation" id="salaryForm" novalidate>
-                                <!-- EMPLOYEE ID -->
-                                <div class="row m-3">
-                                    <label for="id" class="form-label">Employee ID</label>
-                                    <input type="number" class="form-control" id="id" min="201" placeholder="Enter employee ID" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid ID.
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Valid ID.
-                                    </div>
-                                </div>
-                                <!-- SALARY -->
-                                <div class="row m-3">
-                                    <label for="salary" class="form-label">Salary</label>
-                                    <input type="number" class="form-control" id="salary" placeholder="Enter employee salary" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid non negative number for salary.
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Valid salary.
-                                    </div>
-                                </div>
-                                <!-- SUBMIT -->
-                                <div class="row m-3" id="submit-btn">
-                                    <button type="submit" class="btn btn-dark w-auto" onclick="updateSalary()">Update</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            <div class="row d-flex flex-column gap-5">
+                <div class="col text-center">
+                    <img src="../assets/images/logout.gif" class="img-fluid">
+                </div>
+                <div class="col text-center">
+                    <h1 class="display-1" id="typed-element"></h1>
                 </div>
             </div>
         </div>
@@ -134,8 +106,7 @@
         </div>
     </div>
 
-    <script src="../assets/scripts/ValidationScript.js"></script>
-    <script src="../assets/scripts/UpdateSalaryScript.js"></script>
+    <script src="../assets/scripts/LogoutScript.js"></script>
 </body>
 
 </html>

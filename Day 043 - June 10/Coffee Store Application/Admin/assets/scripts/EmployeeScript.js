@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
+}
+
 function getAllAdminDetails(){
     var typed = new Typed("#typed-element1", {
         strings: ["Employee Details"],
@@ -54,40 +65,79 @@ function getAllAdminDetails(){
         const tableBody = document.getElementsByTagName('tbody')[0];
         tableBody.innerHTML = ''; 
         data.forEach(element => {
-            const row = document.createElement('tr');
-
-            var statusClass = '';
-            var buttonText = '';
-            var buttonClass = '';
-            if (element.status === 'Active') {
-                statusClass = 'text-success fw-bold';
-                buttonText = 'Deactivate Employee';
-                buttonClass = 'btn btn-danger';
-                functionName = 'deactivateEmployee';
-            } else if (element.status === 'Inactive') {
-                statusClass = 'text-danger fw-bold';
-                buttonText = 'Activate Employee';
-                buttonClass = 'btn btn-success';
-                functionName = 'activateEmployee';
-            }
-                
-            row.innerHTML = `
-                <td>${element.id}</td>
-                <td>${element.name}</td>
-                <td>${element.email}</td>
-                <td>${element.phone}</td>
-                <td>${new Date(element.dateOfBirth).toLocaleDateString()}</td>
-                <td>${element.salary}</td>
-                <td>${element.role}</td>
-                <td class="${statusClass}">${element.status}<br>
-                <button class="${buttonClass}" onclick="${functionName}('${element.id}')">${buttonText}</button>
-                </td>`;
+            var row = addRow(element);
             tableBody.appendChild(row);
+
+            const salaryView = row.querySelector('.salary-view');
+            const salaryEdit = row.querySelector('.salary-edit');
+            const salaryEditIcon = row.querySelector('.salary-edit-icon');
+            const salarySave = row.querySelector('.salary-save');
+
+            salaryEditIcon.addEventListener('click', () => {
+                salaryView.classList.add('d-none');
+                salaryEdit.classList.remove('d-none');
+                salaryEditIcon.classList.add('d-none');
+                salarySave.classList.remove('d-none');
+            });
+
+            salarySave.addEventListener('click', () => {
+                const newSalary = salaryEdit.value;
+                var status = updateSalary(element.id, newSalary);
+                console.log(status);
+                if(status === 200){
+                    salaryView.textContent = newSalary;
+                    salaryView.classList.remove('d-none');
+                    salaryEditIcon.classList.remove('d-none');
+                    salaryEdit.classList.add('d-none');
+                    salarySave.classList.add('d-none');
+
+                    newToast("bg-success", "Salary updated successfully");
+                }
+            });
         });
 
     }).catch(error => {
         console.error(error);
     });
+}
+
+function addRow(element){
+    const row = document.createElement('tr');
+
+    var statusClass = '';
+    var buttonText = '';
+    var buttonClass = '';
+    if (element.status === 'Active') {
+        statusClass = 'text-success fw-bold';
+        buttonText = 'Deactivate Employee';
+        buttonClass = 'btn btn-danger';
+        functionName = 'deactivateEmployee';
+    } else if (element.status === 'Inactive') {
+        statusClass = 'text-danger fw-bold';
+        buttonText = 'Activate Employee';
+        buttonClass = 'btn btn-success';
+        functionName = 'activateEmployee';
+    }
+        
+    row.innerHTML = `
+        <td>${element.id}</td>
+        <td>${element.name}</td>
+        <td>${element.email}</td>
+        <td>${element.phone}</td>
+        <td>${new Date(element.dateOfBirth).toLocaleDateString()}</td>
+        
+        <td>
+            <span class="salary-view">${element.salary}</span>
+            <input type="text" class="salary-edit form-control d-none" value="${element.salary}">
+            <i class="bi bi-pencil-square salary-edit-icon" style="cursor: pointer;"></i>
+            <button class="btn btn-primary btn-sm salary-save d-none m-1">Save</button>
+        </td>
+        <td>${element.role}</td>
+        <td class="${statusClass}">${element.status}<br>
+        <button class="${buttonClass}" onclick="${functionName}('${element.id}')">${buttonText}</button>
+        </td>`;
+
+    return row;
 }
 
 function getEmployeeDetails(){
@@ -179,14 +229,10 @@ function searchResults(employeeEmail){
 
 function deactivateEmployee(employeeId){
     if(employeeId === tokenId){
-        var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
-        notUpdatedModal.show();
-        var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
-        if (modalBody) {
-            modalBody.innerHTML += `<br> Cannot update your own status!!!`;
-        }
+        newToast("bg-danger", "Cannot update your own status");
         return;
     }
+
     fetch('http://localhost:5228/api/employee/deactivateEmployee?id='+employeeId,{
         method: 'PUT',
         headers: {
@@ -199,30 +245,24 @@ function deactivateEmployee(employeeId){
         // console.log(data);
 
         if (response.ok) {
-            location.reload();
+            newToast("bg-success", "Status updated successfully. Reloading...");
+            setTimeout(() =>{
+                location.reload();
+            }, 2000);
         }
         else{
-            var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
-            notUpdatedModal.show();
-
-            var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
-            if (modalBody) {
-                modalBody.innerHTML += ` ${data.message}`;
-            }
+            newToast("bg-danger", "Unable to update status. Try again later");
         }
     })
 }
 
 function activateEmployee(employeeId){
     if(employeeId === tokenId){
-        var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
-        notUpdatedModal.show();
-        var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
-        if (modalBody) {
-            modalBody.innerHTML += `<br> Cannot update your own status!!!`;
-        }
+        newToast("bg-danger", "Cannot update your own status");
         return;
     }
+
+    
     fetch('http://localhost:5228/api/employee/activateEmployee?id='+employeeId,{
         method: 'PUT',
         headers: {
@@ -235,16 +275,36 @@ function activateEmployee(employeeId){
         // console.log(data);
 
         if (response.ok) {
-            location.reload();
+            newToast("bg-success", "Status updated successfully. Reloading...");
+            setTimeout(() =>{
+                location.reload();
+            }, 2000);
         }
         else{
-            var notUpdatedModal = new bootstrap.Modal(document.getElementById('unableToUpdateModal'));
-            notUpdatedModal.show();
-
-            var modalBody = document.querySelector('#unableToUpdateModal .modal-body');
-            if (modalBody) {
-                modalBody.innerHTML += ` ${data.message}`;
-            }
+            newToast("bg-danger", "Unable to update status. Try again later");
         }
     })
+}
+
+function updateSalary(employeeId, newSalary){
+    fetch("http://localhost:5228/api/employee/updateSalary",{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            employeeId: employeeId,
+            employeeSalary: newSalary
+        })
+    }).then(async(response) => {
+        var data = await response.json();
+        // console.log(data);
+
+        if(response.status !== 200) {
+            newToast("bg-danger", `${data.message}`);
+            return 0;
+        }
+    })
+    return 200;
 }
