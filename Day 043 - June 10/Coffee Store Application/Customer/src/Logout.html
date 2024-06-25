@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean & Brew</title>
-    <link rel="icon" href="../assets/images/icon.png" type="image/png">
+    <link rel="icon" href="../assets/images/logo.png" type="image/png">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/styles/css/CoffeeShopStyle.css">
@@ -21,6 +21,9 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body class="px-10">
@@ -29,7 +32,7 @@
         <div class="container p-3">
             <div class="row">
                 <div class="col-6 p-3">
-                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a>
+                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none"><img src="../assets/images/logo.png" class="img-fluid" style="width: 40px;" alt="Bean&Brew"> Bean & Brew</a>
                     </h1>
                 </div>
                 <div class="col-6 d-md-none d-sm-flex justify-content-end">
@@ -58,64 +61,17 @@
             </div>
         </div>
 
-        <!-- Update Form -->
+        <!-- Logout -->
         <div class="container p-3" id="div-content">
-            <div class="row">
-                <div class="col-12 col-md-6 mx-auto d-flex flex-column border rounded shadow-lg py-5">
-                    <div>
-                        <h1 class="text-center">UPDATE</h1>
-                    </div>
-                    <div>
-                        <form class="container needs-validation" novalidate>
-                            <div class="row m-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email.
-                                </div>
-                                <div class="valid-feedback">
-                                    Valid Email
-                                </div>
-                            </div>
-                            <div class="row m-3">
-                                <label for="phone" class="form-label">New Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Enter the new phone number"
-                                    minlength="10" maxlength="10" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid phone number of length 10. No need to add country code
-                                </div>
-                                <div class="valid-feedback">
-                                    Valid phone
-                                </div>
-                            </div>
-                            <div class="row m-3" id="update-btn">
-                                <button type="submit" class="btn btn-dark w-auto" onclick="updatePhone()">Update</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="row d-flex flex-column gap-5">
+                <div class="col text-center">
+                    <img src="../assets/images/logout.gif" class="img-fluid">
+                </div>
+                <div class="col text-center">
+                    <h1 class="display-1" id="typed-element"></h1>
                 </div>
             </div>
         </div>
-
-        <!-- Error Modals -->
-        <!-- Invalid Email Modal -->
-        <div class="modal fade" id="invalidEmailModal" tabindex="-1" aria-labelledby="invalidEmailModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="invalidEmailModalLabel">Update Failed</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Invalid email. Please try again.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-        </div>
-
 
         <!-- Footer -->
         <div class="container p-10 mb-5">
@@ -151,8 +107,8 @@
         </div>
     </div>
 
-    <script src="../assets/scripts/ValidationScript.js"></script>
-    <script src="../assets/scripts/UserScript.js"></script>
+    <script src="../assets/scripts/NavbarScript.js"></script>
+    <script src="../assets/scripts/LogoutScript.js"></script>
 </body>
 
 </html>

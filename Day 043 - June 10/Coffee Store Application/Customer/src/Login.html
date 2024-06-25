@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean & Brew</title>
-    <link rel="icon" href="../assets/images/icon.png" type="image/png">
+    <link rel="icon" href="../assets/images/logo.png" type="image/png">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/styles/css/CoffeeShopStyle.css">
@@ -29,7 +29,7 @@
         <div class="container p-3">
             <div class="row">
                 <div class="col-6 p-3">
-                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none">Bean & Brew</a>
+                    <h1 class="fw-bold h5"><a href="./index.html" class="text-dark text-decoration-none"><img src="../assets/images/logo.png" class="img-fluid" style="width: 40px;" alt="Bean&Brew"> Bean & Brew</a>
                     </h1>
                 </div>
                 <div class="col-6 d-md-none d-sm-flex justify-content-end">
@@ -126,20 +126,13 @@
             </div>
         </div>
 
-        <!-- Already Logged In Modal -->
-        <div class="modal fade" id="alreadyLoggedInModal" tabindex="-1" aria-labelledby="alreadyLoggedInModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="alreadyLoggedInModalLabel">Already Logged In</h5>
-                </div>
-                <div class="modal-body">
-                    You are already logged in. Would you like to log out to log in with a different account?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal-close">Close</button>
-                    <button type="button" class="btn btn-primary" id="logoutBtn">Log Out</button>
-                </div>
+        <!-- Toast Notification -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+            <div id="toastNotification" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         </div>

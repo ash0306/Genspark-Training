@@ -6,17 +6,14 @@ function isValidAge() {
     const dobDate = new Date(dobValue);
     const today = new Date();
 
-    // Calculate age
     let age = today.getFullYear() - dobDate.getFullYear();
     const monthDifference = today.getMonth() - dobDate.getMonth();
     const dayDifference = today.getDate() - dobDate.getDate();
 
-    // Adjust age if the birthday hasn't occurred yet this year
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
         age--;
     }
 
-    // Check if age is at least 18
     if (age < 18) {
         dobInput.setCustomValidity("You must be at least 18 years old.");
         dobInput.classList.add('is-invalid');
@@ -59,28 +56,30 @@ document.addEventListener("DOMContentLoaded", function (){
                 phone: phone
             })
         }).then(async (response) => {
-            console.log(response);
             var data = await response.json();
-            console.log(data);
-
-            var registerBtnRow = document.getElementById("register-btn");
 
             if (response.status == 200) {
-                var successMessage = document.createElement("p");
-                successMessage.textContent = "Registration successful. Redirecting ...";
-                successMessage.style.color = "green";
-                registerBtnRow.appendChild(successMessage);
+                newToast("bg-success","Registered successfully! Redirecting...")
 
                 setTimeout(() => {
                     window.location.href = "./Login.html";
                 }, 3000);
             }
             else{
-                var errorMessage = document.createElement("p");
-                errorMessage.textContent = data.message;
-                errorMessage.style.color = "red";
-                registerBtnRow.appendChild(errorMessage);
+                newToast("bg-danger", "Registration failed. "+data.message);
             }
         });
     });
 })
+
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
+}

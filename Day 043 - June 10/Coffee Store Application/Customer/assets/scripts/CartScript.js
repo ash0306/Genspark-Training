@@ -72,18 +72,6 @@ switchCheck.addEventListener('click',function(){
 document.addEventListener('DOMContentLoaded', function() {
     
     AOS.init({ duration: 1500 });
-    
-    if (sessionStorage.getItem("customerToken") == null) {
-        // console.log("customerToken is null");
-        var notLoggedInModal = new bootstrap.Modal(document.getElementById('notLoggedInModal'));
-        notLoggedInModal.show();
-
-        document.getElementById('login-btn').addEventListener('click', function(){
-            window.location.href = './Login.html';
-        });
-        return;
-    }
-
     displayCartItems();
     placeOrder(tokenId, token);
 });
@@ -142,28 +130,15 @@ function placeOrder(tokenId, token){
                 orderItems: orderItems
             })
         }).then(async (response) => {
-            console.log(response);
             var data = await response.json();
-            console.log(data);
-
-            var resultDiv = document.getElementById('order-result');
-            resultDiv.innerHTML = '';
 
             if (response.status == 200) {
-                sessionStorage.removeItem('cart');
-                var successMessage = document.createElement("p");
-                successMessage.textContent = `Order was successfully placed with ID ${data.id}. Redirecting ...`;
-                successMessage.style.color = "green";
-                resultDiv.appendChild(successMessage);
-
+                newToast("bg-success", "Order placed successfully!! Redirecting to Orders...")
                 setTimeout(() => {
                     window.location.href = "./Orders.html";
-                }, 3000);
+                }, 2000);
             } else {
-                var errorMessage = document.createElement("p");
-                errorMessage.textContent = data.message;
-                errorMessage.style.color = "red";
-                resultDiv.appendChild(errorMessage);
+                newToast("bg-danger", data.message);
             }
         }).catch(error => {
             console.error('Error:', error);
@@ -183,6 +158,7 @@ function removeItem(itemName) {
     let cart = JSON.parse(sessionStorage.getItem('cart'));
     cart = cart.filter(cartItem => cartItem.name !== itemName);
     sessionStorage.setItem('cart', JSON.stringify(cart));
+    newToast("bg-success", "Item removed successfully!");
     displayCartItems();
 }
 

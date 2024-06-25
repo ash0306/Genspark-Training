@@ -21,17 +21,6 @@ var snackTyped = new Typed("#snacks-typed", {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    if(token==null){
-        var notLoggedInModal = new bootstrap.Modal(document.getElementById('notLoggedInModal'));
-        notLoggedInModal.show();
-
-        document.getElementById('login-btn').addEventListener('click', function(){
-            window.location.href = './Login.html';
-        })
-        return;
-    }
-
     getProducts();
 
 });
@@ -43,12 +32,10 @@ function getProducts(){
             Authorization: `Bearer ${token}`
         }
     }).then(async (response) => {
-        console.log(response);
         var data = await response.json();
         var hotDrinks = data[0];
         var coldDrinks = data[1];
         var snacks = data[2];
-        console.log(hotDrinks, coldDrinks, snacks);
 
         var hotDrinksDiv = document.getElementById('hot-drinks');
         hotDrinksDiv.innerHTML = '';
@@ -131,12 +118,6 @@ function addToCart(name, price) {
             price: price
         };
         
-        // Add the new item to the cart
         cart.push(newItem);
-        
-        // Save the updated cart to session storage
         sessionStorage.setItem('cart', JSON.stringify(cart));
-        
-        console.log('Item added to cart:', newItem);
-        console.log('Current cart:', cart);
     }

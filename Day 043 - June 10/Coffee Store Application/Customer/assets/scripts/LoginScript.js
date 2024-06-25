@@ -1,30 +1,12 @@
 AOS.init({ duration: 1500 });
 
 document.addEventListener("DOMContentLoaded", function (){
-
-    // Check if already logged in
-    if(sessionStorage.getItem("customerToken")){
-        var alreadyLoggedInModal = new bootstrap.Modal(document.getElementById('alreadyLoggedInModal'));
-        alreadyLoggedInModal.show();
-
-        // Log out button functionality
-        document.getElementById("logoutBtn").addEventListener("click", function() {
-            sessionStorage.removeItem("customerToken");
-            alreadyLoggedInModal.hide();
-        });
-
-        document.getElementById("modal-close").addEventListener("click", function() {
-            window.location.href = './index.html';
-        })
-    }
-
     login();
 })
 
 function login(){
     const form = document.querySelector("form.needs-validation");
 
-    
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -41,26 +23,31 @@ function login(){
                 password:  password
             })
         }).then(async (response) => {
-            console.log(response);
             var data = await response.json();
-            // console.log(data);
+
             sessionStorage.setItem("customerToken", `${data.token}`);
 
-            var loginBtnRow = document.getElementById("login-btn");
-
             if (response.status == 200) {
-                var successMessage = document.createElement("p");
-                successMessage.textContent = "Login successful. Redirecting ...";
-                successMessage.style.color = "green";
-                loginBtnRow.appendChild(successMessage);
+                newToast("bg-success", "Login successful!! Redirecting...");
 
                 setTimeout(() => {
                     window.location.href = "./index.html";
                 }, 3000);
             } else {
-                var invalidLoginModal = new bootstrap.Modal(document.getElementById('invalidLoginModal'));
-                invalidLoginModal.show();
+                newToast("bg-danger", "Login Failed!! Invalid Email or Password.")
             }
         });
     });
+}
+
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
 }
