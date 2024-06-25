@@ -10,18 +10,7 @@ adminRole = tokenPayload["http://schemas.microsoft.com/ws/2008/06/identity/claim
 const adminDetailsDiv = document.getElementById('div-container');
 const employeeDetailsDiv = document.getElementById('div-content');
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    const searchInput = document.getElementById('search-input');
-    searchInput.addEventListener('input', async function() {
-        const employeeEmail = this.value.trim();
-        if (employeeEmail.length === 0) {
-            getAllAdminDetails();
-            return;
-        }
-        searchResults(employeeEmail);
-    });
-    
+document.addEventListener('DOMContentLoaded', function () {    
     if (adminRole == 'Admin') {
         getAllAdminDetails();
     } 
@@ -96,7 +85,31 @@ function getAllAdminDetails(){
                 }
             });
         });
+        
+        const table = $("#table-custom").DataTable({
+        columns: [null, null, null, null, null, null, null, null],
+        pagingType: "full_numbers",
+        pageLength: 10,
+        language: {
+            paginate: {
+            previous: '<span><i class="bi bi-chevron-left"></i></span>',
+            next: '<span><i class="bi bi-chevron-right"></i></span>',
+            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
+            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
+            },
+            lengthMenu:
+            'Display <select class="form-control input-sm">' +
+            '<option value="5">5</option>' +
+            '<option value="10">10</option>' +
+            '<option value="15">15</option>' +
+            '<option value="20">20</option>' +
+            '<option value="25">25</option>' +
+            '<option value="-1">All</option>' +
+            "</select> results",
+        },
+        });
 
+        table.draw();
     }).catch(error => {
         console.error(error);
     });
@@ -119,7 +132,10 @@ function addRow(element){
         buttonClass = 'btn btn-success';
         functionName = 'activateEmployee';
     }
-        
+    
+    if(element.salary === null){
+        element.salary = 0;
+    }
     row.innerHTML = `
         <td>${element.id}</td>
         <td>${element.name}</td>
@@ -183,50 +199,6 @@ function getEmployeeDetails(){
     });
 }
 
-function searchResults(employeeEmail){
-    fetch('http://localhost:5228/api/employee/getAll',{
-        method: 'GET',
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(async(response)=>{
-        const data = await response.json();
-        const tableBody = document.getElementsByTagName('tbody')[0];
-        tableBody.innerHTML = ''; 
-
-        var filteredResults = data.filter(element => element.email.toLowerCase().includes(employeeEmail.toLowerCase()));
-
-        filteredResults.forEach(element => {
-            const row = document.createElement('tr');
-
-            var statusClass = '';
-            var buttonText = '';
-            var buttonClass = '';
-            if (element.status === 'Active') {
-                statusClass = 'text-success fw-bold';
-                buttonText = 'Deactivate Employee';
-                buttonClass = 'btn btn-danger';
-            } else if (element.status === 'Inactive') {
-                statusClass = 'text-danger fw-bold';
-                buttonText = 'Activate Employee';
-                buttonClass = 'btn btn-success';
-            }
-                
-            row.innerHTML = `
-                <td>${element.id}</td>
-                <td>${element.name}</td>
-                <td>${element.email}</td>
-                <td>${element.phone}</td>
-                <td>${element.dateOfBirth}</td>
-                <td>${element.salary}</td>
-                <td>${element.role}</td>
-                <td class="${statusClass}">${element.status}<br>
-                <button class="${buttonClass}">${buttonText}</button>
-                </td>`;
-            tableBody.appendChild(row);
-        });
-    }).catch(error => console.log(error));
-}
 
 function deactivateEmployee(employeeId){
     if(employeeId === tokenId){

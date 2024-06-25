@@ -8,6 +8,21 @@
     margin-bottom: 100px;
 }
 
+input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436) !important;
+}
+
+#flexRadio1:checked, 
+#flexRadio2:checked, 
+#flexRadio3:checked{
+    background-color: black;
+    border-color: black;
+}
+
+select:focus{
+    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436) !important;
+}
+
 //navbar
 .navbar-toggler{
     box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
@@ -52,4 +67,28 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
+}
+
+
+//DataTables
+#table-custom_length{
+    margin: 10px;
+    text-align: start;
+}
+
+#table-custom_filter{
+    margin: 10px 10px 10px 0px;
+    text-align: end;
+}
+
+@media (max-width: 768px) {
+    #table-custom_filter {
+        margin: 10px 0px;
+        text-align: start;
+        padding: 0px;
+    }
+}
+
+#ProductForm{
+    background-color: #ffffffda;
 }

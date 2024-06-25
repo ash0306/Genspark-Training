@@ -13,21 +13,7 @@ const tokenPayload = JSON.parse(atob(tokenArray[1]));
 adminRole = tokenPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
 document.addEventListener('DOMContentLoaded', function(){
-    if(adminRole === 'Admin'){
-        // var editBtn = document.getElementById('edit-icon');
-        // editBtn.style.display = 'none';
-    }
     getAllDetails();
-
-    const searchInput = document.getElementById('search-input');
-    searchInput.addEventListener('input', async function() {
-        const customerEmail = this.value.trim();
-        if (customerEmail.length === 0) {
-            getAllDetails();
-            return;
-        }
-        searchResults(customerEmail);
-    });
 });
 
 function newToast(classBackground, message){
@@ -101,6 +87,30 @@ function getAllDetails() {
                 }
             });
         });
+        const table = $("#table-custom").DataTable({
+        columns: [null, null, null, null, null],
+        pagingType: "full_numbers",
+        pageLength: 10,
+        language: {
+            paginate: {
+            previous: '<span><i class="bi bi-chevron-left"></i></span>',
+            next: '<span><i class="bi bi-chevron-right"></i></span>',
+            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
+            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
+            },
+            lengthMenu:
+            'Display <select class="form-control input-sm">' +
+            '<option value="5">5</option>' +
+            '<option value="10">10</option>' +
+            '<option value="15">15</option>' +
+            '<option value="20">20</option>' +
+            '<option value="25">25</option>' +
+            '<option value="-1">All</option>' +
+            "</select> results",
+        },
+        });
+
+        table.draw();
     }).catch(error => console.log(error));
 }
 
