@@ -43,7 +43,7 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-6 p-2">
                     <div id="navBarToggleContent"
                         class="collapse d-md-flex justify-content-end gap-3 align-items-center text-end ml-auto">
                         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
@@ -113,13 +113,17 @@
                                 </div>
                                 <div class="row m-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Enter password"
-                                        minlength="7" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid password of min length 7.
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Valid password
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="password" placeholder="Enter password" minlength="8" required>
+                                        <span class="input-group-text" id="toggle-password">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </span>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid password of min length 8.
+                                        </div>
+                                        <div class="valid-feedback">
+                                            Valid password
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row m-3" id="register-btn">

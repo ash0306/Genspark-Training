@@ -62,12 +62,14 @@ function getAllAdminDetails(){
             const salaryEdit = row.querySelector('.salary-edit');
             const salaryEditIcon = row.querySelector('.salary-edit-icon');
             const salarySave = row.querySelector('.salary-save');
+            const cancelChanges = row.querySelector('#cancel-changes');
 
             salaryEditIcon.addEventListener('click', () => {
                 salaryView.classList.add('d-none');
                 salaryEdit.classList.remove('d-none');
                 salaryEditIcon.classList.add('d-none');
                 salarySave.classList.remove('d-none');
+                cancelChanges.classList.remove('d-none');
             });
 
             salarySave.addEventListener('click', () => {
@@ -80,36 +82,21 @@ function getAllAdminDetails(){
                     salaryEditIcon.classList.remove('d-none');
                     salaryEdit.classList.add('d-none');
                     salarySave.classList.add('d-none');
+                    cancelChanges.classList.add('d-none');
 
                     newToast("bg-success", "Salary updated successfully");
                 }
             });
-        });
-        
-        const table = $("#table-custom").DataTable({
-        columns: [null, null, null, null, null, null, null, null],
-        pagingType: "full_numbers",
-        pageLength: 10,
-        language: {
-            paginate: {
-            previous: '<span><i class="bi bi-chevron-left"></i></span>',
-            next: '<span><i class="bi bi-chevron-right"></i></span>',
-            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
-            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
-            },
-            lengthMenu:
-            'Display <select class="form-control input-sm">' +
-            '<option value="5">5</option>' +
-            '<option value="10">10</option>' +
-            '<option value="15">15</option>' +
-            '<option value="20">20</option>' +
-            '<option value="25">25</option>' +
-            '<option value="-1">All</option>' +
-            "</select> results",
-        },
-        });
 
-        table.draw();
+            cancelChanges.addEventListener('click', () => {
+                salaryView.classList.remove('d-none');
+                salaryEdit.classList.add('d-none');
+                salaryEditIcon.classList.remove('d-none');
+                salarySave.classList.add('d-none');
+                cancelChanges.classList.add('d-none');
+            });
+        });
+        addDataTable();
     }).catch(error => {
         console.error(error);
     });
@@ -147,7 +134,8 @@ function addRow(element){
             <span class="salary-view">${element.salary}</span>
             <input type="number" class="salary-edit form-control d-none" value="${element.salary}">
             <i class="bi bi-pencil-square salary-edit-icon" style="cursor: pointer;"></i>
-            <button class="btn btn-primary btn-sm salary-save d-none m-1">Save</button>
+            <button class="btn btn-success btn-sm salary-save d-none m-1">Save</button>
+            <button class="btn btn-danger m-1 btn-sm d-none" id="cancel-changes">Cancel</button>
         </td>
         <td>${element.role}</td>
         <td class="${statusClass}">${element.status}<br>
@@ -198,7 +186,6 @@ function getEmployeeDetails(){
         console.error(error);
     });
 }
-
 
 function deactivateEmployee(employeeId){
     if(employeeId === tokenId){
@@ -280,4 +267,31 @@ function updateSalary(employeeId, newSalary){
         }
     })
     return 200;
+}
+
+function addDataTable() {
+    const table = $("#table-custom").DataTable({
+        columns: [null, null, null, null, null, null, null, null],
+        pagingType: "full_numbers",
+        pageLength: 10,
+        language: {
+            paginate: {
+            previous: '<span><i class="bi bi-chevron-left"></i></span>',
+            next: '<span><i class="bi bi-chevron-right"></i></span>',
+            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
+            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
+            },
+            lengthMenu:
+            'Display <select class="form-control input-sm">' +
+            '<option value="5">5</option>' +
+            '<option value="10">10</option>' +
+            '<option value="15">15</option>' +
+            '<option value="20">20</option>' +
+            '<option value="25">25</option>' +
+            '<option value="-1">All</option>' +
+            "</select> results",
+        },
+    });
+
+    table.draw();
 }

@@ -76,37 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
     placeOrder(tokenId, token);
 });
 
-function displayCartItems() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalContainer = document.getElementById('cart-total');
-
-    const cart = JSON.parse(sessionStorage.getItem('cart'));
-    if (!cart || cart.length <= 0) {
-        cartItemsContainer.innerHTML = '<div class="fw-bold h4">Cart is empty!! Add products to place your order.</div><br>';
-        return;
-    }
-
-    cartItemsContainer.innerHTML = '';
-    cartTotalContainer.innerHTML = '';
-
-    cart.forEach((item) => {
-        const itemRow = document.createElement('div');
-        itemRow.classList.add('d-flex', 'justify-content-between', 'border-bottom', 'pb-2', 'mb-2');
-        itemRow.innerHTML = `
-            <span><button class="bg-danger border border-none rounded text-white m-2" onclick="removeItem('${item.name}')"><i class="bi bi-trash-fill"></i></button>${item.name}</span>
-            <span>Rs.${item.price}</span>
-        `;
-        cartItemsContainer.appendChild(itemRow);
-
-        total += parseFloat(item.price);
-    });
-
-    cartTotalContainer.innerHTML = `
-        <span>Total</span>
-        <span>Rs.${total}</span>
-    `;
-}
-
 function placeOrder(tokenId, token){
     const form = document.getElementById('orderForm');
     const cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -133,6 +102,7 @@ function placeOrder(tokenId, token){
             var data = await response.json();
 
             if (response.status == 200) {
+                sessionStorage.removeItem("cart");
                 newToast("bg-success", "Order placed successfully!! Redirecting to Orders...")
                 setTimeout(() => {
                     window.location.href = "./Orders.html";
@@ -156,10 +126,59 @@ function placeOrder(tokenId, token){
 function removeItem(itemName) {
     console.log("Removing item: ", itemName);
     let cart = JSON.parse(sessionStorage.getItem('cart'));
-    cart = cart.filter(cartItem => cartItem.name !== itemName);
+    let itemPrice = 0;
+
+    const index = cart.findIndex(cartItem => cartItem.name === itemName);
+    if (index !== -1) {
+        itemPrice = parseFloat(cart[index].price);
+        cart.splice(index, 1);
+        total -= itemPrice;
+    }
+
     sessionStorage.setItem('cart', JSON.stringify(cart));
     newToast("bg-success", "Item removed successfully!");
     displayCartItems();
+}
+
+function displayCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalContainer = document.getElementById('cart-total');
+
+    const cart = JSON.parse(sessionStorage.getItem('cart'));
+    if (!cart || cart.length <= 0) {
+        cartItemsContainer.innerHTML = '<div class="fw-bold h4">Cart is empty!! Add products to place your order.</div><br>';
+        total = 0;
+        cartTotalContainer.innerHTML = `
+            <span>Total</span>
+            <span>Rs.${total}</span>
+        `;
+        return;
+    }
+
+    cartItemsContainer.innerHTML = '';
+    total = 0;
+
+    cart.forEach((item) => {
+        const itemRow = document.createElement('div');
+        itemRow.classList.add('d-flex', 'justify-content-between', 'border-bottom', 'pb-2', 'mb-2');
+        itemRow.innerHTML = `
+            <span>
+                <button class="bg-danger border border-none rounded text-white m-2" onclick="removeItem('${item.name}')">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+                ${item.name}
+            </span>
+            <span>Rs.${item.price}</span>
+        `;
+        cartItemsContainer.appendChild(itemRow);
+
+        total += parseFloat(item.price);
+    });
+
+    cartTotalContainer.innerHTML = `
+        <span>Total</span>
+        <span>Rs.${total}</span>
+    `;
 }
 
 function newToast(classBackground, message){

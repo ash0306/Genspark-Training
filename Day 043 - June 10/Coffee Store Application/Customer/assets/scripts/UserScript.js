@@ -59,7 +59,7 @@ function displayUserDetails() {
                 <li class="list-group-item"><strong>Phone : </strong><span id="phone-span">${data.phone}</span>
                     <i class="bi bi-pencil-square" id="edit-phone" style="cursor:pointer; margin-left: 10px; float:right;"></i>
                     <input type="number" maxlength="10" minlength="10" id="phone-input" value="${data.phone}" class="form-control d-none my-2">
-                    <button class="btn btn-primary m-1 btn-sm d-none" id="save-changes">Save</button>
+                    <button class="btn btn-success m-1 btn-sm d-none" id="save-changes">Save</button>
                     <button class="btn btn-danger m-1 btn-sm d-none" id="cancel-changes">Cancel</button>
                 </li>
                 <li class="list-group-item"><strong>Loyalty Points : </strong>${data.loyaltyPoints}</li>

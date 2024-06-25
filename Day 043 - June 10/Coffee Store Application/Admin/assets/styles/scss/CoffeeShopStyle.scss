@@ -9,7 +9,7 @@
 }
 
 input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436) !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 #flexRadio1:checked, 
@@ -20,12 +20,12 @@ input:focus {
 }
 
 select:focus{
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436) !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 //navbar
 .navbar-toggler{
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;;
 }
 
 
@@ -36,11 +36,11 @@ select:focus{
 }
 
 #switchCheck:checked:focus {
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;;
 }
 
 #switchCheck:focus {
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;;
 }
 
 
@@ -51,11 +51,11 @@ select:focus{
 }
 
 .form-check-input:checked:focus{
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;;
 }
 
 .form-check-input:focus{
-    box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;;
 }
 
 // number input

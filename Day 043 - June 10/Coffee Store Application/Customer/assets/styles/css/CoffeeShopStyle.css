@@ -8,8 +8,23 @@
   margin-bottom: 100px;
 }
 
+input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
+}
+
+#flexRadio1:checked,
+#flexRadio2:checked,
+#flexRadio3:checked {
+  background-color: black;
+  border-color: black;
+}
+
+select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
+}
+
 .navbar-toggler {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 #switchCheck:checked {
@@ -18,11 +33,11 @@
 }
 
 #switchCheck:checked:focus {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 #switchCheck:focus {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 #flexRadio.form-check-input:checked {
@@ -31,11 +46,11 @@
 }
 
 .form-check-input:checked:focus {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.25rem rgba(102, 103, 104, 0.436);
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0) !important;
 }
 
 input::-webkit-outer-spin-button,
@@ -47,4 +62,25 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+#table-custom_length {
+  margin: 10px;
+  text-align: start;
+}
+
+#table-custom_filter {
+  margin: 10px 10px 10px 0px;
+  text-align: end;
+}
+
+@media (max-width: 768px) {
+  #table-custom_filter {
+    margin: 10px 0px;
+    text-align: start;
+    padding: 0px;
+  }
+}
+#ProductForm {
+  background-color: rgba(255, 255, 255, 0.8549019608);
 }/*# sourceMappingURL=CoffeeShopStyle.css.map */

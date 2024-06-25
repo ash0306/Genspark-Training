@@ -109,7 +109,6 @@ function createCard(item) {
     return productCard;
 }
 
-
 function addToCart(name, price) {
         let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
         
@@ -120,4 +119,17 @@ function addToCart(name, price) {
         
         cart.push(newItem);
         sessionStorage.setItem('cart', JSON.stringify(cart));
+        newToast("bg-success", "Item added successfully!");
+}
+
+function newToast(classBackground, message) {
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
     }
+    toastNotification.show();
+}

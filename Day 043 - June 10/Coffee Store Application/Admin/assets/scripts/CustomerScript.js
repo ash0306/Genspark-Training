@@ -50,8 +50,9 @@ function getAllDetails() {
                 <td>
                     <span class="points-view">${element.loyaltyPoints}</span>
                     <input type="text" class="points-edit form-control d-none" value="${element.loyaltyPoints}">
-                    <i class="bi bi-pencil-square points-edit-icon" style="cursor: pointer;" id="edit-icon"></i>
-                    <button class="btn btn-primary btn-sm points-save d-none m-1">Save</button>
+                    <i class="bi bi-pencil-square points-edit-icon" style="cursor: pointer; float:right;" id="edit-icon"></i>
+                    <button class="btn btn-success btn-sm points-save d-none m-1">Save</button>
+                    <button class="btn btn-danger m-1 btn-sm d-none" id="cancel-changes">Cancel</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -60,6 +61,7 @@ function getAllDetails() {
             const pointsEdit = row.querySelector('.points-edit');
             const pointsEditIcon = row.querySelector('.points-edit-icon');
             const pointsSave = row.querySelector('.points-save');
+            const cancelChanges = row.querySelector('#cancel-changes');
 
             if (adminRole === 'Admin') {
                 pointsEditIcon.style.display = 'none';
@@ -70,6 +72,7 @@ function getAllDetails() {
                 pointsEdit.classList.remove('d-none');
                 pointsEditIcon.classList.add('d-none');
                 pointsSave.classList.remove('d-none');
+                cancelChanges.classList.remove('d-none');
             });
 
             pointsSave.addEventListener('click', () => {
@@ -82,35 +85,21 @@ function getAllDetails() {
                     pointsEditIcon.classList.remove('d-none');
                     pointsEdit.classList.add('d-none');
                     pointsSave.classList.add('d-none');
+                    cancelChanges.classList.add('d-none');
 
                     newToast("bg-success", "Points updated successfully");
                 }
             });
-        });
-        const table = $("#table-custom").DataTable({
-        columns: [null, null, null, null, null],
-        pagingType: "full_numbers",
-        pageLength: 10,
-        language: {
-            paginate: {
-            previous: '<span><i class="bi bi-chevron-left"></i></span>',
-            next: '<span><i class="bi bi-chevron-right"></i></span>',
-            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
-            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
-            },
-            lengthMenu:
-            'Display <select class="form-control input-sm">' +
-            '<option value="5">5</option>' +
-            '<option value="10">10</option>' +
-            '<option value="15">15</option>' +
-            '<option value="20">20</option>' +
-            '<option value="25">25</option>' +
-            '<option value="-1">All</option>' +
-            "</select> results",
-        },
-        });
 
-        table.draw();
+            cancelChanges.addEventListener('click', () => {
+                pointsView.classList.remove('d-none');
+                pointsEdit.classList.add('d-none');
+                pointsEditIcon.classList.remove('d-none');
+                pointsSave.classList.add('d-none');
+                cancelChanges.classList.add('d-none');
+            });
+        });
+        addDataTable();
     }).catch(error => console.log(error));
 }
 
@@ -162,4 +151,31 @@ function updatePoints(customerEmail, newPoints){
         }
     })
     return 200;
+}
+
+function addDataTable(){
+    const table = $("#table-custom").DataTable({
+        columns: [null, null, null, null, null],
+        pagingType: "full_numbers",
+        pageLength: 10,
+        language: {
+            paginate: {
+            previous: '<span><i class="bi bi-chevron-left"></i></span>',
+            next: '<span><i class="bi bi-chevron-right"></i></span>',
+            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
+            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
+            },
+            lengthMenu:
+            'Display <select class="form-control input-sm">' +
+            '<option value="5">5</option>' +
+            '<option value="10">10</option>' +
+            '<option value="15">15</option>' +
+            '<option value="20">20</option>' +
+            '<option value="25">25</option>' +
+            '<option value="-1">All</option>' +
+            "</select> results",
+        },
+    });
+
+    table.draw();
 }

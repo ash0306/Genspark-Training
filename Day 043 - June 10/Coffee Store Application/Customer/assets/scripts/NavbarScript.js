@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function(){
         navbar.innerHTML = `
         <a href="./Products.html" class="text-dark text-decoration-none">Products</a>
         <a href="./Orders.html" class="text-dark text-decoration-none">Orders</a>
-        <a href="./Customers.html" class="text-dark text-decoration-none">Customers</a>
-        <a href="./Employees.html" class="text-dark text-decoration-none">Employees</a>
+        <a href="./User.html" class="text-dark text-decoration-none">User</a>
+        <a href="./Cart.html" class="text-dark text-decoration-none h4"><i class="bi bi-cart"></i></a>
         <button type="button"class="btn btn-dark rounded-lg px-3"><a href="./Logout.html"
                 class="text-light text-decoration-none">Logout</a></button>`;
     }

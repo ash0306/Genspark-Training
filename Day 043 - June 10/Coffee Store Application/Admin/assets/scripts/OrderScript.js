@@ -54,35 +54,41 @@ function displayOrders() {
             if (element.status === 'Placed') {
                 card.id = 'placed-order';
                 card.innerHTML = `
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #${element.id}</h5>
-                        <p class="card-text">
-                            <ul>
-                                ${orderList.innerHTML}
-                            </ul>
-                        </p>
+                    <div class="card-body h-auto d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Order #${element.id}</h5>
+                            <p class="card-text">
+                                <ul>
+                                    ${orderList.innerHTML}
+                                </ul>
+                            </p>
+                        </div>
                         <a href="#" class="btn btn-dark" onclick="updateOrderStatus(${element.id}, 'Preparing')">Move to preparing</a>
                     </div>
                 `;
                 placedDiv.appendChild(card);
-            } else if (element.status === 'Preparing') {
+            } 
+            else if (element.status === 'Preparing') {
                 card.id = 'preparing-order';
                 card.innerHTML = `
-                    <div class="card-body h-auto">
-                        <h5 class="card-title">Order #${element.id}</h5>
-                        <p class="card-text">
-                            <ul>
-                                ${orderList.innerHTML}
-                            </ul>
-                        </p>
+                    <div class="card-body h-auto d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Order #${element.id}</h5>
+                            <p class="card-text">
+                                <ul>
+                                    ${orderList.innerHTML}
+                                </ul>
+                            </p>
+                        </div>
                         <a href="#" class="btn btn-dark" onclick="updateOrderStatus(${element.id}, 'Ready')">Move to ready</a>
                     </div>
                 `;
                 preparingDiv.appendChild(card);
-            } else if (element.status === 'Ready') {
+            } 
+            else if (element.status === 'Ready') {
                 card.id = 'ready-order';
                 card.innerHTML = `
-                    <div class="card-body h-auto">
+                    <div class="card-body h-auto d-flex flex-column justify-column-between">
                         <h5 class="card-title">Order #${element.id}</h5>
                         <p class="card-text">
                             <ul>

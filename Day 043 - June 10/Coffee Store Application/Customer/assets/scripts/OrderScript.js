@@ -26,6 +26,7 @@ function displayOrders() {
         }
     }).then(async (response) => {
         const data = await response.json();
+        data.sort((a, b) => b.orderId - a.orderId);
 
         var orderDiv = document.getElementById('accordionOrders');
         orderDiv.innerHTML = '';
@@ -49,10 +50,10 @@ function displayOrders() {
             
             var orderBody=``;
             if(element.orderStatus == 'Placed'){
-                orderBody = newPlacedOrder();
+                orderBody = newPlacedOrder(element, orderList);
             }
             else{
-                orderBody = newOrder();
+                orderBody = newOrder(element, orderList);
             }
             
             orderItem.innerHTML = orderBody;
@@ -65,7 +66,7 @@ function displayOrders() {
     })
 }
 
-function newPlacedOrder(){
+function newPlacedOrder(element, orderList) {
     var orderBody = `
         <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#order${count}" aria-expanded="true" aria-controls="order${count}">
@@ -91,7 +92,7 @@ function newPlacedOrder(){
     return orderBody;
 }
 
-function newOrder(){
+function newOrder(element, orderList){
     var orderBody = `
         <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#order${count}" aria-expanded="true" aria-controls="order${count}">
