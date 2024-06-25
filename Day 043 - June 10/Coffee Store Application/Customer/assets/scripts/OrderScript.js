@@ -84,7 +84,7 @@ function newPlacedOrder(element, orderList) {
                     </li>
                     <li><strong>Order Status:</strong>${element.orderStatus}</li>
                     <li><strong>Total Price:</strong>${element.totalOrderPrice}</li>
-                    <button class="btn btn-danger my-3" id="cancel-btn">Cancel</button>
+                    <button class="btn btn-danger my-3" id="cancel-btn" onclick="cancelOrder(${element.orderId})">Cancel</button>
                 </ul>
             </div>
         </div>`;
@@ -127,4 +127,26 @@ function newToast(classBackground, message){
         toastBody.innerHTML = `${message}`;
     }
     toastNotification.show();
+}
+
+function cancelOrder(orderId) {
+    fetch('http://localhost:5228/api/orders/cancelOrder?orderId='+orderId, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(async (response) => {
+        console.log(response);
+        const data = await response.json();
+
+        if(response.status == 200){
+            newToast('bg-success', "Order canceled successfully!");
+            displayOrders();
+        }
+        else{
+            newToast('bg-danger', data.message);
+        }
+    }).catch(error => {
+        console.error(error);
+    })
 }
