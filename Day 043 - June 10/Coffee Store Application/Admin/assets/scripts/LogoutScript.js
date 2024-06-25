@@ -6,5 +6,4 @@ var typed = new Typed("#typed-element", {
 });
 document.addEventListener("DOMContentLoaded", function() {
     sessionStorage.removeItem("employeeToken");
-    console.log("logged out");
 })

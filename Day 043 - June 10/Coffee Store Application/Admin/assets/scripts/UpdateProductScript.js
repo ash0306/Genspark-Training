@@ -40,9 +40,7 @@ function updateProduct(){
                 updatePrice(nameInput.value, priceInput.value);
             }
 
-            var redirectMessage = createElement('p');
-            redirectMessage.textContent = "Update successful. Redirecting...";
-            submitBtn.appendChild(redirectMessage);
+            newToast("bg-success", "Update successful. Redirecting...");
             
             window.setTimeout(() => {
                 window.location.href = "./Products.html";

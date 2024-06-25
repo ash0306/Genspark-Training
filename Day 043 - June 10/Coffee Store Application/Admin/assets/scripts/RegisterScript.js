@@ -95,9 +95,7 @@ function register(fetchUrl){
             phone: phone
         })
     }).then(async (response) => {
-        // console.log(response);
         var data = await response.json();
-        // console.log(data);
 
         if (response.status == 200) {
             newToast("bg-success", "Registration successful. Redirecting ...");

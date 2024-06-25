@@ -113,12 +113,24 @@ function updateOrderStatus(orderId, orderStatus) {
         })
     }).then(async (response) => {
         var data = await response.json();
-        console.log(data);
 
         if (response.status === 200) {
+            newToast("bg-success", "Updated order status successfully.");
             displayOrders();
         }
     }).catch(error => {
         console.error(error);
     });
+}
+
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
 }
