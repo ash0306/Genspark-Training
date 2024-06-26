@@ -94,7 +94,7 @@ function getProducts(){
 
 function createCard(item) {
     const productCard = document.createElement('div');
-    productCard.className = 'card col-md-3 shadow-lg';
+    productCard.className = 'card col-md-3 col-sm-5 shadow-lg';
     productCard.setAttribute('data-aos', 'flip-up');
 
     const cardContent = `

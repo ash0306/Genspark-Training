@@ -59,20 +59,26 @@ function newProduct(){
 
             var submitBtn = document.getElementById("submit-btn");
             if(response.status === 200) {
-                var successMessage = document.createElement("p");
-                successMessage.textContent = "Product added successfully. Redirecting...";
-                successMessage.style.color = "green";
-                submitBtn.appendChild(successMessage);
+                newToast("bg-success","Product created successfully!! Redirecting....")
                 setTimeout(() => {
                     window.location.href = "./Products.html";
                 }, 2000);
             }
             else{
-                var errorMessage = document.createElement("p");
-                errorMessage.textContent = data.message;
-                errorMessage.style.color = "red";
-                submitBtn.appendChild(errorMessage);
+                newToast("bg-danger", "Product creation failed. "+data.message);
             }
         })
     });
+}
+
+function newToast(classBackground, message){
+    const toastNotification = new bootstrap.Toast(document.getElementById('toastNotification'));
+    var toast = document.getElementById('toastNotification');
+    toast.className = 'toast align-items-center text-white border-0';
+    toast.classList.add(`${classBackground}`);
+    var toastBody = document.querySelector(".toast-body");
+    if (toastBody) {
+        toastBody.innerHTML = `${message}`;
+    }
+    toastNotification.show();
 }

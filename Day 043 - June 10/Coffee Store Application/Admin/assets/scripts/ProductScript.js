@@ -38,7 +38,7 @@ function getAllProducts(){
             const row = addRow(element);
             tableBody.appendChild(row);
         });
-
+        addDataTable();
     }).catch(error => {
         console.error(error);
     });
@@ -102,4 +102,31 @@ function searchResults(productName){
             tableBody.appendChild(row);
         });
     }).catch(error => console.log(error));
+}
+
+function addDataTable() {
+    const table = $("#table-custom").DataTable({
+        columns: [null, null, null, null, null, null, null],
+        pagingType: "full_numbers",
+        pageLength: 5,
+        language: {
+            paginate: {
+            previous: '<span><i class="bi bi-chevron-left"></i></span>',
+            next: '<span><i class="bi bi-chevron-right"></i></span>',
+            first: '<span><i class="bi bi-chevron-bar-left"></i></span>',
+            last: '<span><i class="bi bi-chevron-bar-right"></i></span>',
+            },
+            lengthMenu:
+            'Display <select class="form-control input-sm">' +
+            '<option value="5">5</option>' +
+            '<option value="10">10</option>' +
+            '<option value="15">15</option>' +
+            '<option value="20">20</option>' +
+            '<option value="25">25</option>' +
+            '<option value="-1">All</option>' +
+            "</select> results",
+        },
+    });
+
+    table.draw();
 }

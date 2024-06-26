@@ -36,6 +36,8 @@
 
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"/>
 </head>
 
 <body class="px-10">
@@ -78,10 +80,6 @@
                 <div class="col" id="mainColumn">
                     <h1 class="fw-bold my-3" id="typed-element"></h1>
                     <div class="d-flex justify-content-end gap-2 my-3">
-                        <form id="search-form" class="d-flex" role="search">
-                            <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                            <button class="btn btn-dark mx-2" type="submit">Search</button>
-                        </form>
                         <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href = './AddProduct.html';">+ Add Product</button>
                         <button type="button" class="btn btn-outline-dark rounded-lg px-3" onclick="window.location.href = './UpdateProduct.html'">Update Product</button>
                     </div>
@@ -156,6 +154,12 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- DataTable -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="../assets/scripts/TokenValidationScript.js"></script>
     <script src="../assets/scripts//NavbarScript.js"></script>
