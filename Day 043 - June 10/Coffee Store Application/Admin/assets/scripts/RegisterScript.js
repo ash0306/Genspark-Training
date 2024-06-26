@@ -59,6 +59,11 @@ document.addEventListener("DOMContentLoaded", function (){
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          return;
+        }
+
         var radios = document.getElementsByName('flexRadioButton');
         for (var i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {

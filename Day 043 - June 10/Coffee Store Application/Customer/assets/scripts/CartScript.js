@@ -30,7 +30,6 @@ switchCheck.addEventListener('click',function(){
         
         getUserLoyaltyPoints()
         .then( userPoints => {
-            console.log(userPoints);
             if(userPoints < 100){
                 newToast("bg-danger","You have less than 100 points. Need to have atleast a hundred points to use loyalty points");
                 switchCheck.checked = false;
@@ -124,7 +123,6 @@ function placeOrder(tokenId, token){
 }
 
 function removeItem(itemName) {
-    console.log("Removing item: ", itemName);
     let cart = JSON.parse(sessionStorage.getItem('cart'));
     let itemPrice = 0;
 

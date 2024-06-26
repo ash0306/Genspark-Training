@@ -25,6 +25,11 @@ function updateProduct(){
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          return;
+        }
+
         if(statusInput.value === "" && stockInput.value === "" && priceInput.value === ""){
             form.classList.add('is-invalid');
             form.classList.remove('is-valid');

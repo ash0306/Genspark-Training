@@ -100,7 +100,7 @@ function getAllDetails() {
             });
         });
         addDataTable();
-    }).catch(error => console.log(error));
+    })
 }
 
 function searchResults(customerEmail){
@@ -128,7 +128,7 @@ function searchResults(customerEmail){
             `;
             tableBody.appendChild(row);
         });
-    }).catch(error => console.log(error));
+    })
 }
 
 function updatePoints(customerEmail, newPoints){

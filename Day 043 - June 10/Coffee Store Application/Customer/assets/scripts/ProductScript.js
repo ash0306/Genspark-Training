@@ -94,12 +94,12 @@ function getProducts(){
 
 function createCard(item) {
     const productCard = document.createElement('div');
-    productCard.className = 'card col-md-3 col-sm-5 shadow-lg';
+    productCard.className = 'card col-md-3 col-sm-5 shadow-lg p-0';
     productCard.setAttribute('data-aos', 'flip-up');
 
     const cardContent = `
-        <img src="${item.image}" class="card-img-top py-4"  alt="${item.name}">
-        <div class="card-body h-auto">
+        <img src="${item.image}" class="card-img-top rounded"  alt="${item.name}">
+        <div class="card-body h-auto p-4">
             <h5 class="card-title">${item.name}</h5>
             <p class="card-text">${item.description}</p>
             <p id="price"><strong>Rs.${item.price}</strong></p>

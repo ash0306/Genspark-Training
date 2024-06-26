@@ -66,6 +66,7 @@ function addRow(element){
 
     return row;
 }
+
 function searchResults(productName){
     fetch('http://localhost:5228/api/product/getAllProducts',{
         method: 'GET',
@@ -101,7 +102,7 @@ function searchResults(productName){
                 <td>${element.stock}</td>`;
             tableBody.appendChild(row);
         });
-    }).catch(error => console.log(error));
+    })
 }
 
 function addDataTable() {

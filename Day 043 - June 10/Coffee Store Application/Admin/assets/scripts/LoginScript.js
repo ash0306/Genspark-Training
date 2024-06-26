@@ -21,6 +21,10 @@ function login(){
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          return;
+        }
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
