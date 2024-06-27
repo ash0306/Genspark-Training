@@ -1,3 +1,5 @@
+# 7) Take 10 numbers and find the average of all the prime numbers in the collection
+
 def is_prime(number):
     if number <= 1:
         return False

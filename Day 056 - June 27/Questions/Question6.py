@@ -1,3 +1,5 @@
+# 6) Find if the given number is prime
+
 def is_prime(number):
     if number <= 1:
         return False

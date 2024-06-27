@@ -1,3 +1,5 @@
+# 5) Add validation the entered  name, age, date of birth and phone print details in proper format
+
 import re
 
 def get_and_validate_details():

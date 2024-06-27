@@ -1,3 +1,5 @@
+# 3) Take name and gender print greet with salutation
+
 name = input("Enter a name:")
 gender = input("Enter your gender:")
 gender = gender.lower()
