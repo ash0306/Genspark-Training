@@ -65,7 +65,7 @@ def save_as_pdf():
         pdf.cell(200, 10, txt="", ln=True)
 
     pdf.output("Day 058 - July 01/Question/employees.pdf")
-    print("Employee details saved to employees.pdf")
+    print("File saved successfully")
 
 def save_to_file():
     print(f"{'Save as':*^30}")
@@ -151,7 +151,7 @@ while True:
             print(f'{'':*^50}\n\n')
         case 4:
             # read from file
-            employees = read_excel_data()
+            xls_data = read_excel_data()
             print('File read successfully')
             print(f'{'':*^50}\n\n')
         case 5:
