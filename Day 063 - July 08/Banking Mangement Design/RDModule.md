@@ -14,6 +14,7 @@
     - `amountDepositedTillDate:Double` - Amount deposited by till date by the customer
   
   - Methods:
+    - `createRDAccount()` - Create a new RD account
     - `addDeposit()` - Deposit the amount for each interval
     - `calcualteInterest()` - Calculate interest for each quarter
     - `calculateMaturityAmount()` - Calucate the total maturity amount to be given to the customer(including interest)
@@ -44,6 +45,7 @@
 
 **RDService**
 - **Methods**:
+  - `createRDAccount()` - Creates a new RD account
   - `addDeposit(RdDTO rd) : RdReturnDTO` - Deposit the amount for each interval
   - `calcualteInterest() : double` - Calculate interest for each quarter
   - `calculateMaturityAmount() : double` - Calucate the total maturity amount to be given to the customer(including interest)
@@ -56,6 +58,7 @@
 
 **RDController**
 - **Endpoints**:
+  - `POST /reccuring_deposit/new`: Endpoint to create a new RD account
   - `POST /recurring_deposit/deposit`: Endpoint for initiating a deposit. (This utilizes the `addDeposit()` function in services)
   - `GET /recurring_deposit/calculate_interest`: Endpoint for calcualting interest. (This utilizes the `calculateInterest()` function in services)
   - `GET /recurring_deposit/calculate_amount`: Endpoint for calculating total maturity amount. (This utilizes the `calculateMaturityAmount()` function in services)
@@ -64,6 +67,7 @@
   - `PUT /recurring_deposit/extend_rd` : Endpoint for extending the tenure of the RD
 
 - **Methods**:
+  - `createRDAccount(RdDTO rd) : RdReturnDTO` - Create a new RD Account
   - `addDeposit(RdDTO rd) : RdReturnDTO` - Deposit the amount for each interval
   - `calcInterest() : double` - Calculate interest for each quarter
   - `calcMaturityAmount() : double` - Calucate the total maturity amount to be given to the customer(including interest)
@@ -132,3 +136,78 @@ Response Body: WithdrawalDTO
 URL: `PUT /recurring_deposit/extend_rd`
 Request Body: extendDTO
 Response Body: extendReturnDTO
+
+URL: `POST /recurring_deposit/new`
+Request Body: RdDTO
+Response Body: RdReturnDTO
+
+
+
+
+## Sequence of actions in the RD Module
+
+Customer -> RDController: POST /recurring_deposit/new
+RDController -> RDService: createRDAccount(RdDTO rd)
+RDService -> RecurringDepositRepository: Add(RecurringDeposit rd)
+RecurringDepositRepository -> RecurringDeposit: createRDAccount(RdDTO rd)
+RecurringDeposit -> RecurringDepositRepository: return created RD
+RecurringDepositRepository -> RDService: return created RD
+RDService -> RDController: return created RD
+RDController -> Customer: return created RD (RdReturnDTO)
+
+Customer -> RDController: POST /recurring_deposit/deposit
+RDController -> RDService: addDeposit(RdDTO rd)
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: addDeposit()
+RecurringDeposit -> RecurringDepositRepository: update deposit details
+RecurringDepositRepository -> RDService: return updated RD
+RDService -> RDController: return updated RD (RdReturnDTO)
+RDController -> Customer: return updated RD (RdReturnDTO)
+
+Customer -> RDController: GET /recurring_deposit/calculate_interest
+RDController -> RDService: calcualteInterest()
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: calculateInterest()
+RecurringDeposit -> RDService: return calculated interest
+RDService -> RDController: return calculated interest (double)
+RDController -> Customer: return calculated interest (double)
+
+Customer -> RDController: GET /recurring_deposit/calculate_amount
+RDController -> RDService: calculateMaturityAmount()
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: calculateMaturityAmount()
+RecurringDeposit -> RDService: return maturity amount
+RDService -> RDController: return maturity amount (double)
+RDController -> Customer: return maturity amount (double)
+
+Customer -> RDController: POST /recurring_deposit/premature_withdrawal
+RDController -> RDService: prematureWithdrawal(int amount)
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: prematureWithdrawal(int amount)
+RecurringDeposit -> RDService: return withdrawal details
+RDService -> RDController: return withdrawal details (WithdrawalDTO)
+RDController -> Customer: return withdrawal details (WithdrawalDTO)
+
+Customer -> RDController: POST /recurring_deposit/withdrawal
+RDController -> RDService: withdrawal()
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: withdrawal()
+RecurringDeposit -> RecurringDepositRepository: update withdrawal details
+RecurringDepositRepository -> RDService: return updated RD
+RDService -> RDController: return updated RD (WithdrawalDTO)
+RDController -> Customer: return updated RD (WithdrawalDTO)
+
+Customer -> RDController: PUT /recurring_deposit/extend_rd
+RDController -> RDService: extendRD(extendDTO)
+RDService -> RecurringDepositRepository: GetById(accountId)
+RecurringDepositRepository -> RecurringDeposit: return RD details
+RDService -> RecurringDeposit: extendRD(extendDTO)
+RecurringDeposit -> RecurringDepositRepository: update extension details
+RecurringDepositRepository -> RDService: return updated RD
+RDService -> RDController: return updated RD (extendReturnDTO)
+RDController -> Customer: return updated RD (extendReturnDTO)
