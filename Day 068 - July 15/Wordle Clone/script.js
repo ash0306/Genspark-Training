@@ -1,6 +1,18 @@
 import { dictionary } from "./5-letter-words.js";
 
-const words = ["apple", "beach", "crane", "drink", "eagle"];
+const words = [
+  "grape",
+  "frost",
+  "blend",
+  "quick",
+  "chess",
+  "glide",
+  "eagle",
+  "laugh",
+  "jelly",
+  "plank",
+];
+
 const word = words[Math.floor(Math.random() * words.length)];
 
 const board = document.getElementById("board");
@@ -25,22 +37,67 @@ function createBoard() {
 }
 
 function createKeyboard() {
-  const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+  const rows = ["QWERTYUIOP", "ASDFGHJKL", ["ENTER", "ZXCVBNM", "DELETE"]];
 
-  rows.forEach((row) => {
+  rows.forEach((rowChars, index) => {
     const rowDiv = document.createElement("div");
     rowDiv.className = "d-flex justify-content-center mb-2";
-    row.split("").forEach((key) => {
-      const button = document.createElement("button");
-      button.textContent = key;
-      button.className = "btn btn-secondary m-1";
-      button.style.width = "50px";
-      button.style.height = "50px";
-      button.addEventListener("click", () => handleKeyPress(key));
-      rowDiv.appendChild(button);
-    });
+
+    // Check if it's the last row (special buttons row)
+    if (index === rows.length - 1) {
+      // Create Enter button at the start of the row
+      const enterButton = createSpecialButton("Enter", () => handleSubmit());
+      rowDiv.appendChild(enterButton);
+
+      // Create buttons for characters in the middle
+      rowChars.forEach((key) => {
+        if (key === "ENTER" || key === "DELETE") return;
+        key.split("").forEach((char) => {
+            var button = document.createElement("button");
+            button = createKeyboardButton(button, char);
+            rowDiv.appendChild(button);
+        })
+      });
+
+      const deleteButton = createSpecialButton("←", () => handleBackspace());
+      rowDiv.appendChild(deleteButton);
+    } else {
+      // Regular row creation for QWERTYUIOP and ASDFGHJKL
+      const keys = rowChars.split("");
+      keys.forEach((key) => {
+        var button = document.createElement("button");
+        button = createKeyboardButton(button, key)
+        rowDiv.appendChild(button);
+      });
+    }
+
     keyboard.appendChild(rowDiv);
   });
+}
+
+function createKeyboardButton(button, key){
+    button.textContent = key;
+    button.className = "btn btn-secondary m-1";
+    button.style.width = "50px";
+    button.style.height = "50px";
+    button.addEventListener("click", () => handleKeyPress(key));
+
+    return button;
+}
+
+function createSpecialButton(text, clickHandler) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.className = "btn btn-secondary m-1";
+  button.style.width = "100px";
+  button.style.height = "50px";
+  button.addEventListener("click", clickHandler);
+  return button;
+}
+
+function handleBackspace() {
+  currentGuess = currentGuess.slice(0, -1);
+  updateBoard();
 }
 
 function handleKeyPress(key) {
