@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -8,13 +10,15 @@ using PizzaShopAPI.Interfaces;
 using PizzaShopAPI.Models;
 using PizzaShopAPI.Repositories;
 using PizzaShopAPI.Services;
+using System.Configuration;
+using System.Diagnostics;
 using System.Text;
 
 namespace PizzaShopAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -64,10 +68,30 @@ namespace PizzaShopAPI
 
                 });
 
+            #region AzureKeyVault
+            //var keyVaultName = "aswathi-vault";
+            //var kvUri = $"https://{keyVaultName}.vault.azure.net";
+            //const string secretName = "ConnectionString";
+
+            //var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+
+            //var secret = await client.GetSecretAsync(secretName);
+            //var connectionString = secret.Value.Value;
+
+            const string secretName = "DefaultConnection";
+            var keyVaultName = "productapisecrets";
+            var kvUri = $"https://{keyVaultName}.vault.azure.net";
+            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+
+            Console.WriteLine($"Retrieving your secret from {keyVaultName}.");
+            var secret = await client.GetSecretAsync(secretName);
+            var connectionString = secret.Value.Value;
+            Console.WriteLine($"Your secret is '{connectionString}'.");
+            #endregion
+
             #region contexts
-            builder.Services.AddDbContext<PizzaShopContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
-                );
+            builder.Services.AddDbContext<PizzaShopContext>(options => 
+                options.UseSqlServer(connectionString));
             #endregion
 
             #region repositories
