@@ -54,6 +54,6 @@ This Web API connects to a SQL Server instance running on a Virtual Machine to f
 
 ### Output Screenshots
 
-![swagger](./output1.png)
+![swagger](../output1.png)
 
-![blob](blob-output.png)
+![blob](../blob-output.png)
