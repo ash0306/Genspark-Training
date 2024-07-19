@@ -1,0 +1,93 @@
+.cell-fill{
+    background-color: gray;
+    fill: #D3D6DA;
+    text-align: center;
+}
+
+.hive .cell-letter{
+    color: black;
+    font-weight: 700;
+    font-size: 1.875em;
+    text-anchor: middle;
+}
+
+.hive-container{
+    width: 60%;
+}
+
+.hive{
+    position: relative;
+    width: 100%;
+    padding-bottom: 103%;
+}
+
+.hive-cell{
+    position: absolute;
+    width: 40%;
+    height: 33.33%;
+    top: 33.33%;
+    left: 30%;
+    cursor: pointer;
+}
+
+.hive-cell:first-child .cell-fill{
+    fill: #FFC107;
+    transition: all 100ms;
+}
+
+.hive-cell:nth-child(1){
+    transform: translate(0, 0);
+}
+
+.hive-cell:nth-child(2){
+    transform: translate(-75%, -50%);
+}
+
+.hive-cell:nth-child(3){
+    transform: translate(0%, -100%);
+}
+
+.hive-cell:nth-child(4){
+    transform: translate(75%, -50%);
+}
+
+.hive-cell:nth-child(5){
+    transform: translate(75%, 50%);
+}
+
+.hive-cell:nth-child(6){
+    transform: translate(0, 100%);
+}
+
+.hive-cell:nth-child(7){
+    transform: translate(-75%, 50%);
+}
+
+.input-group {
+    position: relative;
+}
+
+#current-word {
+    pointer-events: none;
+    caret-color: transparent;
+}
+
+#current-word::after {
+    content: '|';
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: inherit;
+    color: black;
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
